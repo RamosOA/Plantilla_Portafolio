@@ -1,0 +1,119 @@
+/* styles/globals.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Variables de color personalizadas */
+:root {
+  --primary-100: #AD991B;
+  --primary-200: #8e7d00;
+  --primary-300: #4c4100;
+  --accent-100: #132A14;
+  --accent-200: #024600;
+  --text-100: #FFFFFF;
+  --text-200: #e0e0e0;
+  --bg-100: #BDBEC0;
+  --bg-200: #b3b4b6;
+  --bg-300: #8d8e90;
+}
+
+/* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  width: 100vw;
+  height: 100vh;
+}
+
+body {
+  background: linear-gradient(135deg, var(--accent-100) 0%, #0a1a0b 50%, #000000 100%);
+  color: var(--text-100);
+  width: 100vw;
+  height: 100vh;
+  overflow-x: auto;
+  overflow-y: hidden;
+}
+
+/* Oculta el scrollbar pero permite scroll horizontal */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Secciones ocupan toda la pantalla horizontal */
+section {
+  min-width: 100vw;
+  height: 100vh;
+  flex: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+  box-sizing: border-box;
+}
+
+/* Estilos de componentes */
+.section-item {
+  background: rgba(173, 153, 27, 0.08);
+  backdrop-filter: blur(20px);
+  border: 1px solid rgba(173, 153, 27, 0.2);
+  border-radius: 12px;
+  padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+.section-item:hover {
+  background: rgba(173, 153, 27, 0.12);
+  border-color: rgba(173, 153, 27, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(173, 153, 27, 0.1);
+}
+
+.section-title {
+  color: var(--primary-100);
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.section-content {
+  color: var(--text-200);
+  line-height: 1.7;
+}
+
+.custom-scroll {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+.custom-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+/* Efectos de cristal mejorados */
+.glass-effect {
+  background: rgba(173, 153, 27, 0.06);
+  backdrop-filter: blur(25px);
+  border: 1px solid rgba(173, 153, 27, 0.15);
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.glass-effect-hover:hover {
+  background: rgba(173, 153, 27, 0.1);
+  border-color: rgba(173, 153, 27, 0.3);
+  transform: translateY(-3px);
+  box-shadow: 
+    0 15px 40px rgba(173, 153, 27, 0.15),
+    inset 0 1px 0 rgba(255, 255, 255, 0.2);
+}

@@ -1,0 +1,30 @@
+[
+    {
+        "nombre": "Comercol",
+        "descripcion": "Plataforma web para empresa de logística. Desarrollada con React.js y Node.js. Interfaces interactivas, backend funcional y despliegue en Vercel.",
+        "github": "https://github.com/srueda99/Comercol",
+        "icono": "truck",
+        "link": "https://github.com/srueda99/Comercol"
+    },
+    {
+        "nombre": "Websepudo",
+        "descripcion": "Plataforma para gestión de eventos masivos. Experiencia de usuario dinámica desarrollada con React.js. Participación en frontend y backend.",
+        "github": "https://github.com/Cristian-Usme/websepudo",
+        "icono": "calendar-check",
+        "link": "https://github.com/Cristian-Usme/websepudo"
+    },
+    {
+        "nombre": "E-commerce Bikers",
+        "descripcion": "Tienda online completa con carrito, gestión de usuarios y checkout. Proyecto académico del bootcamp Digital House.",
+        "github": "https://github.com/RamosOA/Grupo-2-Bikers",
+        "icono": "shopping-bag",
+        "link": "https://github.com/RamosOA/Grupo-2-Bikers"
+    },
+    {
+        "nombre": "AdBlocker para Chrome",
+        "descripcion": "Extensión de navegador en JavaScript puro para bloquear anuncios. Proyecto personal funcional y educativo.",
+        "github": "https://github.com/RamosOA/AdBlocker",
+        "icono": "shield",
+        "link": "https://github.com/RamosOA/AdBlocker"
+    }
+]

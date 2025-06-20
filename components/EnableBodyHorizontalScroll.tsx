@@ -1,0 +1,24 @@
+// components/EnableBodyHorizontalScroll.tsx
+'use client';
+
+import { useEffect } from 'react';
+
+export default function EnableBodyHorizontalScroll() {
+    useEffect(() => {
+        const handleWheel = (e: WheelEvent) => {
+            e.preventDefault();
+            window.scrollBy({
+                left: e.deltaY * 3,
+                behavior: 'smooth'
+            });
+        };
+
+        window.addEventListener('wheel', handleWheel, { passive: false });
+
+        return () => {
+            window.removeEventListener('wheel', handleWheel);
+        };
+    }, []);
+
+    return null;
+}
