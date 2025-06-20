@@ -25,6 +25,11 @@ export default function RootLayout({
     <html lang="en" className="scroll-smooth">
       <body className={`${inter.className} bg-zinc-900 text-white overflow-x-hidden`}>
         <ThemeProvider>
+          {/* ✅ NUEVO: Background fijo para toda la página */}
+          <div className="fixed inset-0 -z-10">
+            <div className="animated-bg-continuous" />
+          </div>
+          
           <EnableBodyHorizontalScroll />
           <ParticleBackground />
           {/* Barra de tema fija arriba a la derecha */}
