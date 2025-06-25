@@ -3,7 +3,12 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const TituloSeccion = ({ titulo, delay = 0.2 }) => {
+interface TituloSeccionProps {
+    titulo: string;
+    delay?: number;
+}
+
+const TituloSeccion: React.FC<TituloSeccionProps> = ({ titulo, delay = 0.2 }) => {
     return (
         <div className="absolute left-6 top-1/2 -translate-y-1/2 z-10">
             <div className="pt-20">

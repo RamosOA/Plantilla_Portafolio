@@ -7,13 +7,26 @@ import SlideContent from './SlideContent';
 import SlideControls from './SlideControls';
 import SlideIndicators from './SlideIndicators';
 
-const SlidePresentation = ({ className, delay = 0 }) => {
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const [currentTitleIndex, setCurrentTitleIndex] = useState(0);
-    const [isSlideHovered, setIsSlideHovered] = useState(false);
-    const presentacionScrollRef = useRef(null);
+interface SlideData {
+    name?: string;
+    title: string;
+    subtitle?: string;
+    description?: string;
+    highlight?: string;
+}
 
-    const slides = [
+interface SlidePresentationProps {
+    className: string;
+    delay?: number;
+}
+
+const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay = 0 }) => {
+    const [currentSlide, setCurrentSlide] = useState<number>(0);
+    const [currentTitleIndex, setCurrentTitleIndex] = useState<number>(0);
+    const [isSlideHovered, setIsSlideHovered] = useState<boolean>(false);
+    const presentacionScrollRef = useRef<HTMLDivElement>(null);
+
+    const slides: SlideData[] = [
         {
             name: "Oscar Ramos",
             title: "Desarrollador Full Stack"
@@ -26,7 +39,7 @@ const SlidePresentation = ({ className, delay = 0 }) => {
         }
     ];
 
-    const titles = ["Desarrollador Full Stack", "Programador Móvil en Curso"];
+    const titles: string[] = ["Desarrollador Full Stack", "Programador Móvil en Curso"];
 
     // Auto-cambio de slides con pausa
     useEffect(() => {
@@ -46,7 +59,7 @@ const SlidePresentation = ({ className, delay = 0 }) => {
         return () => clearInterval(titleInterval);
     }, []);
 
-    const handleSlideChange = (newSlide) => {
+    const handleSlideChange = (newSlide: number) => {
         setCurrentSlide(newSlide);
         setIsSlideHovered(false);
     };
@@ -102,11 +115,13 @@ const SlidePresentation = ({ className, delay = 0 }) => {
             />
 
             {/* Indicadores de slide */}
-            <SlideIndicators 
-                slides={slides}
-                currentSlide={currentSlide}
-                onSlideChange={handleSlideChange}
-            />
+            <div suppressHydrationWarning={true}>
+                <SlideIndicators 
+                    slides={slides}
+                    currentSlide={currentSlide}
+                    onSlideChange={handleSlideChange}
+                />
+            </div>
         </motion.div>
     );
 };

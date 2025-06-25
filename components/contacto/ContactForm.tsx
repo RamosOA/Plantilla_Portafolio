@@ -172,6 +172,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                 ref={scrollRef}
                 className="overflow-y-auto pr-2 custom-scrollbar scroll-smooth p-4 pt-0"
                 style={{ minHeight: 0 }}
+                suppressHydrationWarning={true}
             >
                 {/* Mensajes de estado */}
                 {submitStatus === 'success' && (
@@ -184,6 +185,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                         }}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
+                        suppressHydrationWarning={true}
                     >
                         <FaCheckCircle />
                         <span className="text-sm">¡Mensaje enviado correctamente! Te responderé pronto.</span>
@@ -200,6 +202,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                         }}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
+                        suppressHydrationWarning={true}
                     >
                         <FaExclamationTriangle />
                         <span className="text-sm">{errorMessage || 'Error al enviar el mensaje. Por favor intenta de nuevo.'}</span>
@@ -260,6 +263,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                                 style={{ color: '#ef4444' }}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
+                                suppressHydrationWarning={true}
                             >
                                 {errors.name}
                             </motion.p>
@@ -301,6 +305,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                                 style={{ color: '#ef4444' }}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
+                                suppressHydrationWarning={true}
                             >
                                 {errors.email}
                             </motion.p>
@@ -342,6 +347,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                                 style={{ color: '#ef4444' }}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
+                                suppressHydrationWarning={true}
                             >
                                 {errors.message}
                             </motion.p>
@@ -363,6 +369,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                                 color: '#132A14',
                                 boxShadow: '0 4px 15px rgba(173, 153, 27, 0.3)'
                             }}
+                            suppressHydrationWarning={true}
                         >
                             {isSubmitting ? (
                                 <>

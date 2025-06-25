@@ -9,7 +9,7 @@ import WhatsAppCard from '../inicio/WhatsAppCard';
 
 const Inicio = () => {
     // Navegación a secciones
-    const scrollToSection = (sectionId) => {
+    const scrollToSection = (sectionId: string) => {
         const section = document.getElementById(sectionId);
         if (section) {
             window.scrollTo({

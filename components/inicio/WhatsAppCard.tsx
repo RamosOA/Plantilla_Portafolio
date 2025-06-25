@@ -4,7 +4,13 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 
-const WhatsAppCard = ({ className, onClick, delay = 0 }) => {
+interface WhatsAppCardProps {
+    className: string;
+    onClick: () => void;
+    delay?: number;
+}
+
+const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay = 0 }) => {
     return (
         <motion.div
             className={`${className} border rounded-xl p-4 cursor-pointer group relative overflow-hidden`}

@@ -4,7 +4,21 @@ import React from 'react';
 import { motion } from 'framer-motion';
 import { FaUser, FaCogs, FaBriefcase, FaPhone, FaArrowRight } from 'react-icons/fa';
 
-const NavigationCard = ({ 
+type IconType = 'user' | 'skills' | 'projects' | 'contact';
+type LayoutType = 'horizontal' | 'vertical';
+
+interface NavigationCardProps {
+    className: string;
+    title: string;
+    description: string;
+    icon: IconType;
+    onClick: () => void;
+    layout?: LayoutType;
+    actionText?: string;
+    delay?: number;
+}
+
+const NavigationCard: React.FC<NavigationCardProps> = ({ 
     className, 
     title, 
     description, 

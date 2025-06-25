@@ -3,7 +3,26 @@
 import React, { useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
-const SlideContent = ({
+interface SlideData {
+    name?: string;
+    title: string;
+    subtitle?: string;
+    description?: string;
+    highlight?: string;
+}
+
+interface SlideContentProps {
+    slides: SlideData[];
+    titles: string[];
+    currentSlide: number;
+    currentTitleIndex: number;
+    isSlideHovered: boolean;
+    onMouseEnter: () => void;
+    onMouseLeave: () => void;
+    presentacionScrollRef: React.RefObject<HTMLDivElement>;
+}
+
+const SlideContent: React.FC<SlideContentProps> = ({
     slides,
     titles,
     currentSlide,
@@ -40,7 +59,7 @@ const SlideContent = ({
         };
     }, []);
 
-    const handleSlideWheel = (e) => {
+    const handleSlideWheel = (e: React.WheelEvent<HTMLDivElement>) => {
         const container = e.currentTarget;
         const { scrollTop, scrollHeight, clientHeight } = container;
         
