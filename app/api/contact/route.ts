@@ -8,7 +8,7 @@ export async function POST(request: NextRequest) {
         const { name, email, message } = await request.json();
         console.log('📧 Datos recibidos:', { name, email, message });
 
-        // Validaciones...
+        
         if (!name || !email || !message) {
             return NextResponse.json(
                 { error: 'Todos los campos son obligatorios' },
@@ -34,7 +34,7 @@ export async function POST(request: NextRequest) {
         console.log('📬 Enviando email con Resend...');
 
         const { data, error } = await resend.emails.send({
-            from: 'Portafolio <onboarding@resend.dev>', // Email verificado por Resend
+            from: 'Portafolio <onboarding@resend.dev>', 
             to: ['oscara22a.r@gmail.com'],
             subject: `🚀 Nuevo mensaje de contacto de ${name}`,
             replyTo: email,

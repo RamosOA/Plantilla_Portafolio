@@ -17,8 +17,7 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
             style={{
                 background: 'rgba(37, 211, 102, 0.08)',
                 borderColor: 'rgba(37, 211, 102, 0.2)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                backdropFilter: 'blur(20px)'
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -28,18 +27,16 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
                 e.currentTarget.style.background = 'rgba(37, 211, 102, 0.15)';
                 e.currentTarget.style.borderColor = 'rgba(37, 211, 102, 0.5)';
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 15px 40px rgba(37, 211, 102, 0.2)';
             }}
             onMouseLeave={(e) => {
                 e.currentTarget.style.background = 'rgba(37, 211, 102, 0.08)';
                 e.currentTarget.style.borderColor = 'rgba(37, 211, 102, 0.2)';
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
             }}
             whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
         >
-            {/* Efectos de ondas */}
+            
             <div className="absolute inset-0 overflow-hidden rounded-xl">
                 <motion.div
                     className="absolute -top-2 -left-2 w-12 h-12 rounded-full opacity-15"
@@ -71,7 +68,7 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
             </div>
 
             <div className="relative z-10 flex flex-col justify-center items-center h-full text-center">
-                {/* Icono con efectos */}
+                
                 <motion.div
                     className="relative mb-6"
                     whileHover={{ 
@@ -102,7 +99,7 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
                     </div>
                 </motion.div>
 
-                {/* Título */}
+                
                 <motion.h3 
                     className="text-xl font-bold mb-4" 
                     style={{ 
@@ -117,7 +114,7 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
                     Hablemos
                 </motion.h3>
 
-                {/* Badge de estado */}
+                
                 <motion.div 
                     className="flex items-center px-3 py-2 rounded-full" 
                     style={{ 

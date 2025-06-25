@@ -36,31 +36,31 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
     const scrollRef = useRef<HTMLDivElement>(null);
     const formRef = useRef<HTMLFormElement>(null);
 
-    // Validación de email
+    
     const isValidEmail = (email: string): boolean => {
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         return emailRegex.test(email);
     };
 
-    // Validar campos
+    
     const validateForm = (): boolean => {
         const newErrors: FormErrors = {};
 
-        // Validar nombre
+        
         if (!formData.name.trim()) {
             newErrors.name = 'El nombre es obligatorio';
         } else if (formData.name.trim().length < 2) {
             newErrors.name = 'El nombre debe tener al menos 2 caracteres';
         }
 
-        // Validar email
+        
         if (!formData.email.trim()) {
             newErrors.email = 'El email es obligatorio';
         } else if (!isValidEmail(formData.email)) {
             newErrors.email = 'Por favor ingresa un email válido';
         }
 
-        // Validar mensaje
+        
         if (!formData.message.trim()) {
             newErrors.message = 'El mensaje es obligatorio';
         } else if (formData.message.trim().length < 10) {
@@ -78,7 +78,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
             [name]: value
         }));
 
-        // Limpiar error del campo cuando el usuario empiece a escribir
+        
         if (errors[name as keyof FormErrors]) {
             setErrors(prev => ({
                 ...prev,
@@ -86,7 +86,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
             }));
         }
 
-        // Limpiar estado de envío si hay cambios
+        
         if (submitStatus !== 'idle') {
             setSubmitStatus('idle');
             setErrorMessage('');
@@ -96,7 +96,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         
-        // Validar formulario
+        
         if (!validateForm()) {
             return;
         }
@@ -125,7 +125,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                 setFormData({ name: '', email: '', message: '' });
                 setErrors({});
                 
-                // Scroll hacia arriba para mostrar el mensaje de éxito
+                
                 if (scrollRef.current) {
                     scrollRef.current.scrollTop = 0;
                 }
@@ -147,8 +147,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
         <motion.div
             className={`${className} border rounded-lg cursor-default flex flex-col overflow-hidden`}
             style={{
-                background: 'rgba(173, 153, 27, 0.08)',
-                borderColor: 'rgba(173, 153, 27, 0.2)',
+                background: 'color-mix(in srgb, var(--primary-100) 8%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
                 backdropFilter: 'blur(20px)',
                 boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
             }}
@@ -157,31 +157,41 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
             transition={{ delay }}
             onWheel={(e) => onWheel(e, scrollRef)}
         >
-            {/* Header del formulario - ESTÁTICO */}
+            
             <div className="p-4 pb-0">
                 <div className="flex items-center mb-4">
-                    <FaComment className="text-3xl mr-2" style={{ color: 'rgba(173, 153, 27, 0.3)' }} />
-                    <h3 className="text-lg font-semibold" style={{ color: '#AD991B' }}>
+                    <FaComment 
+                        className="text-3xl mr-2 transition-colors duration-300" 
+                        style={{ 
+                            color: 'color-mix(in srgb, var(--primary-100) 100%, transparent)',
+                            filter: 'drop-shadow(0 1px 2px rgba(0,0,0,0.3))',
+                            fontWeight: 'bold'
+                        }} 
+                    />
+                    <h3 
+                        className="text-lg font-semibold transition-colors duration-300" 
+                        style={{ color: 'var(--primary-100)' }}
+                    >
                         Envíame un mensaje
                     </h3>
                 </div>
             </div>
 
-            {/* Área con scroll */}
+            
             <div 
                 ref={scrollRef}
                 className="overflow-y-auto pr-2 custom-scrollbar scroll-smooth p-4 pt-0"
                 style={{ minHeight: 0 }}
                 suppressHydrationWarning={true}
             >
-                {/* Mensajes de estado */}
+                
                 {submitStatus === 'success' && (
                     <motion.div 
                         className="mb-4 p-3 rounded-lg flex items-center gap-2"
                         style={{ 
-                            background: 'rgba(34, 197, 94, 0.1)',
-                            border: '1px solid rgba(34, 197, 94, 0.3)',
-                            color: '#22c55e'
+                            background: 'color-mix(in srgb, var(--success) 10%, transparent)',
+                            border: '1px solid color-mix(in srgb, var(--success) 30%, transparent)',
+                            color: 'var(--success)'
                         }}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -196,9 +206,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                     <motion.div 
                         className="mb-4 p-3 rounded-lg flex items-center gap-2"
                         style={{ 
-                            background: 'rgba(239, 68, 68, 0.1)',
-                            border: '1px solid rgba(239, 68, 68, 0.3)',
-                            color: '#ef4444'
+                            background: 'color-mix(in srgb, var(--error) 10%, transparent)',
+                            border: '1px solid color-mix(in srgb, var(--error) 30%, transparent)',
+                            color: 'var(--error)'
                         }}
                         initial={{ opacity: 0, y: -10 }}
                         animate={{ opacity: 1, y: 0 }}
@@ -209,7 +219,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                     </motion.div>
                 )}
 
-                {/* Texto introductorio */}
+                
                 <motion.div 
                     className="mb-4"
                     initial={{ opacity: 0 }}
@@ -217,8 +227,8 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                     transition={{ delay: 0.5 }}
                 >
                     <p 
-                        className="text-sm leading-relaxed"
-                        style={{ color: '#e0e0e0' }}
+                        className="text-sm leading-relaxed transition-colors duration-300"
+                        style={{ color: 'var(--text-200)' }}
                     >
                         ¿Tienes un proyecto en mente? ¿Necesitas ayuda con desarrollo web? 
                         No dudes en contactarme. Estoy siempre disponible para nuevas oportunidades 
@@ -226,9 +236,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                     </p>
                 </motion.div>
 
-                {/* Formulario */}
+                
                 <form ref={formRef} onSubmit={handleSubmit}>
-                    {/* Campo Nombre */}
+                    
                     <div className="mb-4">
                         <input
                             type="text"
@@ -240,27 +250,27 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                                 errors.name ? 'border-red-500' : ''
                             }`}
                             style={{
-                                background: 'rgba(173, 153, 27, 0.05)',
-                                border: `2px solid ${errors.name ? '#ef4444' : 'rgba(173, 153, 27, 0.2)'}`,
-                                color: '#FFFFFF'
+                                background: 'color-mix(in srgb, var(--primary-100) 5%, transparent)',
+                                border: `2px solid ${errors.name ? 'var(--error)' : 'color-mix(in srgb, var(--primary-100) 20%, transparent)'}`,
+                                color: 'var(--text-100)'
                             }}
                             onFocus={(e) => {
                                 if (!errors.name) {
-                                    e.target.style.borderColor = '#AD991B';
-                                    e.target.style.boxShadow = '0 0 20px rgba(173, 153, 27, 0.2)';
+                                    e.target.style.borderColor = 'var(--primary-100)';
+                                    e.target.style.boxShadow = '0 0 20px color-mix(in srgb, var(--primary-100) 20%, transparent)';
                                 }
                             }}
                             onBlur={(e) => {
                                 if (!errors.name) {
-                                    e.target.style.borderColor = 'rgba(173, 153, 27, 0.2)';
+                                    e.target.style.borderColor = 'color-mix(in srgb, var(--primary-100) 20%, transparent)';
                                     e.target.style.boxShadow = 'none';
                                 }
                             }}
                         />
                         {errors.name && (
                             <motion.p 
-                                className="mt-1 text-xs"
-                                style={{ color: '#ef4444' }}
+                                className="mt-1 text-xs transition-colors duration-300"
+                                style={{ color: 'var(--error)' }}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 suppressHydrationWarning={true}
@@ -270,7 +280,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                         )}
                     </div>
 
-                    {/* Campo Email */}
+                    
                     <div className="mb-4">
                         <input
                             type="email"
@@ -282,27 +292,27 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                                 errors.email ? 'border-red-500' : ''
                             }`}
                             style={{
-                                background: 'rgba(173, 153, 27, 0.05)',
-                                border: `2px solid ${errors.email ? '#ef4444' : 'rgba(173, 153, 27, 0.2)'}`,
-                                color: '#FFFFFF'
+                                background: 'color-mix(in srgb, var(--primary-100) 5%, transparent)',
+                                border: `2px solid ${errors.email ? 'var(--error)' : 'color-mix(in srgb, var(--primary-100) 20%, transparent)'}`,
+                                color: 'var(--text-100)'
                             }}
                             onFocus={(e) => {
                                 if (!errors.email) {
-                                    e.target.style.borderColor = '#AD991B';
-                                    e.target.style.boxShadow = '0 0 20px rgba(173, 153, 27, 0.2)';
+                                    e.target.style.borderColor = 'var(--primary-100)';
+                                    e.target.style.boxShadow = '0 0 20px color-mix(in srgb, var(--primary-100) 20%, transparent)';
                                 }
                             }}
                             onBlur={(e) => {
                                 if (!errors.email) {
-                                    e.target.style.borderColor = 'rgba(173, 153, 27, 0.2)';
+                                    e.target.style.borderColor = 'color-mix(in srgb, var(--primary-100) 20%, transparent)';
                                     e.target.style.boxShadow = 'none';
                                 }
                             }}
                         />
                         {errors.email && (
                             <motion.p 
-                                className="mt-1 text-xs"
-                                style={{ color: '#ef4444' }}
+                                className="mt-1 text-xs transition-colors duration-300"
+                                style={{ color: 'var(--error)' }}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 suppressHydrationWarning={true}
@@ -312,7 +322,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                         )}
                     </div>
 
-                    {/* Campo Mensaje */}
+                    
                     <div className="mb-4">
                         <textarea
                             name="message"
@@ -324,27 +334,27 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                                 errors.message ? 'border-red-500' : ''
                             }`}
                             style={{
-                                background: 'rgba(173, 153, 27, 0.05)',
-                                border: `2px solid ${errors.message ? '#ef4444' : 'rgba(173, 153, 27, 0.2)'}`,
-                                color: '#FFFFFF'
+                                background: 'color-mix(in srgb, var(--primary-100) 5%, transparent)',
+                                border: `2px solid ${errors.message ? 'var(--error)' : 'color-mix(in srgb, var(--primary-100) 20%, transparent)'}`,
+                                color: 'var(--text-100)'
                             }}
                             onFocus={(e) => {
                                 if (!errors.message) {
-                                    e.target.style.borderColor = '#AD991B';
-                                    e.target.style.boxShadow = '0 0 20px rgba(173, 153, 27, 0.2)';
+                                    e.target.style.borderColor = 'var(--primary-100)';
+                                    e.target.style.boxShadow = '0 0 20px color-mix(in srgb, var(--primary-100) 20%, transparent)';
                                 }
                             }}
                             onBlur={(e) => {
                                 if (!errors.message) {
-                                    e.target.style.borderColor = 'rgba(173, 153, 27, 0.2)';
+                                    e.target.style.borderColor = 'color-mix(in srgb, var(--primary-100) 20%, transparent)';
                                     e.target.style.boxShadow = 'none';
                                 }
                             }}
                         />
                         {errors.message && (
                             <motion.p 
-                                className="mt-1 text-xs"
-                                style={{ color: '#ef4444' }}
+                                className="mt-1 text-xs transition-colors duration-300"
+                                style={{ color: 'var(--error)' }}
                                 initial={{ opacity: 0 }}
                                 animate={{ opacity: 1 }}
                                 suppressHydrationWarning={true}
@@ -354,7 +364,7 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                         )}
                     </div>
 
-                    {/* Botón de envío */}
+                    
                     <div className="mb-4">
                         <button
                             type="submit"
@@ -364,10 +374,10 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                             }`}
                             style={{
                                 background: isSubmitting 
-                                    ? 'rgba(173, 153, 27, 0.5)' 
-                                    : 'linear-gradient(135deg, #AD991B 0%, #8e7d00 100%)',
-                                color: '#132A14',
-                                boxShadow: '0 4px 15px rgba(173, 153, 27, 0.3)'
+                                    ? 'color-mix(in srgb, var(--primary-100) 50%, transparent)' 
+                                    : 'linear-gradient(135deg, var(--primary-100) 0%, var(--primary-200) 100%)',
+                                color: 'white',
+                                boxShadow: '0 4px 15px color-mix(in srgb, var(--primary-100) 30%, transparent)'
                             }}
                             suppressHydrationWarning={true}
                         >
@@ -385,9 +395,9 @@ const ContactForm: React.FC<ContactFormProps> = ({ onWheel, className, delay }) 
                         </button>
                     </div>
 
-                    {/* Nota de campos obligatorios */}
+                    
                     <div className="mb-4">
-                        <p className="text-xs" style={{ color: 'rgba(255, 255, 255, 0.5)' }}>
+                        <p className="text-xs transition-colors duration-300" style={{ color: 'var(--text-300)' }}>
                             * Campos obligatorios
                         </p>
                     </div>

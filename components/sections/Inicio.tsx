@@ -8,7 +8,6 @@ import NavigationCard from '../inicio/NavigationCard';
 import WhatsAppCard from '../inicio/WhatsAppCard';
 
 const Inicio = () => {
-    // Navegación a secciones
     const scrollToSection = (sectionId: string) => {
         const section = document.getElementById(sectionId);
         if (section) {
@@ -19,7 +18,6 @@ const Inicio = () => {
         }
     };
 
-    // Abrir WhatsApp
     const openWhatsApp = () => {
         const phoneNumber = '573028488116';
         const message = encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios de desarrollo web.');
@@ -34,20 +32,20 @@ const Inicio = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
         >
-            {/* Título lateral */}
+            
             <TituloSeccion titulo="INICIO" />
 
-            {/* Grid principal */}
+            
             <div className="pl-24 pr-8 py-8 h-full w-full max-w-7xl">
                 <div className="grid grid-cols-5 grid-rows-5 gap-4 h-full">
                     
-                    {/* Div 1 - Presentación Principal */}
+                    
                     <SlidePresentation 
                         className="col-span-2 row-span-3"
                         delay={0.3}
                     />
 
-                    {/* Div 2 - Habilidades */}
+                    
                     <NavigationCard
                         className="col-span-3 row-span-2 col-start-1 row-start-4"
                         title="Habilidades"
@@ -57,7 +55,7 @@ const Inicio = () => {
                         delay={0.4}
                     />
 
-                    {/* Div 3 - Proyectos */}
+                    
                     <NavigationCard
                         className="col-span-2 row-span-2 col-start-4 row-start-4"
                         title="Proyectos"
@@ -68,7 +66,7 @@ const Inicio = () => {
                         delay={0.5}
                     />
 
-                    {/* Div 4 - Sobre Mí */}
+                    
                     <NavigationCard
                         className="col-span-3 col-start-3 row-start-1"
                         title="Sobre Mí"
@@ -78,14 +76,14 @@ const Inicio = () => {
                         delay={0.6}
                     />
 
-                    {/* Div 5 - WhatsApp */}
+                    
                     <WhatsAppCard
                         className="row-span-2 col-start-3 row-start-2"
                         onClick={openWhatsApp}
                         delay={0.7}
                     />
 
-                    {/* Div 6 - Contacto */}
+                    
                     <NavigationCard
                         className="col-span-2 row-span-2 col-start-4 row-start-2"
                         title="Contacto"

@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Light Background</title>
+    <style>
+        /* Importamos solo los estilos del background del CSS principal */
+        
+        /* Light mode color variables */
+        :root[data-theme="light"] {
+            --primary-100: #C4A834;
+            --primary-200: #A08F2A;
+            --primary-300: #7D6F1F;
+            --accent-100: #F0F8F0;
+            --accent-200: #2D5A3D;
+            --text-100: #1C1C1E;
+            --text-200: #48484A;
+            --bg-100: #FEFFFE;
+            --bg-200: #F9F9F7;
+            --bg-300: #F2F2EF;
+        }
+
+        /* Dark mode for comparison */
+        :root {
+            --primary-100: #AD991B;
+            --primary-200: #8e7d00;
+            --primary-300: #4c4100;
+            --accent-100: #132A14;
+            --accent-200: #024600;
+            --text-100: #FFFFFF;
+            --text-200: #e0e0e0;
+            --bg-100: #BDBEC0;
+            --bg-200: #b3b4b6;
+            --bg-300: #8d8e90;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html, body {
+            width: 100vw;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        body {
+            background: linear-gradient(135deg, var(--accent-100) 0%, #0a1a0b 50%, #000000 100%);
+            color: var(--text-100);
+            transition: background 0.5s ease;
+            position: relative;
+        }
+
+        /* Background específico para modo claro */
+        :root[data-theme="light"] body {
+            background: linear-gradient(135deg, var(--bg-100) 0%, var(--bg-200) 25%, var(--accent-100) 50%, var(--bg-200) 75%, var(--bg-100) 100%);
+        }
+
+        /* Background animado continuo */
+        .animated-bg-continuous {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                135deg,
+                #0a0a0a 0%,
+                #1a1a1a 25%,
+                #132A14 50%,
+                #1a1a1a 75%,
+                #0a0a0a 100%
+            );
+            background-size: 300% 300%;
+            animation: gradientShift 25s ease infinite;
+            transition: all 0.5s ease;
+        }
+
+        /* Background animado para modo claro */
+        :root[data-theme="light"] .animated-bg-continuous {
+            background: linear-gradient(
+                135deg,
+                #FEFFFE 0%,
+                #F9F9F7 15%,
+                #F0F8F0 35%,
+                #F2F2EF 65%,
+                #F9F9F7 85%,
+                #FEFFFE 100%
+            );
+            background-size: 250% 250%;
+            animation: lightGradientShift 30s ease infinite;
+        }
+
+        .animated-bg-continuous::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(
+                circle at 20% 80%,
+                rgba(173, 153, 27, 0.08) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                circle at 80% 20%,
+                rgba(173, 153, 27, 0.05) 0%,
+                transparent 50%
+            ),
+            radial-gradient(
+                circle at 40% 40%,
+                rgba(19, 42, 20, 0.15) 0%,
+                transparent 50%
+            );
+            animation: floatingLights 35s ease-in-out infinite;
+            transition: all 0.5s ease;
+        }
+
+        /* Efectos suaves para modo claro */
+        :root[data-theme="light"] .animated-bg-continuous::before {
+            background: radial-gradient(
+                circle at 25% 75%,
+                rgba(196, 168, 52, 0.06) 0%,
+                transparent 40%
+            ),
+            radial-gradient(
+                circle at 75% 25%,
+                rgba(45, 90, 61, 0.04) 0%,
+                transparent 45%
+            ),
+            radial-gradient(
+                circle at 50% 50%,
+                rgba(196, 168, 52, 0.03) 0%,
+                transparent 35%
+            );
+            animation: lightFloatingLights 40s ease-in-out infinite;
+        }
+
+        .animated-bg-continuous::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(173, 153, 27, 0.015) 50%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, rgba(19, 42, 20, 0.025) 50%, transparent 100%);
+            animation: subtleWave 45s linear infinite;
+            transition: all 0.5s ease;
+        }
+
+        /* Efectos sutiles para modo claro */
+        :root[data-theme="light"] .animated-bg-continuous::after {
+            background: 
+                linear-gradient(90deg, transparent 0%, rgba(196, 168, 52, 0.012) 50%, transparent 100%),
+                linear-gradient(0deg, transparent 0%, rgba(45, 90, 61, 0.018) 50%, transparent 100%);
+            animation: lightSubtleWave 50s linear infinite;
+        }
+
+        /* Animaciones */
+        @keyframes gradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            25% { background-position: 25% 25%; }
+            50% { background-position: 100% 50%; }
+            75% { background-position: 75% 75%; }
+        }
+
+        @keyframes lightGradientShift {
+            0%, 100% { background-position: 0% 50%; }
+            20% { background-position: 20% 30%; }
+            40% { background-position: 60% 70%; }
+            60% { background-position: 80% 40%; }
+            80% { background-position: 40% 80%; }
+        }
+
+        @keyframes floatingLights {
+            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 0.4; }
+            25% { transform: translateY(-8px) rotate(30deg); opacity: 0.6; }
+            50% { transform: translateY(4px) rotate(60deg); opacity: 0.3; }
+            75% { transform: translateY(-4px) rotate(90deg); opacity: 0.5; }
+        }
+
+        @keyframes lightFloatingLights {
+            0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); opacity: 0.6; }
+            25% { transform: translateY(-6px) rotate(20deg) scale(1.02); opacity: 0.8; }
+            50% { transform: translateY(3px) rotate(40deg) scale(0.98); opacity: 0.4; }
+            75% { transform: translateY(-3px) rotate(60deg) scale(1.01); opacity: 0.7; }
+        }
+
+        @keyframes subtleWave {
+            0% { transform: translateX(-100%); }
+            100% { transform: translateX(100%); }
+        }
+
+        @keyframes lightSubtleWave {
+            0% { transform: translateX(-100%) rotate(0deg); opacity: 0.4; }
+            25% { transform: translateX(-25%) rotate(90deg); opacity: 0.2; }
+            50% { transform: translateX(25%) rotate(180deg); opacity: 0.1; }
+            75% { transform: translateX(75%) rotate(270deg); opacity: 0.15; }
+            100% { transform: translateX(100%) rotate(360deg); opacity: 0.4; }
+        }
+
+        /* Controls para testing */
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dark {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .btn-light {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        .content {
+            position: relative;
+            z-index: 10;
+            padding: 2rem;
+            color: var(--text-100);
+            text-align: center;
+            margin-top: 50vh;
+            transform: translateY(-50%);
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            color: var(--primary-100);
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: var(--text-200);
+        }
+    </style>
+</head>
+<body>
+    <div class="animated-bg-continuous"></div>
+    
+    <div class="controls">
+        <button class="btn btn-dark" onclick="setTheme('dark')">Dark Mode</button>
+        <button class="btn btn-light" onclick="setTheme('light')">Light Mode</button>
+    </div>
+
+    <div class="content">
+        <h1>Test Background</h1>
+        <p>Prueba del background animado en modo claro y oscuro</p>
+        <p>Observa cómo cambian los colores y animaciones</p>
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        // Set initial theme
+        setTheme('light');
+    </script>
+</body>
+</html>

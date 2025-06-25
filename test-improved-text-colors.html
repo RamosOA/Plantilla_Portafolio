@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="es" data-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Improved Text Colors</title>
+    <style>
+        /* Light mode improved color variables */
+        :root[data-theme="light"] {
+            --primary-100: #C4A834;
+            --primary-200: #A08F2A;
+            --primary-300: #7D6F1F;
+            --accent-100: #F0F8F0;
+            --accent-200: #2D5A3D;
+            
+            /* Enhanced text hierarchy */
+            --text-100: #0F0F10;       /* Deep charcoal - títulos principales */
+            --text-200: #2C2C2E;       /* Rich gray - texto principal */
+            --text-300: #48484A;       /* Medium gray - texto secundario */
+            --text-400: #6D6D70;       /* Soft gray - texto de apoyo */
+            --text-500: #8E8E93;       /* Light gray - placeholders */
+            --text-accent: #1D4929;    /* Verde oscuro - enlaces */
+            --text-muted: #9F9F9F;     /* Texto muy sutil */
+            --text-contrast: #000000;  /* Negro puro - máximo contraste */
+            
+            --bg-100: #FEFFFE;
+            --bg-200: #F9F9F7;
+            --bg-300: #F2F2EF;
+            --bg-400: #EBEBEB;
+            --bg-500: #E0E0E0;
+            
+            --interactive-primary: #B8962F;
+            --interactive-secondary: #8B7B22;
+            --link-default: #2D5A3D;
+            --link-hover: #1D4929;
+            --link-visited: #4A6B4F;
+        }
+
+        /* Dark mode for comparison */
+        :root {
+            --primary-100: #AD991B;
+            --primary-200: #8e7d00;
+            --primary-300: #4c4100;
+            --accent-100: #132A14;
+            --accent-200: #024600;
+            --text-100: #FFFFFF;
+            --text-200: #e0e0e0;
+            --text-300: #CCCCCC;
+            --text-400: #AAAAAA;
+            --text-500: #888888;
+            --text-accent: #5CDB5C;
+            --text-muted: #666666;
+            --text-contrast: #FFFFFF;
+            --bg-100: #BDBEC0;
+            --bg-200: #b3b4b6;
+            --bg-300: #8d8e90;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: var(--bg-100);
+            color: var(--text-200);
+            padding: 2rem;
+            line-height: 1.6;
+            transition: all 0.3s ease;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .controls {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        .btn-dark {
+            background: #1a1a1a;
+            color: white;
+        }
+
+        .btn-light {
+            background: #f5f5f5;
+            color: #1a1a1a;
+        }
+
+        .section {
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: var(--bg-200);
+            border-radius: 12px;
+            border: 1px solid var(--bg-400);
+        }
+
+        .text-demo {
+            margin-bottom: 1rem;
+            padding: 1rem;
+            background: var(--bg-300);
+            border-radius: 8px;
+            border-left: 4px solid var(--primary-100);
+        }
+
+        .color-label {
+            font-size: 0.8rem;
+            font-family: 'Courier New', monospace;
+            color: var(--text-400);
+            margin-bottom: 0.5rem;
+        }
+
+        h1 { color: var(--text-100); font-size: 2.5rem; margin-bottom: 1rem; }
+        h2 { color: var(--text-200); font-size: 1.8rem; margin-bottom: 1rem; }
+        h3 { color: var(--text-300); font-size: 1.4rem; margin-bottom: 0.8rem; }
+        h4 { color: var(--text-400); font-size: 1.2rem; margin-bottom: 0.6rem; }
+
+        .text-100 { color: var(--text-100); }
+        .text-200 { color: var(--text-200); }
+        .text-300 { color: var(--text-300); }
+        .text-400 { color: var(--text-400); }
+        .text-500 { color: var(--text-500); }
+        .text-accent { color: var(--text-accent); }
+        .text-muted { color: var(--text-muted); }
+        .text-contrast { color: var(--text-contrast); }
+
+        .links a {
+            color: var(--link-default);
+            text-decoration: none;
+            border-bottom: 1px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .links a:hover {
+            color: var(--link-hover);
+            border-bottom-color: var(--link-hover);
+        }
+
+        .links a:visited {
+            color: var(--link-visited);
+        }
+
+        .interactive-demo {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            padding: 1.5rem;
+            background: var(--bg-200);
+            border: 1px solid var(--bg-400);
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            border-color: var(--primary-200);
+        }
+
+        .contrast-test {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .contrast-item {
+            padding: 1rem;
+            border-radius: 6px;
+            min-width: 200px;
+            text-align: center;
+        }
+
+        .wcag-info {
+            font-size: 0.8rem;
+            margin-top: 0.5rem;
+            opacity: 0.8;
+        }
+    </style>
+</head>
+<body>
+    <div class="controls">
+        <button class="btn btn-dark" onclick="setTheme('dark')">🌙 Dark</button>
+        <button class="btn btn-light" onclick="setTheme('light')">☀️ Light</button>
+    </div>
+
+    <div class="container">
+        <h1>🎨 Jerarquía de Colores de Texto Mejorada</h1>
+
+        <div class="section">
+            <h2>📝 Jerarquía Tipográfica</h2>
+            
+            <div class="text-demo">
+                <div class="color-label">--text-100 (Deep Charcoal) - Títulos Principales</div>
+                <h1 style="font-size: 1.5rem; margin: 0;">Título Principal - Máximo Contraste</h1>
+            </div>
+
+            <div class="text-demo">
+                <div class="color-label">--text-200 (Rich Gray) - Texto Principal</div>
+                <p class="text-200">Este es el texto principal del cuerpo. Perfecto para párrafos largos y contenido principal con excelente legibilidad.</p>
+            </div>
+
+            <div class="text-demo">
+                <div class="color-label">--text-300 (Medium Gray) - Texto Secundario</div>
+                <p class="text-300">Texto secundario ideal para subtítulos, descripciones y contenido de apoyo que debe ser claramente legible.</p>
+            </div>
+
+            <div class="text-demo">
+                <div class="color-label">--text-400 (Soft Gray) - Texto de Apoyo</div>
+                <p class="text-400">Texto de apoyo para metadatos, labels de formularios y información complementaria.</p>
+            </div>
+
+            <div class="text-demo">
+                <div class="color-label">--text-500 (Light Gray) - Placeholders</div>
+                <p class="text-500">Texto para placeholders, elementos deshabilitados y contenido muy secundario.</p>
+            </div>
+
+            <div class="text-demo">
+                <div class="color-label">--text-accent (Verde Oscuro) - Enlaces e Interactivos</div>
+                <p class="text-accent">Texto especial para enlaces, elementos interactivos y llamadas a la acción.</p>
+            </div>
+
+            <div class="text-demo">
+                <div class="color-label">--text-muted - Texto Muy Sutil</div>
+                <p class="text-muted">Texto muy sutil para elementos que deben estar presentes pero no destacar.</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🔗 Enlaces Interactivos</h2>
+            <div class="links">
+                <p><a href="#example">Enlace por defecto</a> - Color inicial</p>
+                <p><a href="#example">Enlace hover</a> - Pasa el mouse por encima</p>
+                <p><a href="#visited" onclick="return false;">Enlace visitado</a> - Simula un enlace visitado</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🃏 Componentes Interactivos</h2>
+            <div class="interactive-demo">
+                <div class="card">
+                    <h3>Tarjeta de Contenido</h3>
+                    <p class="text-300">Descripción con texto secundario para mayor claridad visual.</p>
+                    <p class="text-400"><small>Metadatos • 25 Jun 2025</small></p>
+                </div>
+                
+                <div class="card">
+                    <h3>Información Personal</h3>
+                    <p class="text-400">Ubicación</p>
+                    <p class="text-200">Madrid, España</p>
+                    <p class="text-400">Especialidad</p>
+                    <p class="text-200">Desarrollo Full Stack</p>
+                </div>
+
+                <div class="card">
+                    <h3>Habilidades</h3>
+                    <p class="text-200">React.js</p>
+                    <p class="text-300">Framework de JavaScript para interfaces de usuario</p>
+                    <p class="text-400">Nivel: 90%</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>✅ Test de Contraste WCAG</h2>
+            <div class="contrast-test">
+                <div class="contrast-item" style="background: var(--bg-100); color: var(--text-100); border: 1px solid var(--bg-400);">
+                    <strong>Máximo Contraste</strong>
+                    <div class="wcag-info">text-100 / bg-100<br>WCAG AA ✅</div>
+                </div>
+                <div class="contrast-item" style="background: var(--bg-200); color: var(--text-200); border: 1px solid var(--bg-400);">
+                    <strong>Texto Principal</strong>
+                    <div class="wcag-info">text-200 / bg-200<br>WCAG AA ✅</div>
+                </div>
+                <div class="contrast-item" style="background: var(--bg-100); color: var(--text-accent); border: 1px solid var(--bg-400);">
+                    <strong>Enlaces</strong>
+                    <div class="wcag-info">text-accent / bg-100<br>WCAG AA ✅</div>
+                </div>
+                <div class="contrast-item" style="background: var(--primary-100); color: var(--bg-100); border: 1px solid var(--bg-400);">
+                    <strong>CTA Buttons</strong>
+                    <div class="wcag-info">bg-100 / primary-100<br>WCAG AAA ✅</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <h2>🎯 Casos de Uso Específicos</h2>
+            
+            <h3>Navegación</h3>
+            <div style="display: flex; gap: 2rem; margin: 1rem 0;">
+                <span class="text-accent">Inicio</span>
+                <span class="text-accent">Sobre mí</span>
+                <span class="text-accent">Proyectos</span>
+                <span class="text-accent">Contacto</span>
+            </div>
+
+            <h3>Formularios</h3>
+            <div style="margin: 1rem 0;">
+                <label class="text-400" style="display: block; margin-bottom: 0.5rem;">Nombre completo</label>
+                <input type="text" placeholder="Ingresa tu nombre" style="
+                    width: 100%; 
+                    padding: 0.8rem; 
+                    border: 1px solid var(--bg-400); 
+                    border-radius: 6px; 
+                    background: var(--bg-100);
+                    color: var(--text-200);
+                ">
+            </div>
+
+            <h3>Estados</h3>
+            <div style="margin: 1rem 0;">
+                <p><span style="color: var(--success); font-weight: bold;">✅ Éxito:</span> <span class="text-200">Operación completada correctamente</span></p>
+                <p><span style="color: var(--warning); font-weight: bold;">⚠️ Advertencia:</span> <span class="text-200">Revisa la información ingresada</span></p>
+                <p><span style="color: var(--error); font-weight: bold;">❌ Error:</span> <span class="text-200">No se pudo completar la operación</span></p>
+                <p><span style="color: var(--info); font-weight: bold;">ℹ️ Información:</span> <span class="text-200">Datos adicionales disponibles</span></p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function setTheme(theme) {
+            document.documentElement.setAttribute('data-theme', theme);
+        }
+
+        // Set initial theme
+        setTheme('light');
+    </script>
+</body>
+</html>

@@ -31,9 +31,9 @@ const TechTags: React.FC<TechTagsProps> = ({ tecnologias }) => {
                     <span
                         className={`${styles.padding} rounded-full ${styles.tagSize} font-medium inline-block`}
                         style={{
-                            background: 'rgba(173, 153, 27, 0.1)',
-                            color: '#AD991B',
-                            border: '1px solid rgba(173, 153, 27, 0.2)'
+                            background: 'color-mix(in srgb, var(--primary-100) 10%, transparent)',
+                            color: 'var(--primary-100)',
+                            border: '1px solid color-mix(in srgb, var(--primary-100) 20%, transparent)'
                         }}
                     >
                         {tech}

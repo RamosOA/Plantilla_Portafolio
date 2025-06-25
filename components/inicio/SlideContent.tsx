@@ -33,7 +33,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
     presentacionScrollRef
 }) => {
 
-    // Aplicar estilos de scrollbar cuando el componente se monta
+    
     useEffect(() => {
         const style = document.createElement('style');
         style.textContent = `
@@ -41,15 +41,15 @@ const SlideContent: React.FC<SlideContentProps> = ({
                 width: 6px;
             }
             .slide-scroll-custom::-webkit-scrollbar-track {
-                background: rgba(173, 153, 27, 0.05);
+                background: color-mix(in srgb, var(--primary-100) 5%, transparent);
                 border-radius: 3px;
             }
             .slide-scroll-custom::-webkit-scrollbar-thumb {
-                background: rgba(173, 153, 27, 0.2);
+                background: color-mix(in srgb, var(--primary-100) 20%, transparent);
                 border-radius: 3px;
             }
             .slide-scroll-custom::-webkit-scrollbar-thumb:hover {
-                background: rgba(173, 153, 27, 0.35);
+                background: color-mix(in srgb, var(--primary-100) 35%, transparent);
             }
         `;
         document.head.appendChild(style);
@@ -95,13 +95,13 @@ const SlideContent: React.FC<SlideContentProps> = ({
                     onMouseEnter={onMouseEnter}
                     onMouseLeave={onMouseLeave}
                 >
-                    {/* Primera cara */}
+                    
                     {currentSlide === 0 ? (
                         <>
                             <motion.h1
                                 className="text-4xl font-bold mb-4"
                                 style={{ 
-                                    color: '#ffffff',
+                                    color: 'var(--text-100)',
                                     fontFamily: 'Inter, system-ui, sans-serif',
                                     fontWeight: '700',
                                     lineHeight: '1.2'
@@ -119,7 +119,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                         key={`title-${currentTitleIndex}`}
                                         className="text-2xl font-semibold"
                                         style={{ 
-                                            color: '#AD991B',
+                                            color: 'var(--primary-100)',
                                             fontFamily: 'Inter, system-ui, sans-serif',
                                             fontWeight: '600'
                                         }}
@@ -137,16 +137,16 @@ const SlideContent: React.FC<SlideContentProps> = ({
                             </div>
                         </>
                     ) : (
-                        /* Segunda cara - CON SCROLLBAR PERSONALIZADO */
+                        
                         <div className="h-full relative">
-                            {/* Indicador de pausa */}
+                            
                             {isSlideHovered && (
                                 <motion.div 
                                     className="absolute top-2 right-2 z-20 px-2 py-1 rounded-full text-xs font-medium"
                                     style={{
-                                        background: 'rgba(173, 153, 27, 0.2)',
-                                        color: '#AD991B',
-                                        border: '1px solid rgba(173, 153, 27, 0.3)'
+                                        background: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
+                                        color: 'var(--primary-100)',
+                                        border: '1px solid color-mix(in srgb, var(--primary-100) 30%, transparent)'
                                     }}
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
@@ -156,7 +156,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                 </motion.div>
                             )}
 
-                            {/* CONTENEDOR CON SCROLLBAR PERSONALIZADO */}
+                            
                             <div 
                                 className="h-full overflow-y-auto slide-scroll-custom pr-2"
                                 onWheel={handleSlideWheel}
@@ -165,7 +165,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     <motion.h1
                                         className="text-3xl font-bold mb-4"
                                         style={{ 
-                                            color: '#ffffff',
+                                            color: 'var(--text-100)',
                                             fontFamily: 'Inter, system-ui, sans-serif',
                                             fontWeight: '700'
                                         }}
@@ -179,7 +179,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     <motion.h2
                                         className="text-xl font-semibold mb-6"
                                         style={{ 
-                                            color: '#AD991B',
+                                            color: 'var(--primary-100)',
                                             fontFamily: 'Inter, system-ui, sans-serif',
                                             fontWeight: '600'
                                         }}
@@ -193,7 +193,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     <motion.p
                                         className="text-base leading-relaxed mb-6"
                                         style={{ 
-                                            color: 'rgba(255, 255, 255, 0.7)',
+                                            color: 'var(--text-200)',
                                             fontFamily: 'Inter, system-ui, sans-serif',
                                             fontWeight: '400',
                                             lineHeight: '1.6',
@@ -214,12 +214,12 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     >
                                         <div 
                                             className="w-8 h-px mr-3"
-                                            style={{ backgroundColor: '#AD991B' }}
+                                            style={{ backgroundColor: 'var(--primary-100)' }}
                                         />
                                         <span 
                                             className="text-sm font-medium"
                                             style={{ 
-                                                color: '#AD991B',
+                                                color: 'var(--primary-100)',
                                                 fontFamily: 'Inter, system-ui, sans-serif',
                                                 fontWeight: '500'
                                             }}
@@ -228,7 +228,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                         </span>
                                     </motion.div>
 
-                                    {/* CONTENIDO ADICIONAL PARA FORZAR EL SCROLL */}
+                                    
                                     <motion.div 
                                         className="space-y-4"
                                         initial={{ opacity: 0, y: 20 }}
@@ -237,14 +237,14 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     >
                                         <div 
                                             className="pt-4"
-                                            style={{ borderTop: '1px solid rgba(173, 153, 27, 0.2)' }}
+                                            style={{ borderTop: '1px solid color-mix(in srgb, var(--primary-100) 20%, transparent)' }}
                                         >
-                                            <h4 className="text-lg font-semibold mb-3" style={{ color: '#ffffff' }}>
+                                            <h4 className="text-lg font-semibold mb-3" style={{ color: 'var(--primary-100)' }}>
                                                 Tecnologías Principales
                                             </h4>
                                             <p className="text-sm leading-relaxed mb-4" 
                                                style={{ 
-                                                   color: 'rgba(255, 255, 255, 0.6)',
+                                                   color: 'var(--text-300)',
                                                    fontFamily: 'Inter, system-ui, sans-serif',
                                                    lineHeight: '1.5'
                                                }}>
@@ -254,12 +254,12 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                         </div>
 
                                         <div>
-                                            <h4 className="text-lg font-semibold mb-3" style={{ color: '#ffffff' }}>
+                                            <h4 className="text-lg font-semibold mb-3" style={{ color: 'var(--primary-100)' }}>
                                                 Metodología de Trabajo
                                             </h4>
                                             <p className="text-sm leading-relaxed mb-4" 
                                                style={{ 
-                                                   color: 'rgba(255, 255, 255, 0.6)',
+                                                   color: 'var(--text-300)',
                                                    fontFamily: 'Inter, system-ui, sans-serif',
                                                    lineHeight: '1.5'
                                                }}>
@@ -269,12 +269,12 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                         </div>
 
                                         <div>
-                                            <h4 className="text-lg font-semibold mb-3" style={{ color: '#ffffff' }}>
+                                            <h4 className="text-lg font-semibold mb-3" style={{ color: 'var(--primary-100)' }}>
                                                 Objetivos
                                             </h4>
                                             <p className="text-sm leading-relaxed" 
                                                style={{ 
-                                                   color: 'rgba(255, 255, 255, 0.6)',
+                                                   color: 'var(--text-300)',
                                                    fontFamily: 'Inter, system-ui, sans-serif',
                                                    lineHeight: '1.5'
                                                }}>

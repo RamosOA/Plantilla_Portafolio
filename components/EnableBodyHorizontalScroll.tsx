@@ -1,4 +1,3 @@
-// components/EnableBodyHorizontalScroll.tsx
 'use client';
 
 import { useEffect } from 'react';

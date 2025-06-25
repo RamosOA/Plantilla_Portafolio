@@ -15,8 +15,7 @@ const TituloSeccion: React.FC<TituloSeccionProps> = ({ titulo, delay = 0.2 }) =>
                 <motion.h2 
                     className="text-4xl md:text-5xl font-bold transform -rotate-90 origin-center whitespace-nowrap"
                     style={{ 
-                        color: '#AD991B',
-                        textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                        color: 'var(--primary-100)',
                         writingMode: 'vertical-lr',
                         textOrientation: 'mixed'
                     }}

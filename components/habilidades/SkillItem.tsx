@@ -27,18 +27,19 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
             <div className="flex flex-col items-center">
                 <IconComponent
                     className="text-2xl mb-2 transition-all duration-300 group-hover:scale-110"
-                    style={{ color: '#AD991B' }}
+                    style={{ color: 'var(--primary-100)' }}
                 />
-                <h4 className="text-sm font-semibold mb-3 text-center leading-tight" style={{ color: '#FFFFFF' }}>
+                <h4 className="text-sm font-semibold mb-3 text-center leading-tight" style={{ color: 'var(--text-200)' }}>
                     {skill.name}
                 </h4>
 
-                <div className="w-full bg-gray-700 rounded-full h-2 mb-2 overflow-hidden">
+                <div className="w-full rounded-full h-2 mb-2 overflow-hidden" style={{ 
+                    backgroundColor: 'var(--bg-300)' 
+                }}>
                     <motion.div
                         className="h-full rounded-full"
                         style={{
-                            background: `linear-gradient(90deg, ${skill.color} 0%, #8e7d00 100%)`,
-                            boxShadow: `0 0 8px rgba(173, 153, 27, 0.4)`
+                            background: `linear-gradient(90deg, var(--primary-100) 0%, var(--primary-200) 100%)`
                         }}
                         initial={{ width: 0 }}
                         animate={{ width: `${skill.level}%` }}
@@ -46,7 +47,7 @@ const SkillItem: React.FC<SkillItemProps> = ({ skill, index }) => {
                     />
                 </div>
 
-                <span className="text-sm font-medium" style={{ color: '#e0e0e0' }}>
+                <span className="text-sm font-medium" style={{ color: 'var(--text-300)' }}>
                     {skill.level}%
                 </span>
             </div>

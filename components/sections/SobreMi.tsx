@@ -1,5 +1,3 @@
-// components/sections/SobreMi.tsx
-
 'use client';
 
 import React from 'react';
@@ -19,13 +17,13 @@ const SobreMi = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
         >
-            {/* Título lateral */}
+            
             <TituloSeccion titulo="Sobre Mí" />
 
-            {/* Contenido principal */}
+            
             <AboutGrid handleWheel={handleWheel} />
 
-            {/* Estilos personalizados para el scrollbar */}
+            
             <CustomScrollbarStyles />
         </motion.div>
     );

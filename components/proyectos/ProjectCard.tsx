@@ -20,27 +20,27 @@ interface ProjectCardProps {
 const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, className, delay }) => {
     const scrollRef = useRef<HTMLDivElement>(null);
 
-    // EXACTAMENTE LA MISMA FUNCIÓN QUE EN HABILIDADES
+    
     const handleWheel = (e: React.WheelEvent) => {
         if (scrollRef.current) {
             const container = scrollRef.current;
             const { scrollTop, scrollHeight, clientHeight } = container;
             
-            // Verificar si estamos en el inicio o final del scroll
+            
             const isAtTop = scrollTop === 0;
             const isAtBottom = scrollTop + clientHeight >= scrollHeight - 1;
             
-            // Si estamos scrolleando hacia arriba y ya estamos arriba, permitir scroll horizontal
+            
             if (e.deltaY < 0 && isAtTop) {
-                return; // Permitir scroll horizontal/normal
+                return; 
             }
             
-            // Si estamos scrolleando hacia abajo y ya estamos abajo, permitir scroll horizontal
+            
             if (e.deltaY > 0 && isAtBottom) {
-                return; // Permitir scroll horizontal/normal
+                return; 
             }
             
-            // En cualquier otro caso, hacer scroll vertical dentro de la categoría
+            
             e.preventDefault();
             e.stopPropagation();
             container.scrollTop += e.deltaY;
@@ -51,10 +51,9 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, className, delay })
         <motion.div
             className={`${className} border rounded-lg cursor-default flex flex-col overflow-hidden`}
             style={{
-                background: 'rgba(173, 153, 27, 0.08)',
-                borderColor: 'rgba(173, 153, 27, 0.2)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                background: 'color-mix(in srgb, var(--primary-100) 8%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
+                backdropFilter: 'blur(20px)'
             }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -62,7 +61,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, className, delay })
             viewport={{ once: true }}
             onWheel={handleWheel}
         >
-            {/* HEADER ESTÁTICO - NO SE MUEVE CON EL SCROLL */}
+            {}
             <div className="p-4 pb-0">
                 <ProjectHeader 
                     icono={proyecto.icono}
@@ -70,7 +69,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ proyecto, className, delay })
                 />
             </div>
             
-            {/* ÁREA CON SCROLL - SIN FLEX PARA QUE SE VEA EL MARGIN-BOTTOM */}
+            {}
             <div 
                 ref={scrollRef}
                 className="overflow-y-auto pr-2 custom-scrollbar scroll-smooth p-4 pt-0"

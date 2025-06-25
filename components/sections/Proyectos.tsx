@@ -1,5 +1,3 @@
-// components/sections/Proyectos.tsx
-
 'use client';
 
 import React from 'react';
@@ -15,14 +13,13 @@ const Proyectos = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
         >
-            {/* Título lateral fijo */}
+            
             <div className="absolute left-6 top-1/2 -translate-y-1/2 z-10">
                 <div className="pt-20">
                     <motion.h2 
                         className="text-4xl md:text-5xl font-bold transform -rotate-90 origin-center whitespace-nowrap"
                         style={{ 
-                            color: '#AD991B',
-                            textShadow: '0 4px 8px rgba(0, 0, 0, 0.3)',
+                            color: 'var(--primary-100)',
                             writingMode: 'vertical-lr',
                             textOrientation: 'mixed'
                         }}
@@ -35,32 +32,32 @@ const Proyectos = () => {
                 </div>
             </div>
 
-            {/* Grid con padding estandarizado */}
+            
             <div className="pl-24 pr-8 py-8 h-full w-full max-w-7xl">
                 <div className="grid grid-cols-5 grid-rows-5 gap-4 h-full">
                     
-                    {/* Comercol */}
+                    
                     <ProjectCard
                         proyecto={proyectosData[0]}
                         className="col-span-3 row-span-3"
                         delay={0.3}
                     />
 
-                    {/* AdBlocker */}
+                    
                     <ProjectCard
                         proyecto={proyectosData[1]}
                         className="col-span-2 row-span-2 col-start-4"
                         delay={0.4}
                     />
 
-                    {/* Websepudo */}
+                    
                     <ProjectCard
                         proyecto={proyectosData[2]}
                         className="col-span-2 row-span-3 col-start-4 row-start-3"
                         delay={0.5}
                     />
 
-                    {/* E-commerce Bikers */}
+                    
                     <ProjectCard
                         proyecto={proyectosData[3]}
                         className="col-span-3 row-span-2 row-start-4"
@@ -69,36 +66,63 @@ const Proyectos = () => {
                 </div>
             </div>
 
-            {/* ESTILOS DE SCROLLBAR EXACTAMENTE IGUALES AL COMPONENTE HABILIDADES */}
+            
             <style jsx global>{`
+                
                 .custom-scrollbar {
+                    
                     scrollbar-width: thin;
-                    scrollbar-color: rgba(173, 153, 27, 0.3) transparent;
+                    scrollbar-color: color-mix(in srgb, var(--primary-100) 25%, transparent) color-mix(in srgb, var(--primary-100) 8%, transparent);
                 }
-
+                
+                
                 .custom-scrollbar::-webkit-scrollbar {
                     width: 8px;
                 }
-
+                
                 .custom-scrollbar::-webkit-scrollbar-track {
-                    background: transparent;
+                    background: color-mix(in srgb, var(--primary-100) 5%, transparent);
+                    border-radius: 4px;
                 }
-
+                
                 .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: rgba(173, 153, 27, 0.3);
-                    border-radius: 10px;
-                    border: 2px solid transparent;
-                    background-clip: content-box;
+                    background: color-mix(in srgb, var(--primary-100) 25%, transparent);
+                    border-radius: 4px;
+                    border: 1px solid color-mix(in srgb, var(--primary-100) 15%, transparent);
                 }
-
+                
                 .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: rgba(173, 153, 27, 0.5);
-                    background-clip: content-box;
+                    background: color-mix(in srgb, var(--primary-100) 40%, transparent);
+                    border-color: color-mix(in srgb, var(--primary-100) 25%, transparent);
                 }
 
                 .custom-scrollbar::-webkit-scrollbar-thumb:active {
-                    background: rgba(173, 153, 27, 0.7);
-                    background-clip: content-box;
+                    background: color-mix(in srgb, var(--primary-100) 50%, transparent);
+                    border-color: color-mix(in srgb, var(--primary-100) 30%, transparent);
+                }
+
+                
+                :root[data-theme="light"] .custom-scrollbar {
+                    scrollbar-color: color-mix(in srgb, var(--primary-200) 40%, transparent) color-mix(in srgb, var(--primary-100) 15%, transparent);
+                }
+
+                :root[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-track {
+                    background: color-mix(in srgb, var(--primary-100) 10%, transparent);
+                }
+                
+                :root[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb {
+                    background: color-mix(in srgb, var(--primary-200) 30%, transparent);
+                    border-color: color-mix(in srgb, var(--primary-200) 15%, transparent);
+                }
+                
+                :root[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+                    background: color-mix(in srgb, var(--primary-200) 45%, transparent);
+                    border-color: color-mix(in srgb, var(--primary-200) 25%, transparent);
+                }
+
+                :root[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-thumb:active {
+                    background: color-mix(in srgb, var(--primary-200) 55%, transparent);
+                    border-color: color-mix(in srgb, var(--primary-200) 35%, transparent);
                 }
             `}</style>
         </motion.div>

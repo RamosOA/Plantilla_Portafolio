@@ -37,10 +37,9 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({
         <motion.div
             className={`${className} border rounded-lg p-4 flex flex-col overflow-hidden cursor-default`}
             style={{
-                background: 'rgba(173, 153, 27, 0.08)',
-                borderColor: 'rgba(173, 153, 27, 0.2)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                background: 'color-mix(in srgb, var(--primary-100) 8%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
+                backdropFilter: 'blur(20px)'
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -48,16 +47,16 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({
             onWheel={(e) => handleWheel(e, scrollRef)}
         >
             <div className="flex items-center mb-4">
-                <IconComponent className="text-3xl mr-2" style={{ color: 'rgba(173, 153, 27, 0.3)' }} />
-                <h3 className="text-lg font-semibold" style={{ color: '#AD991B' }}>
+                <IconComponent className="text-3xl mr-2" style={{ color: 'var(--primary-200)' }} />
+                <h3 className="text-lg font-semibold" style={{ color: 'var(--primary-100)' }}>
                     {title}
                 </h3>
             </div>
 
-            {/* Texto introductorio */}
+            
             <motion.p
                 className="text-sm mb-4 leading-relaxed"
-                style={{ color: '#e0e0e0' }}
+                style={{ color: 'var(--text-300)' }}
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: delay + 0.2 }}
@@ -65,7 +64,7 @@ const SkillCategory: React.FC<SkillCategoryProps> = ({
                 {description}
             </motion.p>
 
-            {/* Área con scroll */}
+            
             <div
                 ref={scrollRef}
                 className={`grid ${gridCols} gap-3 flex-1 overflow-y-auto pr-2 custom-scrollbar scroll-smooth`}

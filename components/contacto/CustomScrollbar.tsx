@@ -7,7 +7,7 @@ const CustomScrollbar: React.FC = () => {
         <style jsx>{`
             .custom-scrollbar {
                 scrollbar-width: thin;
-                scrollbar-color: rgba(173, 153, 27, 0.3) transparent;
+                scrollbar-color: color-mix(in srgb, var(--primary-100) 30%, transparent) transparent;
             }
 
             .custom-scrollbar::-webkit-scrollbar {
@@ -19,19 +19,19 @@ const CustomScrollbar: React.FC = () => {
             }
 
             .custom-scrollbar::-webkit-scrollbar-thumb {
-                background: rgba(173, 153, 27, 0.3);
+                background: color-mix(in srgb, var(--primary-100) 30%, transparent);
                 border-radius: 10px;
                 border: 2px solid transparent;
                 background-clip: content-box;
             }
 
             .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                background: rgba(173, 153, 27, 0.5);
+                background: color-mix(in srgb, var(--primary-100) 50%, transparent);
                 background-clip: content-box;
             }
 
             .custom-scrollbar::-webkit-scrollbar-thumb:active {
-                background: rgba(173, 153, 27, 0.7);
+                background: color-mix(in srgb, var(--primary-100) 70%, transparent);
                 background-clip: content-box;
             }
         `}</style>

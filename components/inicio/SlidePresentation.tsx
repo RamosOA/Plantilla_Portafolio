@@ -41,7 +41,7 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
 
     const titles: string[] = ["Desarrollador Full Stack", "Programador Móvil en Curso"];
 
-    // Auto-cambio de slides con pausa
+    
     useEffect(() => {
         const slideInterval = setInterval(() => {
             if (!isSlideHovered) {
@@ -51,7 +51,7 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
         return () => clearInterval(slideInterval);
     }, [isSlideHovered]);
 
-    // Auto-cambio de títulos
+    
     useEffect(() => {
         const titleInterval = setInterval(() => {
             setCurrentTitleIndex((prev) => (prev === 0 ? 1 : 0));
@@ -78,31 +78,28 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
         <motion.div
             className={`${className} border rounded-xl p-6 flex flex-col overflow-hidden cursor-default relative group`}
             style={{
-                background: 'rgba(173, 153, 27, 0.08)',
-                borderColor: 'rgba(173, 153, 27, 0.2)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                background: 'color-mix(in srgb, var(--primary-100) 8%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
+                backdropFilter: 'blur(20px)'
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay }}
             onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(173, 153, 27, 0.12)';
-                e.currentTarget.style.borderColor = 'rgba(173, 153, 27, 0.4)';
+                e.currentTarget.style.background = 'color-mix(in srgb, var(--primary-100) 12%, transparent)';
+                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--primary-100) 40%, transparent)';
                 e.currentTarget.style.transform = 'translateY(-2px)';
-                e.currentTarget.style.boxShadow = '0 15px 40px rgba(173, 153, 27, 0.15)';
             }}
             onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(173, 153, 27, 0.08)';
-                e.currentTarget.style.borderColor = 'rgba(173, 153, 27, 0.2)';
+                e.currentTarget.style.background = 'color-mix(in srgb, var(--primary-100) 8%, transparent)';
+                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--primary-100) 20%, transparent)';
                 e.currentTarget.style.transform = 'translateY(0)';
-                e.currentTarget.style.boxShadow = '0 8px 32px rgba(0, 0, 0, 0.3)';
             }}
         >
-            {/* Controles de slide */}
+            
             <SlideControls onSlideChange={handleSlideChange} />
 
-            {/* Contenido del slide */}
+            
             <SlideContent
                 slides={slides}
                 titles={titles}
@@ -114,7 +111,7 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
                 presentacionScrollRef={presentacionScrollRef}
             />
 
-            {/* Indicadores de slide */}
+            
             <div suppressHydrationWarning={true}>
                 <SlideIndicators 
                     slides={slides}

@@ -1,9 +1,6 @@
-/* styles/globals.css */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
-
-/* Variables de color personalizadas */
 :root {
   --primary-100: #AD991B;
   --primary-200: #8e7d00;
@@ -12,12 +9,57 @@
   --accent-200: #024600;
   --text-100: #FFFFFF;
   --text-200: #e0e0e0;
-  --bg-100: #BDBEC0;
-  --bg-200: #b3b4b6;
-  --bg-300: #8d8e90;
+  --text-300: #CCCCCC;
+  --text-accent: #FFFFFF;
+  --bg-100: #2A2A2A;
+  --bg-200: #1E1E1E;
+  --bg-300: #3A3A3A; 
+  
+  --success: #10B981;
+  --warning: #F59E0B;
+  --error: #EF4444;
+  --info: #3B82F6;
 }
 
-/* Reset básico */
+:root[data-theme="light"] {
+  --primary-100: #C4A834;
+  --primary-200: #A08F2A;
+  --primary-300: #7D6F1F;
+  
+  --accent-100: #F0F8F0;
+  --accent-200: #2D5A3D;
+  
+  --text-100: #0F0F10;
+  --text-200: #2C2C2E;
+  --text-300: #48484A;
+  --text-400: #6D6D70;
+  --text-500: #8E8E93;
+  
+  --text-accent: #1D4929;
+  --text-muted: #9F9F9F;
+  --text-contrast: #000000;
+  
+  --bg-100: #FEFFFE;
+  --bg-200: #F9F9F7;
+  --bg-300: #F2F2EF;
+  --bg-400: #EBEBEB;
+  --bg-500: #E0E0E0;
+  
+  --interactive-primary: #B8962F;
+  --interactive-secondary: #8B7B22;
+  --link-default: #2D5A3D;
+  --link-hover: #1D4929;
+  --link-visited: #4A6B4F;
+  
+  
+  
+  --success: #2D7D32;         
+  --warning: #E65100;         
+  --error: #C62828;           
+  --info: #1976D2;            
+}
+
+
 * {
   margin: 0;
   padding: 0;
@@ -31,21 +73,35 @@ html {
 }
 
 body {
+  
   background: linear-gradient(135deg, var(--accent-100) 0%, #0a1a0b 50%, #000000 100%);
   color: var(--text-100);
   width: 100vw;
   height: 100vh;
   overflow-x: auto;
   overflow-y: hidden;
+  transition: background 0.5s ease;
 }
 
-/* ✅ Background animado continuo MÁS SUAVE */
+
+:root[data-theme="light"] body {
+  background: linear-gradient(135deg, 
+    color-mix(in srgb, var(--bg-100) 95%, var(--accent-200) 5%) 0%, 
+    color-mix(in srgb, var(--bg-200) 75%, var(--accent-100) 25%) 20%, 
+    color-mix(in srgb, var(--accent-100) 80%, var(--bg-300) 20%) 45%, 
+    color-mix(in srgb, var(--bg-200) 70%, var(--accent-200) 30%) 65%, 
+    color-mix(in srgb, var(--bg-200) 80%, var(--accent-100) 20%) 85%, 
+    color-mix(in srgb, var(--bg-100) 90%, var(--accent-200) 10%) 100%);
+}
+
+
 .animated-bg-continuous {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
+  
   background: linear-gradient(
     135deg,
     #0a0a0a 0%,
@@ -54,8 +110,25 @@ body {
     #1a1a1a 75%,
     #0a0a0a 100%
   );
-  background-size: 300% 300%; /* ✅ Reducido de 400% para menos movimiento */
-  animation: gradientShift 25s ease infinite; /* ✅ Aumentado de 15s a 25s */
+  background-size: 300% 300%;
+  animation: gradientShift 25s ease infinite;
+  transition: all 0.5s ease;
+}
+
+
+:root[data-theme="light"] .animated-bg-continuous {
+  background: linear-gradient(
+    135deg,
+    #F8FCF8 0%,
+    #F4F8F4 12%,
+    #F0F6F0 28%,
+    #EBF4EB 45%,
+    #F2F7F2 62%,
+    #F6FAF6 78%,
+    #F8FCF8 100%
+  );
+  background-size: 300% 300%;
+  animation: gradientShift 25s ease infinite;
 }
 
 .animated-bg-continuous::before {
@@ -65,22 +138,54 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  
   background: radial-gradient(
     circle at 20% 80%,
-    rgba(173, 153, 27, 0.08) 0%, /* ✅ Reducido de 0.15 a 0.08 */
+    rgba(173, 153, 27, 0.08) 0%,
     transparent 50%
   ),
   radial-gradient(
     circle at 80% 20%,
-    rgba(173, 153, 27, 0.05) 0%, /* ✅ Reducido de 0.1 a 0.05 */
+    rgba(173, 153, 27, 0.05) 0%,
     transparent 50%
   ),
   radial-gradient(
     circle at 40% 40%,
-    rgba(19, 42, 20, 0.15) 0%, /* ✅ Reducido de 0.3 a 0.15 */
+    rgba(19, 42, 20, 0.15) 0%,
     transparent 50%
   );
-  animation: floatingLights 35s ease-in-out infinite; /* ✅ Aumentado de 20s a 35s */
+  animation: floatingLights 35s ease-in-out infinite;
+  transition: all 0.5s ease;
+}
+
+
+:root[data-theme="light"] .animated-bg-continuous::before {
+  background: radial-gradient(
+    circle at 30% 70%,
+    rgba(196, 168, 52, 0.06) 0%,
+    transparent 35%
+  ),
+  radial-gradient(
+    circle at 70% 30%,
+    rgba(45, 90, 61, 0.04) 0%,
+    transparent 40%
+  ),
+  radial-gradient(
+    circle at 50% 50%,
+    rgba(196, 168, 52, 0.03) 0%,
+    transparent 30%
+  ),
+  radial-gradient(
+    circle at 15% 15%,
+    rgba(235, 244, 235, 0.9) 0%,
+    transparent 25%
+  ),
+  radial-gradient(
+    circle at 85% 85%,
+    rgba(240, 248, 240, 0.7) 0%,
+    transparent 20%
+  );
+  animation: floatingLights 35s ease-in-out infinite;
 }
 
 .animated-bg-continuous::after {
@@ -90,13 +195,24 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
+  
   background: 
-    linear-gradient(90deg, transparent 0%, rgba(173, 153, 27, 0.015) 50%, transparent 100%), /* ✅ Reducido de 0.03 a 0.015 */
-    linear-gradient(0deg, transparent 0%, rgba(19, 42, 20, 0.025) 50%, transparent 100%); /* ✅ Reducido de 0.05 a 0.025 */
-  animation: subtleWave 45s linear infinite; /* ✅ Aumentado de 25s a 45s */
+    linear-gradient(90deg, transparent 0%, rgba(173, 153, 27, 0.015) 50%, transparent 100%),
+    linear-gradient(0deg, transparent 0%, rgba(19, 42, 20, 0.025) 50%, transparent 100%);
+  animation: subtleWave 45s linear infinite;
+  transition: all 0.5s ease;
 }
 
-/* ✅ Animaciones MÁS LENTAS Y SUAVES */
+
+:root[data-theme="light"] .animated-bg-continuous::after {
+  background: 
+    linear-gradient(45deg, transparent 0%, rgba(196, 168, 52, 0.008) 30%, transparent 60%),
+    linear-gradient(135deg, transparent 0%, rgba(45, 90, 61, 0.012) 40%, transparent 80%),
+    linear-gradient(90deg, rgba(240, 248, 240, 0.4) 0%, transparent 20%, transparent 80%, rgba(249, 249, 247, 0.3) 100%);
+  animation: subtleWave 45s linear infinite;
+}
+
+
 @keyframes gradientShift {
   0%, 100% {
     background-position: 0% 50%;
@@ -115,15 +231,15 @@ body {
 @keyframes floatingLights {
   0%, 100% {
     transform: translateY(0px) rotate(0deg);
-    opacity: 0.4; /* ✅ Reducido de 0.7 a 0.4 */
+    opacity: 0.4; 
   }
   25% {
-    transform: translateY(-8px) rotate(30deg); /* ✅ Reducido de -20px y 120deg */
-    opacity: 0.6; /* ✅ Reducido de 0.9 a 0.6 */
+    transform: translateY(-8px) rotate(30deg); 
+    opacity: 0.6; 
   }
   50% {
-    transform: translateY(4px) rotate(60deg); /* ✅ Reducido de 10px y 240deg */
-    opacity: 0.3; /* ✅ Reducido de 0.6 a 0.3 */
+    transform: translateY(4px) rotate(60deg); 
+    opacity: 0.3; 
   }
   75% {
     transform: translateY(-4px) rotate(90deg);
@@ -131,21 +247,89 @@ body {
   }
 }
 
-@keyframes subtleWave {
+
+@keyframes lightGradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+    transform: scale(1);
+  }
+  15% {
+    background-position: 15% 35%;
+    transform: scale(1.001);
+  }
+  30% {
+    background-position: 40% 65%;
+    transform: scale(0.999);
+  }
+  45% {
+    background-position: 70% 45%;
+    transform: scale(1.0005);
+  }
+  60% {
+    background-position: 85% 75%;
+    transform: scale(0.9995);
+  }
+  75% {
+    background-position: 60% 25%;
+    transform: scale(1.001);
+  }
+  90% {
+    background-position: 25% 85%;
+    transform: scale(0.999);
+  }
+}
+
+@keyframes lightFloatingLights {
+  0%, 100% {
+    transform: translateY(0px) rotate(0deg) scale(1);
+    opacity: 0.7;
+  }
+  20% {
+    transform: translateY(-3px) rotate(8deg) scale(1.008);
+    opacity: 0.9;
+  }
+  40% {
+    transform: translateY(2px) rotate(15deg) scale(0.995);
+    opacity: 0.5;
+  }
+  60% {
+    transform: translateY(-1px) rotate(22deg) scale(1.005);
+    opacity: 0.8;
+  }
+  80% {
+    transform: translateY(1px) rotate(30deg) scale(0.998);
+    opacity: 0.6;
+  }
+}
+
+@keyframes lightSubtleWave {
   0% {
-    transform: translateX(-100%);
+    transform: translateX(-100%) rotate(0deg) scale(1);
     opacity: 0.3;
   }
-  50% {
-    opacity: 0.1; /* ✅ Más sutil */
+  20% {
+    transform: translateX(-60%) rotate(36deg) scale(1.01);
+    opacity: 0.15;
+  }
+  40% {
+    transform: translateX(-20%) rotate(72deg) scale(0.99);
+    opacity: 0.08;
+  }
+  60% {
+    transform: translateX(20%) rotate(108deg) scale(1.005);
+    opacity: 0.12;
+  }
+  80% {
+    transform: translateX(60%) rotate(144deg) scale(0.995);
+    opacity: 0.18;
   }
   100% {
-    transform: translateX(100%);
+    transform: translateX(100%) rotate(180deg) scale(1);
     opacity: 0.3;
   }
 }
 
-/* Oculta el scrollbar pero permite scroll horizontal */
+
 .scrollbar-hide {
   -ms-overflow-style: none;
   scrollbar-width: none;
@@ -154,7 +338,7 @@ body {
   display: none;
 }
 
-/* Secciones ocupan toda la pantalla horizontal */
+
 section {
   min-width: 100vw;
   height: 100vh;
@@ -167,7 +351,7 @@ section {
   box-sizing: border-box;
 }
 
-/* Estilos de componentes */
+
 .section-item {
   background: rgba(173, 153, 27, 0.08);
   backdrop-filter: blur(20px);
@@ -181,7 +365,6 @@ section {
   background: rgba(173, 153, 27, 0.12);
   border-color: rgba(173, 153, 27, 0.4);
   transform: translateY(-2px);
-  box-shadow: 0 10px 30px rgba(173, 153, 27, 0.1);
 }
 
 .section-title {
@@ -205,30 +388,59 @@ section {
   display: none;
 }
 
-/* Efectos de cristal mejorados */
+
 .glass-effect {
   background: rgba(173, 153, 27, 0.06);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(173, 153, 27, 0.15);
-  box-shadow: 
-    0 8px 32px rgba(0, 0, 0, 0.3),
-    inset 0 1px 0 rgba(255, 255, 255, 0.1);
 }
 
 .glass-effect-hover:hover {
   background: rgba(173, 153, 27, 0.1);
   border-color: rgba(173, 153, 27, 0.3);
   transform: translateY(-3px);
-  box-shadow: 
-    0 15px 40px rgba(173, 153, 27, 0.15),
-    inset 0 1px 0 rgba(255, 255, 255, 0.2);
 }
 
-/* ✅ Responsive adjustments MEJORADOS */
+
+
+
+
+@supports not (background: color-mix(in srgb, red 50%, blue)) {
+    .glass-effect {
+        background: rgba(173, 153, 27, 0.08) !important;
+        border-color: rgba(173, 153, 27, 0.2) !important;
+    }
+    
+    :root[data-theme="light"] .glass-effect {
+        background: rgba(196, 168, 52, 0.08) !important;
+        border-color: rgba(196, 168, 52, 0.2) !important;
+    }
+}
+
+
+:root[data-theme="light"] {
+    
+    --interactive-primary: var(--primary-200);
+    --interactive-hover: var(--primary-300);
+    --focus-ring: color-mix(in srgb, var(--primary-100) 60%, transparent);
+}
+
+
+*, body, .animated-bg-continuous {
+    transition: background-color 0.5s ease, border-color 0.3s ease, color 0.3s ease, background 0.5s ease;
+}
+
+
+:root[data-theme="light"] .glass-effect {
+    backdrop-filter: blur(15px) saturate(180%);
+    -webkit-backdrop-filter: blur(15px) saturate(180%);
+}
+
+
 @media (max-width: 768px) {
   .animated-bg-continuous {
-    background-size: 250% 250%; /* ✅ Más pequeño para móviles */
-    animation-duration: 30s; /* ✅ Aún más lento en móviles */
+    background-size: 250% 250%; 
+    animation-duration: 30s; 
   }
   
   .animated-bg-continuous::before {
@@ -240,7 +452,7 @@ section {
   }
 }
 
-/* ✅ Respeto por preferencias de accesibilidad */
+
 @media (prefers-reduced-motion: reduce) {
   .animated-bg-continuous,
   .animated-bg-continuous::before,

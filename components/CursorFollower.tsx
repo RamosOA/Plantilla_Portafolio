@@ -1,4 +1,4 @@
-// components/CursorFollower.tsx
+
 'use client';
 
 import React, { useEffect, useState } from 'react';
@@ -9,7 +9,7 @@ const CursorFollower = () => {
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
 
     useEffect(() => {
-        // Inicializar la posición con la posición actual del mouse
+        
         const initPosition = (e: MouseEvent) => {
             setPosition({ x: e.clientX, y: e.clientY });
             setCursorPosition({ x: e.clientX, y: e.clientY });
@@ -37,8 +37,8 @@ const CursorFollower = () => {
 
         const animateCursor = () => {
             setCursorPosition(prev => ({
-                x: prev.x + (position.x - prev.x) * 0.05, // Más suave
-                y: prev.y + (position.y - prev.y) * 0.05  // Más suave
+                x: prev.x + (position.x - prev.x) * 0.05, 
+                y: prev.y + (position.y - prev.y) * 0.05  
             }));
             animationFrameId = requestAnimationFrame(animateCursor);
         };

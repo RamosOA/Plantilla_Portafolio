@@ -19,10 +19,9 @@ const InterestsCard: React.FC<InterestsCardProps> = ({ className, delay, handleW
         <motion.div
             className={`${className} border rounded-xl p-6 flex flex-col overflow-hidden cursor-default`}
             style={{
-                background: 'rgba(173, 153, 27, 0.08)',
-                borderColor: 'rgba(173, 153, 27, 0.2)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                background: 'color-mix(in srgb, var(--primary-100) 8%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
+                backdropFilter: 'blur(20px)'
             }}
             initial={{ y: 50, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
@@ -30,8 +29,8 @@ const InterestsCard: React.FC<InterestsCardProps> = ({ className, delay, handleW
             onWheel={(e) => handleWheel(e, scrollRef)}
         >
             <div className="flex items-center mb-6">
-                <FaHeart className="text-2xl mr-3" style={{ color: 'rgba(173, 153, 27, 0.4)' }} />
-                <h4 className="text-xl font-semibold" style={{ color: '#AD991B' }}>
+                <FaHeart className="text-2xl mr-3" style={{ color: 'var(--primary-200)' }} />
+                <h4 className="text-xl font-semibold" style={{ color: 'var(--primary-100)' }}>
                     Mis Intereses
                 </h4>
             </div>

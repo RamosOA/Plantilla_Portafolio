@@ -1,9 +1,29 @@
-// components/ParticleBackground.tsx
 'use client'
-import { useEffect, useRef } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export default function ParticleBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
+    const [isDarkMode, setIsDarkMode] = useState(true)
+
+    useEffect(() => {
+        
+        const checkTheme = () => {
+            const theme = document.documentElement.getAttribute('data-theme')
+            setIsDarkMode(theme !== 'light')
+        }
+
+        
+        checkTheme()
+
+        
+        const observer = new MutationObserver(checkTheme)
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        })
+
+        return () => observer.disconnect()
+    }, [])
 
     useEffect(() => {
         const canvas = canvasRef.current
@@ -31,8 +51,17 @@ export default function ParticleBackground() {
             particles.forEach(p => {
                 ctx.beginPath()
                 const grad = ctx.createLinearGradient(p.x, p.y, p.x + p.length, p.y)
-                grad.addColorStop(0, 'rgba(255,255,255,0.8)')
-                grad.addColorStop(1, 'rgba(255,255,255,0)')
+                
+                if (isDarkMode) {
+                    
+                    grad.addColorStop(0, 'rgba(255,255,255,0.8)')
+                    grad.addColorStop(1, 'rgba(255,255,255,0)')
+                } else {
+                    
+                    grad.addColorStop(0, 'rgba(72, 72, 74, 0.8)')  
+                    grad.addColorStop(1, 'rgba(109, 109, 112, 0)')  
+                }
+                
                 ctx.strokeStyle = grad
                 ctx.moveTo(p.x, p.y)
                 ctx.lineTo(p.x + p.length, p.y)
@@ -49,7 +78,7 @@ export default function ParticleBackground() {
         }
 
         animate()
-    }, [])
+    }, [isDarkMode]) 
 
     return (
         <canvas

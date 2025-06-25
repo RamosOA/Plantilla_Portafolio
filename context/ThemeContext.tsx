@@ -14,7 +14,7 @@ export const ThemeProvider = ({ children }: { children: React.ReactNode }) => {
 
     const toggleTheme = () => {
         setIsDark(!isDark);
-        // Aquí puedes agregar la lógica para cambiar clases globales o variables CSS
+        
     };
 
     return (

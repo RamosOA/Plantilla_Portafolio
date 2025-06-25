@@ -17,13 +17,10 @@ const Habilidades = () => {
             animate={{ opacity: 1 }}
             transition={{ duration: 0.6 }}
         >
-            {/* Título lateral */}
             <TituloSeccion titulo="Habilidades" />
 
-            {/* Grid de habilidades */}
             <SkillsGrid handleWheel={handleWheel} />
 
-            {/* Estilos personalizados para el scrollbar */}
             <CustomScrollbar />
         </motion.div>
     );

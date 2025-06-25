@@ -13,7 +13,7 @@ const SkillsGrid: React.FC<SkillsGridProps> = ({ handleWheel }) => {
     return (
         <div className="pl-24 pr-8 py-8 h-full w-full max-w-7xl">
             <div className="grid grid-cols-5 grid-rows-4 gap-4 h-full">
-                {/* Frontend */}
+                
                 <SkillCategory
                     title="Frontend"
                     icon={FaCode}
@@ -25,7 +25,7 @@ const SkillsGrid: React.FC<SkillsGridProps> = ({ handleWheel }) => {
                     handleWheel={handleWheel}
                 />
 
-                {/* Backend */}
+                
                 <SkillCategory
                     title="Backend & Base de Datos"
                     icon={FaServer}
@@ -37,7 +37,7 @@ const SkillsGrid: React.FC<SkillsGridProps> = ({ handleWheel }) => {
                     handleWheel={handleWheel}
                 />
 
-                {/* Herramientas */}
+                
                 <SkillCategory
                     title="Herramientas & Plataformas"
                     icon={FaTools}

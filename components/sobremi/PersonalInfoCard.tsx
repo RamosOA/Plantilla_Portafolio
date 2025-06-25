@@ -19,10 +19,9 @@ const PersonalInfoCard: React.FC<PersonalInfoCardProps> = ({ className, delay, h
         <motion.div
             className={`${className} border rounded-xl p-6 flex flex-col overflow-hidden cursor-default`}
             style={{
-                background: 'rgba(173, 153, 27, 0.08)',
-                borderColor: 'rgba(173, 153, 27, 0.2)',
-                backdropFilter: 'blur(20px)',
-                boxShadow: '0 8px 32px rgba(0, 0, 0, 0.3)'
+                background: 'color-mix(in srgb, var(--primary-100) 8%, transparent)',
+                borderColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
+                backdropFilter: 'blur(20px)'
             }}
             initial={{ x: 50, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
@@ -30,8 +29,8 @@ const PersonalInfoCard: React.FC<PersonalInfoCardProps> = ({ className, delay, h
             onWheel={(e) => handleWheel(e, scrollRef)}
         >
             <div className="flex items-center mb-6">
-                <FaInfoCircle className="text-2xl mr-3" style={{ color: 'rgba(173, 153, 27, 0.4)' }} />
-                <h4 className="text-xl font-semibold" style={{ color: '#AD991B' }}>
+                <FaInfoCircle className="text-2xl mr-3" style={{ color: 'var(--primary-200)' }} />
+                <h4 className="text-xl font-semibold" style={{ color: 'var(--primary-100)' }}>
                     Información Personal
                 </h4>
             </div>
@@ -50,15 +49,15 @@ const PersonalInfoCard: React.FC<PersonalInfoCardProps> = ({ className, delay, h
                         />
                     ))}
                     
-                    {/* Información adicional para demostrar el scroll */}
+                    {}
                     <motion.div
                         className="pt-4 border-t border-opacity-20"
-                        style={{ borderColor: '#AD991B' }}
+                        style={{ borderColor: 'var(--primary-100)' }}
                         initial={{ y: 20, opacity: 0 }}
                         animate={{ y: 0, opacity: 1 }}
                         transition={{ delay: 0.9 }}
                     >
-                        <p className="text-sm leading-relaxed" style={{ color: '#e0e0e0' }}>
+                        <p className="text-sm leading-relaxed" style={{ color: 'var(--text-300)' }}>
                             Comprometido con el aprendizaje continuo y la mejora constante 
                             de mis habilidades técnicas y profesionales.
                         </p>

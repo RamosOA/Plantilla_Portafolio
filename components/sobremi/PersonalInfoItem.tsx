@@ -27,17 +27,17 @@ const PersonalInfoItem: React.FC<PersonalInfoItemProps> = ({ info, index, delay 
         >
             <IconComponent 
                 className="text-xl mt-1 flex-shrink-0" 
-                style={{ color: '#AD991B' }} 
+                style={{ color: 'var(--primary-100)' }} 
             />
             <div className="min-w-0 flex-1">
-                <p className="text-sm font-medium" style={{ color: '#e0e0e0' }}>
+                <p className="text-sm font-medium" style={{ color: 'var(--text-300)' }}>
                     {info.label}
                 </p>
-                <p className="text-base font-semibold" style={{ color: '#ffffff' }}>
+                <p className="text-base font-semibold" style={{ color: 'var(--text-200)' }}>
                     {info.value}
                 </p>
                 {info.additional && (
-                    <p className="text-base mt-1 font-semibold" style={{ color: '#ffffff' }}>
+                    <p className="text-base mt-1 font-semibold" style={{ color: 'var(--text-200)' }}>
                         {info.additional}
                     </p>
                 )}

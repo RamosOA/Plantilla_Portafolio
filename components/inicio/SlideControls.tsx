@@ -14,9 +14,9 @@ const SlideControls: React.FC<SlideControlsProps> = ({ onSlideChange }) => {
                 onClick={() => onSlideChange(0)}
                 className="p-2 rounded-full transition-all duration-300 hover:scale-110"
                 style={{
-                    background: 'rgba(173, 153, 27, 0.1)',
-                    borderColor: 'rgba(173, 153, 27, 0.3)',
-                    color: '#AD991B'
+                    background: 'color-mix(in srgb, var(--primary-100) 10%, transparent)',
+                    borderColor: 'color-mix(in srgb, var(--primary-100) 30%, transparent)',
+                    color: 'var(--primary-100)'
                 }}
                 title="Slide anterior"
                 aria-label="Ir al slide anterior"
@@ -27,9 +27,9 @@ const SlideControls: React.FC<SlideControlsProps> = ({ onSlideChange }) => {
                 onClick={() => onSlideChange(1)}
                 className="p-2 rounded-full transition-all duration-300 hover:scale-110"
                 style={{
-                    background: 'rgba(173, 153, 27, 0.1)',
-                    borderColor: 'rgba(173, 153, 27, 0.3)',
-                    color: '#AD991B'
+                    background: 'color-mix(in srgb, var(--primary-100) 10%, transparent)',
+                    borderColor: 'color-mix(in srgb, var(--primary-100) 30%, transparent)',
+                    color: 'var(--primary-100)'
                 }}
                 title="Slide siguiente"
                 aria-label="Ir al slide siguiente"

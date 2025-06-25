@@ -14,7 +14,7 @@ interface ProjectContentProps {
 const ProjectContent: React.FC<ProjectContentProps> = ({ descripcion, tecnologias, link }) => {
     return (
         <>
-            {/* Descripción con margin-bottom visible */}
+            {}
             <motion.div 
                 className="mb-4"
                 initial={{ opacity: 0 }}
@@ -23,18 +23,18 @@ const ProjectContent: React.FC<ProjectContentProps> = ({ descripcion, tecnologia
             >
                 <p 
                     className="text-sm leading-relaxed"
-                    style={{ color: '#e0e0e0' }}
+                    style={{ color: 'var(--text-300)' }}
                 >
                     {descripcion}
                 </p>
             </motion.div>
 
-            {/* Tecnologías con margin-bottom visible */}
+            {}
             <div className="mb-4">
                 <TechTags tecnologias={tecnologias} />
             </div>
 
-            {/* Botón GitHub con margin-bottom visible */}
+            {}
             <div className="mb-4">
                 <motion.a
                     href={link}
@@ -42,13 +42,13 @@ const ProjectContent: React.FC<ProjectContentProps> = ({ descripcion, tecnologia
                     rel="noopener noreferrer"
                     className="flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 inline-flex"
                     style={{ 
-                        color: '#AD991B',
-                        background: 'rgba(173, 153, 27, 0.1)',
-                        border: '1px solid rgba(173, 153, 27, 0.2)'
+                        color: 'var(--primary-100)',
+                        background: 'color-mix(in srgb, var(--primary-100) 10%, transparent)',
+                        border: '1px solid color-mix(in srgb, var(--primary-100) 20%, transparent)'
                     }}
                     whileHover={{ 
                         scale: 1.05,
-                        backgroundColor: 'rgba(173, 153, 27, 0.2)'
+                        backgroundColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)'
                     }}
                     whileTap={{ scale: 0.95 }}
                 >
