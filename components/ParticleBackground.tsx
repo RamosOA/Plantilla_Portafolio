@@ -4,6 +4,19 @@ import { useEffect, useRef, useState } from 'react'
 export default function ParticleBackground() {
     const canvasRef = useRef<HTMLCanvasElement>(null)
     const [isDarkMode, setIsDarkMode] = useState(true)
+    const [isMobile, setIsMobile] = useState(false)
+
+    useEffect(() => {
+        // Check if device is mobile
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768 || 'ontouchstart' in window)
+        }
+        
+        checkMobile()
+        window.addEventListener('resize', checkMobile)
+        
+        return () => window.removeEventListener('resize', checkMobile)
+    }, [])
 
     useEffect(() => {
         
@@ -30,18 +43,19 @@ export default function ParticleBackground() {
         const ctx = canvas?.getContext('2d')
         if (!canvas || !ctx) return
 
-        canvas.width = window.innerWidth * 3
+        canvas.width = isMobile ? window.innerWidth : window.innerWidth * 3
         canvas.height = window.innerHeight
 
         const particles: { x: number; y: number; length: number; speed: number }[] = []
-        const numParticles = 88
+        // Reduce particles on mobile for better performance
+        const numParticles = isMobile ? 30 : 88
 
         for (let i = 0; i < numParticles; i++) {
             particles.push({
                 x: Math.random() * canvas.width,
                 y: Math.random() * canvas.height,
                 length: Math.random() * 200 + 50,
-                speed: Math.random() * 2 + 0.5,
+                speed: Math.random() * 1.5 + 0.5,
             })
         }
 
@@ -78,12 +92,12 @@ export default function ParticleBackground() {
         }
 
         animate()
-    }, [isDarkMode]) 
+    }, [isDarkMode, isMobile]) 
 
     return (
         <canvas
             ref={canvasRef}
-            className="fixed top-0 left-0 w-[300vw] h-screen z-0"
+            className="fixed top-0 left-0 w-screen md:w-[300vw] h-screen z-0 opacity-30 md:opacity-100"
         />
     )
 }

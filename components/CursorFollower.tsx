@@ -7,8 +7,18 @@ const CursorFollower = () => {
     const [position, setPosition] = useState({ x: 0, y: 0 });
     const [isHovering, setIsHovering] = useState(false);
     const [cursorPosition, setCursorPosition] = useState({ x: 0, y: 0 });
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
+        // Check if device supports touch
+        const checkTouchDevice = () => {
+            setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
+        };
+        
+        checkTouchDevice();
+        
+        // Don't initialize cursor follower on touch devices
+        if (isTouchDevice) return;
         
         const initPosition = (e: MouseEvent) => {
             setPosition({ x: e.clientX, y: e.clientY });
@@ -52,7 +62,12 @@ const CursorFollower = () => {
             window.removeEventListener('mouseover', handleMouseOver);
             cancelAnimationFrame(animationFrameId);
         };
-    }, [position]);
+    }, [position, isTouchDevice]);
+
+    // Don't render on touch devices
+    if (isTouchDevice) {
+        return null;
+    }
 
     return (
         <div

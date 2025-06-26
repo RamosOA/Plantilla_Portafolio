@@ -43,7 +43,7 @@ const ThemeToggleBar = () => {
 
     return (
         <motion.div 
-            className="fixed-bars top-0 left-0 right-0 z-50"
+            className="fixed-bars top-0 left-0 right-0 z-50 hide-mobile"
             style={{
                 background: isDark 
                     ? 'rgba(60, 60, 60, 0.3)' 

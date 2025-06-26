@@ -1,20 +1,46 @@
 'use client';
 
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import TituloSeccion from '../inicio/TituloSeccion';
 import SlidePresentation from '../inicio/SlidePresentation';
 import NavigationCard from '../inicio/NavigationCard';
 import WhatsAppCard from '../inicio/WhatsAppCard';
+import MobileInicioSectionImproved from '../mobile/MobileInicioSectionImproved';
 
 const Inicio = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
     const scrollToSection = (sectionId: string) => {
         const section = document.getElementById(sectionId);
         if (section) {
-            window.scrollTo({
-                left: section.offsetLeft,
-                behavior: 'smooth'
-            });
+            // Check if we're on mobile (viewport width <= 768px)
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Mobile: scroll vertically
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            } else {
+                // Desktop: scroll horizontally
+                window.scrollTo({
+                    left: section.offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
         }
     };
 
@@ -25,6 +51,12 @@ const Inicio = () => {
         window.open(whatsappUrl, '_blank');
     };
 
+    // Render mobile version
+    if (isMobile) {
+        return <MobileInicioSectionImproved />;
+    }
+
+    // Render desktop version
     return (
         <motion.div
             className="w-full h-[75vh] flex items-center justify-center px-6 relative"

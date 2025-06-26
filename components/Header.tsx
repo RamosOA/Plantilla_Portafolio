@@ -3,7 +3,6 @@
 import React, { useState, useEffect } from 'react';
 
 const Header = () => {
-    const [hoveredButton, setHoveredButton] = useState<string | null>(null);
     const [isDark, setIsDark] = useState(true);
 
     useEffect(() => {
@@ -26,16 +25,28 @@ const Header = () => {
     const scrollTo = (id: string) => {
         const section = document.getElementById(id);
         if (section) {
-            window.scrollTo({
-                left: section.offsetLeft,
-                behavior: 'smooth'
-            });
+            // Check if we're on mobile (viewport width <= 768px)
+            const isMobile = window.innerWidth <= 768;
+            
+            if (isMobile) {
+                // Mobile: scroll vertically
+                section.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            } else {
+                // Desktop: scroll horizontally
+                window.scrollTo({
+                    left: section.offsetLeft,
+                    behavior: 'smooth'
+                });
+            }
         }
     };
 
     return (
         <div className="w-screen h-screen overflow-x-auto overflow-y-hidden scrollbar-hide">
-            <header className="fixed bottom-0 left-0 right-0 z-50" style={{
+            <header className="fixed bottom-0 left-0 right-0 z-50 hide-mobile" style={{
                 background: isDark 
                     ? 'rgba(60, 60, 60, 0.3)' 
                     : 'rgba(254, 255, 254, 0.9)',
@@ -48,8 +59,6 @@ const Header = () => {
                 <nav className="max-w-[90%] mx-auto py-6 px-8 flex justify-between items-center">
                     <button 
                         onClick={() => scrollTo('inicio')} 
-                        onMouseEnter={() => setHoveredButton('inicio')}
-                        onMouseLeave={() => setHoveredButton(null)}
                         className="group relative text-lg font-medium overflow-hidden transition-colors duration-300"
                         style={{ color: 'var(--text-accent)' }}
                     >
@@ -63,8 +72,6 @@ const Header = () => {
 
                     <button 
                         onClick={() => scrollTo('sobremi')}
-                        onMouseEnter={() => setHoveredButton('sobremi')}
-                        onMouseLeave={() => setHoveredButton(null)}
                         className="group relative text-lg font-medium overflow-hidden transition-colors duration-300"
                         style={{ color: 'var(--text-accent)' }}
                     >
@@ -78,8 +85,6 @@ const Header = () => {
                     
                     <button 
                         onClick={() => scrollTo('habilidades')}
-                        onMouseEnter={() => setHoveredButton('habilidades')}
-                        onMouseLeave={() => setHoveredButton(null)}
                         className="group relative text-lg font-medium overflow-hidden transition-colors duration-300"
                         style={{ color: 'var(--text-accent)' }}
                     >
@@ -93,8 +98,6 @@ const Header = () => {
 
                     <button 
                         onClick={() => scrollTo('proyectos')}
-                        onMouseEnter={() => setHoveredButton('proyectos')}
-                        onMouseLeave={() => setHoveredButton(null)}
                         className="group relative text-lg font-medium overflow-hidden transition-colors duration-300"
                         style={{ color: 'var(--text-accent)' }}
                     >
@@ -108,8 +111,6 @@ const Header = () => {
 
                     <button 
                         onClick={() => scrollTo('contacto')}
-                        onMouseEnter={() => setHoveredButton('contacto')}
-                        onMouseLeave={() => setHoveredButton(null)}
                         className="group relative text-lg font-medium overflow-hidden transition-colors duration-300"
                         style={{ color: 'var(--text-accent)' }}
                     >

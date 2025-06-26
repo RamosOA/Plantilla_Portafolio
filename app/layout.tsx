@@ -4,6 +4,9 @@ import { Inter } from 'next/font/google'
 import ParticleBackground from '../components/ParticleBackground'
 import CursorFollower from '../components/CursorFollower'
 import Header from '../components/Header'
+import MobileMenuWrapper from '../components/MobileMenuWrapper'
+import MobileThemeToggle from '../components/mobile/MobileThemeToggle'
+import MobileScrollProgress from '../components/mobile/MobileScrollProgress'
 import EnableBodyHorizontalScroll from '../components/EnableBodyHorizontalScroll'
 import ThemeToggleBar from '../components/ThemeToggleBar'
 import { ThemeProvider } from '../context/ThemeContext'
@@ -22,7 +25,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className="scroll-smooth">
-      <body className={`${inter.className} bg-zinc-900 text-white overflow-x-hidden`}>
+      <body className={`${inter.className} bg-zinc-900 text-white overflow-x-hidden safe-area-padding mobile-no-overscroll`}>
         <ThemeProvider>
           {}
           <div className="fixed inset-0 -z-10">
@@ -31,12 +34,17 @@ export default function RootLayout({
           
           <EnableBodyHorizontalScroll />
           <ParticleBackground />
-          {}
-          <div className="fixed top-0 left-0 w-screen z-50">
+          {/* Desktop ThemeToggleBar */}
+          <div className="fixed top-0 left-0 w-screen z-50 show-on-desktop-950">
             <ThemeToggleBar />
           </div>
+          {/* Mobile ThemeToggle */}
+          <MobileThemeToggle />
+          {/* Mobile Scroll Progress */}
+          <MobileScrollProgress />
           <main>{children}</main>
           <Header />
+          <MobileMenuWrapper />
           <CursorFollower />
         </ThemeProvider>
       </body>

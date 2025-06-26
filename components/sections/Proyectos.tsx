@@ -1,11 +1,31 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import ProjectCard from '../proyectos/ProjectCard';
 import { proyectosData } from '../proyectos/proyectosData';
+import MobileProyectosSection from '../mobile/MobileProyectosSection';
 
 const Proyectos = () => {
+    const [isMobile, setIsMobile] = useState(false);
+
+    useEffect(() => {
+        const checkMobile = () => {
+            setIsMobile(window.innerWidth <= 768);
+        };
+        
+        checkMobile();
+        window.addEventListener('resize', checkMobile);
+        
+        return () => window.removeEventListener('resize', checkMobile);
+    }, []);
+
+    // Render mobile version
+    if (isMobile) {
+        return <MobileProyectosSection />;
+    }
+
+    // Render desktop version
     return (
         <motion.div
             className="w-full h-[75vh] flex items-center justify-center px-6 relative"

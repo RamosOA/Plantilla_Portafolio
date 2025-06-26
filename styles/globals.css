@@ -354,6 +354,7 @@ section {
 
 .section-item {
   background: rgba(173, 153, 27, 0.08);
+  -webkit-backdrop-filter: blur(20px);
   backdrop-filter: blur(20px);
   border: 1px solid rgba(173, 153, 27, 0.2);
   border-radius: 12px;
@@ -391,6 +392,7 @@ section {
 
 .glass-effect {
   background: rgba(173, 153, 27, 0.06);
+  -webkit-backdrop-filter: blur(25px);
   backdrop-filter: blur(25px);
   border: 1px solid rgba(173, 153, 27, 0.15);
 }
@@ -432,12 +434,12 @@ section {
 
 
 :root[data-theme="light"] .glass-effect {
-    backdrop-filter: blur(15px) saturate(180%);
     -webkit-backdrop-filter: blur(15px) saturate(180%);
+    backdrop-filter: blur(15px) saturate(180%);
 }
 
 
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   .animated-bg-continuous {
     background-size: 250% 250%; 
     animation-duration: 30s; 
@@ -453,14 +455,1086 @@ section {
 }
 
 
-@media (prefers-reduced-motion: reduce) {
-  .animated-bg-continuous,
-  .animated-bg-continuous::before,
-  .animated-bg-continuous::after {
-    animation: none !important;
+/* ==================== MOBILE STYLES ==================== */
+/* Mobile-first responsive design - transforms horizontal layout to vertical */
+
+@media (max-width: 950px) {
+  /* Override inline styles for mobile */
+  [style*="width: 500vw"] {
+    width: 100vw !important;
   }
   
+  /* Reset body and html for mobile with enhanced scroll */
+  html {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scroll-snap-type: y mandatory;
+  }
+  
+  body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+    overflow-y: auto;
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scroll-padding-top: 0;
+    position: relative;
+  }
+  
+  /* Main page container - enhanced vertical layout */
+  .flex.flex-row.h-screen,
+  .flex.flex-row.h-screen.md\\:flex-row {
+    flex-direction: column !important;
+    width: 100vw !important;
+    height: auto !important;
+    min-height: 100vh !important;
+    scroll-snap-type: y mandatory;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+    position: relative;
+    scroll-padding: 0;
+  }
+  
+  /* Individual sections - enhanced vertical stacking */
+  section {
+    min-width: 100vw !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh;
+    max-height: none !important;
+    flex: 0 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 2rem 1rem 1rem 1rem;
+    box-sizing: border-box;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  /* Enhanced section content positioning */
+  .w-screen.h-screen.flex-none {
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    scroll-snap-align: start;
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 0 !important;
+    overflow-y: auto !important;
+  }
+  
+  /* Hide desktop header and theme toggle bar on mobile */
+  header {
+    display: none !important;
+  }
+  
+  .fixed-bars {
+    display: none !important;
+  }
+  
+  /* Hide theme toggle bar on mobile */
+  .theme-toggle-bar {
+    display: none !important;
+  }
+  
+  /* Mobile grid layouts with improved responsiveness */
+  .grid.grid-cols-5 {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: repeat(auto-fit, minmax(200px, 1fr)) !important;
+    gap: 1rem !important;
+    height: auto !important;
+    padding: 1rem !important;
+  }
+  
+  .grid.grid-cols-5 > * {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+  }
+  
+  /* Enhanced mobile grid utilities */
+  .mobile-grid-auto {
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)) !important;
+  }
+  
+  .mobile-grid-responsive {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)) !important;
+  }
+  
+  /* Mobile inicio section adjustments */
+  .pl-24.pr-8.py-8 {
+    padding: 1rem !important;
+  }
+  
+  /* Mobile content containers with better spacing */
+  .max-w-7xl {
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+  }
+  
+  .max-w-6xl {
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+  }
+  
+  .max-w-5xl {
+    max-width: 100% !important;
+    padding: 0 1rem !important;
+  }
+  
+  /* Enhanced mobile text sizes with better line heights */
+  .text-6xl {
+    font-size: 2.5rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.02em !important;
+  }
+  
+  .text-5xl {
+    font-size: 2rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.01em !important;
+  }
+  
+  .text-4xl {
+    font-size: 1.75rem !important;
+    line-height: 1.2 !important;
+    letter-spacing: -0.01em !important;
+  }
+  
+  .text-3xl {
+    font-size: 1.5rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .text-2xl {
+    font-size: 1.25rem !important;
+    line-height: 1.4 !important;
+  }
+  
+  .text-xl {
+    font-size: 1.125rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  /* Improved mobile spacing system */
+  .p-8 {
+    padding: 1.5rem !important;
+  }
+  
+  .p-6 {
+    padding: 1rem !important;
+  }
+  
+  .px-8 {
+    padding-left: 1.5rem !important;
+    padding-right: 1.5rem !important;
+  }
+  
+  .py-8 {
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+  }
+  
+  .px-6 {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+  
+  .py-6 {
+    padding-top: 1rem !important;
+    padding-bottom: 1rem !important;
+  }
+  
+  .px-4 {
+    padding-left: 0.75rem !important;
+    padding-right: 0.75rem !important;
+  }
+  
+  .py-4 {
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
+  }
+  
+  /* Mobile margins with safe area considerations */
+  .mx-auto {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+  
+  /* Enhanced mobile card and component adjustments */
+  .glass-effect {
+    padding: 1.25rem !important;
+    margin: 0.75rem 0 !important;
+    border-radius: 16px !important;
+    -webkit-backdrop-filter: blur(25px) !important;
+    backdrop-filter: blur(25px) !important;
+  }
+  
+  .section-item {
+    padding: 1.25rem !important;
+    margin: 0.75rem 0 !important;
+    border-radius: 16px !important;
+  }
+  
+  /* Enhanced mobile scrollbars - improved compatibility */
+  .scrollbar-hide {
+    -ms-overflow-style: none;
+  }
+  
+  .scrollbar-hide::-webkit-scrollbar {
+    display: none;
+  }
+  
+  /* Improved mobile custom scroll for content areas */
+  .custom-scroll {
+    -ms-overflow-style: none;
+  }
+  
+  .custom-scroll::-webkit-scrollbar {
+    width: 4px;
+    height: 4px;
+  }
+  
+  .custom-scroll::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 2px;
+  }
+  
+  .custom-scroll::-webkit-scrollbar-thumb {
+    background-color: rgba(173, 153, 27, 0.3);
+    border-radius: 2px;
+    border: 1px solid transparent;
+    background-clip: content-box;
+  }
+  
+  .custom-scroll::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(173, 153, 27, 0.5);
+  }
+  
+  /* Mobile background adjustments with better performance */
   .animated-bg-continuous {
-    background: linear-gradient(135deg, #0a0a0a 0%, #132A14 50%, #0a0a0a 100%);
+    background-size: 200% 200% !important;
+    animation-duration: 40s !important;
+    will-change: transform !important;
+  }
+  
+  .animated-bg-continuous::before {
+    animation-duration: 50s !important;
+  }
+  
+  .animated-bg-continuous::after {
+    animation-duration: 60s !important;
+  }
+  
+  /* Enhanced mobile button and interactive elements */
+  button {
+    min-height: 48px !important;
+    min-width: 48px !important;
+    padding: 0.75rem 1.25rem !important;
+    touch-action: manipulation;
+    border-radius: 12px !important;
+    font-weight: 500 !important;
+    transition: all 0.2s ease !important;
+    cursor: pointer;
+  }
+  
+  button:active {
+    transform: scale(0.98) !important;
+  }
+  
+  button:focus {
+    outline: 2px solid var(--primary-100) !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Enhanced mobile links and interactive areas */
+  a, .cursor-pointer {
+    min-height: 48px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    touch-action: manipulation;
+    border-radius: 12px !important;
+    transition: all 0.2s ease !important;
+  }
+  
+  a:active, .cursor-pointer:active {
+    transform: scale(0.98) !important;
+  }
+  
+  /* Hide desktop-only elements on mobile */
+  .hidden-mobile {
+    display: none !important;
+  }
+  
+  /* Show mobile-only elements */
+  .show-mobile {
+    display: block !important;
+  }
+  
+  /* Enhanced mobile section containers */
+  .mobile-section-container {
+    width: 100vw;
+    height: 100vh;
+    min-height: 100vh;
+    max-height: 100vh;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: flex-start;
+    scroll-snap-align: start;
+    overflow-y: auto;
+    overflow-x: hidden;
+    box-sizing: border-box;
+    position: relative;
+  }
+  
+  .mobile-content-wrapper {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    flex: 1;
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  /* Enhanced mobile content area */
+  .mobile-content-area {
+    width: 100%;
+    height: auto;
+    min-height: calc(100vh - 2rem);
+    padding: 1rem;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  
+  /* Mobile scroll container with enhanced UX */
+  .mobile-scroll-container {
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+    position: relative;
+    padding: 0.5rem;
+    box-sizing: border-box;
+  }
+  
+  /* Mobile typography improvements */
+  .mobile-title {
+    font-size: 1.75rem !important;
+    line-height: 1.3 !important;
+    margin-bottom: 1rem !important;
+    text-align: center !important;
+    color: var(--primary-100) !important;
+  }
+  
+  .mobile-subtitle {
+    font-size: 1.125rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 0.75rem !important;
+    color: var(--text-200) !important;
+  }
+  
+  /* Mobile scroll indicators */
+  .scroll-indicator {
+    display: none !important;
+  }
+  
+  /* Enhanced mobile safe areas for newer devices */
+  .safe-area-padding {
+    padding-top: max(env(safe-area-inset-top), 1rem) !important;
+    padding-bottom: max(env(safe-area-inset-bottom), 1rem) !important;
+    padding-left: max(env(safe-area-inset-left), 1rem) !important;
+    padding-right: max(env(safe-area-inset-right), 1rem) !important;
+  }
+  
+  /* Enhanced mobile viewport adjustments */
+  .mobile-viewport {
+    width: 100vw !important;
+    height: 100vh !important;
+    min-height: 100vh !important;
+    max-height: 100vh !important;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    position: relative;
+  }
+  
+  /* Mobile navigation improvements */
+  .mobile-nav-smooth {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+  }
+  
+  /* Mobile card hover effects replacement */
+  .mobile-card-press {
+    transition: transform 0.1s ease !important;
+  }
+  
+  .mobile-card-press:active {
+    transform: scale(0.97) !important;
+  }
+  
+  /* Mobile loading states */
+  .mobile-skeleton {
+    background: linear-gradient(90deg, 
+      rgba(173, 153, 27, 0.1) 25%, 
+      rgba(173, 153, 27, 0.2) 50%, 
+      rgba(173, 153, 27, 0.1) 75%
+    );
+    background-size: 200% 100%;
+    animation: mobile-skeleton-loading 1.5s infinite;
+  }
+  
+  @keyframes mobile-skeleton-loading {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+  }
+  
+  /* Mobile focus indicators for accessibility */
+  .mobile-focus-ring:focus {
+    outline: 3px solid rgba(173, 153, 27, 0.5) !important;
+    outline-offset: 2px !important;
+  }
+  
+  /* Mobile animation optimizations */
+  .mobile-reduce-motion {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }
+
+/* Additional mobile breakpoints */
+@media (max-width: 480px) {
+  /* Extra small devices */
+  .text-6xl {
+    font-size: 2rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 1.75rem !important;
+  }
+  
+  .text-4xl {
+    font-size: 1.5rem !important;
+  }
+  
+  header nav button {
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+  
+  .glass-effect {
+    padding: 0.75rem !important;
+  }
+  
+  .section-item {
+    padding: 0.75rem !important;
+  }
+}
+
+@media (max-width: 375px) {
+  /* Very small devices */
+  .text-6xl {
+    font-size: 1.75rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 1.5rem !important;
+  }
+  
+  .text-4xl {
+    font-size: 1.25rem !important;
+  }
+  
+  header nav {
+    padding: 0.5rem 0.75rem !important;
+  }
+  
+  header nav button {
+    font-size: 0.65rem !important;
+    padding: 0.15rem 0.3rem !important;
+  }
+}
+
+/* Touch-specific optimizations */
+@media (hover: none) and (pointer: coarse) {
+  /* Touch devices */
+  .group:hover {
+    background: initial;
+  }
+  
+  button:hover {
+    background: initial;
+  }
+  
+  /* Focus styles for touch accessibility */
+  button:focus,
+  a:focus,
+  input:focus,
+  textarea:focus {
+    outline: 2px solid var(--primary-100) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* High DPI screen adjustments */
+@media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+  .glass-effect {
+    -webkit-backdrop-filter: blur(20px) !important;
+    backdrop-filter: blur(20px) !important;
+  }
+}
+
+/* Landscape orientation on mobile */
+@media (max-width: 950px) and (orientation: landscape) {
+  section {
+    height: 100vh !important;
+    min-height: 100vh !important;
+    padding: 0.5rem !important;
+  }
+  
+  .text-6xl {
+    font-size: 2rem !important;
+  }
+  
+  .text-5xl {
+    font-size: 1.75rem !important;
+  }
+  
+  header nav button {
+    font-size: 0.7rem !important;
+    padding: 0.2rem 0.4rem !important;
+  }
+}
+
+/* Dark mode mobile adjustments */
+:root[data-theme="light"] {
+  @media (max-width: 950px) {
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: rgba(196, 168, 52, 0.3);
+    }
+  }
+}
+
+/* ==================== END MOBILE STYLES ==================== */
+
+/* ==================== MOBILE UTILITY CLASSES ==================== */
+
+/* Hide on mobile */
+.hide-mobile {
+  @media (max-width: 950px) {
+    display: none !important;
+  }
+}
+
+/* Show only on mobile */
+.show-mobile {
+  display: none !important;
+  
+  @media (max-width: 950px) {
+    display: block !important;
+  }
+}
+
+.show-mobile-flex {
+  display: none !important;
+  
+  @media (max-width: 950px) {
+    display: flex !important;
+  }
+}
+
+.show-mobile-grid {
+  display: none !important;
+  
+  @media (max-width: 950px) {
+    display: grid !important;
+  }
+}
+
+/* Mobile text utilities */
+.mobile-text-sm {
+  @media (max-width: 950px) {
+    font-size: 0.875rem !important;
+    line-height: 1.25rem !important;
+  }
+}
+
+.mobile-text-base {
+  @media (max-width: 950px) {
+    font-size: 1rem !important;
+    line-height: 1.5rem !important;
+  }
+}
+
+.mobile-text-lg {
+  @media (max-width: 950px) {
+    font-size: 1.125rem !important;
+    line-height: 1.75rem !important;
+  }
+}
+
+.mobile-text-xl {
+  @media (max-width: 950px) {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+}
+
+.mobile-text-2xl {
+  @media (max-width: 950px) {
+    font-size: 1.5rem !important;
+    line-height: 2rem !important;
+  }
+}
+
+/* Mobile spacing utilities */
+.mobile-p-2 {
+  @media (max-width: 950px) {
+    padding: 0.5rem !important;
+  }
+}
+
+.mobile-p-4 {
+  @media (max-width: 950px) {
+    padding: 1rem !important;
+  }
+}
+
+.mobile-p-6 {
+  @media (max-width: 950px) {
+    padding: 1.5rem !important;
+  }
+}
+
+.mobile-m-2 {
+  @media (max-width: 950px) {
+    margin: 0.5rem !important;
+  }
+}
+
+.mobile-m-4 {
+  @media (max-width: 950px) {
+    margin: 1rem !important;
+  }
+}
+
+.mobile-mx-auto {
+  @media (max-width: 950px) {
+    margin-left: auto !important;
+    margin-right: auto !important;
+  }
+}
+
+/* Mobile flex utilities */
+.mobile-flex-col {
+  @media (max-width: 950px) {
+    flex-direction: column !important;
+  }
+}
+
+.mobile-flex-wrap {
+  @media (max-width: 950px) {
+    flex-wrap: wrap !important;
+  }
+}
+
+.mobile-justify-center {
+  @media (max-width: 950px) {
+    justify-content: center !important;
+  }
+}
+
+.mobile-items-center {
+  @media (max-width: 950px) {
+    align-items: center !important;
+  }
+}
+
+/* Mobile grid utilities */
+.mobile-grid-cols-1 {
+  @media (max-width: 950px) {
+    grid-template-columns: repeat(1, minmax(0, 1fr)) !important;
+  }
+}
+
+.mobile-grid-cols-2 {
+  @media (max-width: 950px) {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+.mobile-gap-2 {
+  @media (max-width: 950px) {
+    gap: 0.5rem !important;
+  }
+}
+
+.mobile-gap-4 {
+  @media (max-width: 950px) {
+    gap: 1rem !important;
+  }
+}
+
+/* Mobile width/height utilities */
+.mobile-w-full {
+  @media (max-width: 950px) {
+    width: 100% !important;
+  }
+}
+
+.mobile-h-auto {
+  @media (max-width: 950px) {
+    height: auto !important;
+  }
+}
+
+.mobile-h-screen {
+  @media (max-width: 950px) {
+    height: 100vh !important;
+    height: 100svh !important;
+  }
+}
+
+/* Mobile overflow utilities */
+.mobile-overflow-auto {
+  @media (max-width: 950px) {
+    overflow: auto !important;
+  }
+}
+
+.mobile-overflow-y-auto {
+  @media (max-width: 950px) {
+    overflow-y: auto !important;
+  }
+}
+
+.mobile-overflow-x-hidden {
+  @media (max-width: 950px) {
+    overflow-x: hidden !important;
+  }
+}
+
+/* ==================== END MOBILE UTILITY CLASSES ==================== */
+
+/* ==================== CUSTOM BREAKPOINT UTILITIES FOR 950px ==================== */
+
+/* Hide on screens smaller than 951px (mobile) */
+.hide-on-mobile-950 {
+  @media (max-width: 950px) {
+    display: none !important;
+  }
+}
+
+/* Show only on screens smaller than 951px (mobile) */
+.show-on-mobile-950 {
+  display: none !important;
+  
+  @media (max-width: 950px) {
+    display: block !important;
+  }
+}
+
+.show-on-mobile-950-flex {
+  display: none !important;
+  
+  @media (max-width: 950px) {
+    display: flex !important;
+  }
+}
+
+/* Show only on screens 951px and larger (desktop) */
+.show-on-desktop-950 {
+  display: none !important;
+  
+  @media (min-width: 951px) {
+    display: block !important;
+  }
+}
+
+.show-on-desktop-950-flex {
+  display: none !important;
+  
+  @media (min-width: 951px) {
+    display: flex !important;
+  }
+}
+
+/* ==================== END CUSTOM BREAKPOINT UTILITIES ==================== */
+
+/* ==================== MOBILE THEME TOGGLE ==================== */
+
+/* Mobile Theme Toggle Button */
+.mobile-theme-toggle {
+  position: fixed;
+  top: 1rem;
+  left: 1rem;
+  z-index: 50;
+  padding: 0.75rem;
+  border-radius: 50%;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(173, 153, 27, 0.3);
+  background: rgba(60, 60, 60, 0.95);
+  color: var(--primary-100);
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  display: none;
+  min-height: 48px;
+  min-width: 48px;
+  touch-action: manipulation;
+}
+
+/* Show mobile theme toggle only on mobile */
+@media (max-width: 950px) {
+  .mobile-theme-toggle {
+    display: flex !important;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+:root[data-theme="light"] .mobile-theme-toggle {
+  background: rgba(254, 255, 254, 0.95);
+  border-color: rgba(196, 168, 52, 0.4);
+  color: var(--primary-100);
+}
+
+.mobile-theme-toggle:hover {
+  transform: scale(1.05);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.2);
+}
+
+.mobile-theme-toggle:active {
+  transform: scale(0.95);
+}
+
+/* Hide on desktop */
+@media (min-width: 951px) {
+  .mobile-theme-toggle {
+    display: none !important;
+  }
+}
+
+/* Hide on mobile */
+@media (max-width: 950px) {
+  header {
+    display: none !important;
+  }
+  
+  /* Mobile menu improvements */
+  .mobile-menu {
+    position: fixed;
+    bottom: 1rem;
+    right: 1rem;
+    z-index: 40;
+  }
+  
+  .mobile-menu-trigger {
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    background: rgba(60, 60, 60, 0.95);
+    -webkit-backdrop-filter: blur(12px);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(173, 153, 27, 0.3);
+    color: var(--primary-100);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  }
+  
+  :root[data-theme="light"] .mobile-menu-trigger {
+    background: rgba(254, 255, 254, 0.95);
+    border-color: rgba(196, 168, 52, 0.4);
+  }
+}
+
+/* ==================== END MOBILE THEME TOGGLE ==================== */
+
+/* Mobile scroll optimization with enhanced smoothness */
+@supports (height: 100dvh) {
+  @media (max-width: 950px) {
+    section {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+    }
+    
+    .mobile-viewport {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+    }
+    
+    /* Enhanced full viewport sections */
+    .mobile-full-section {
+      height: 100dvh !important;
+      min-height: 100dvh !important;
+      max-height: 100dvh !important;
+      scroll-snap-align: start !important;
+      scroll-snap-stop: always !important;
+    }
+  }
+}
+
+/* Enhanced smooth scrolling for mobile */
+@media (max-width: 950px) {
+  html {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scroll-padding: 0;
+  }
+  
+  body {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    scroll-padding: 0;
+  }
+  
+  /* Page-level scroll container */
+  .mobile-page-scroll {
+    scroll-snap-type: y mandatory;
+    scroll-behavior: smooth;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+  }
+  
+  /* Section-level scroll optimization */
+  .mobile-section-scroll {
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100%;
+    position: relative;
+  }
+}
+
+/* Enhanced mobile scroll prevention and control */
+@media (max-width: 950px) {
+  .mobile-no-overscroll {
+    overflow: hidden;
+    height: 100vh;
+    touch-action: pan-y;
+  }
+  
+  .mobile-no-overscroll section {
+    overflow-y: auto;
+    overflow-x: hidden;
+    height: 100vh;
+    scroll-snap-align: start;
+  }
+  
+  /* Improved scroll snapping */
+  .mobile-snap-mandatory {
+    scroll-snap-type: y mandatory !important;
+  }
+  
+  .mobile-snap-start {
+    scroll-snap-align: start !important;
+    scroll-snap-stop: always !important;
+  }
+  
+  /* Touch-friendly scroll areas */
+  .mobile-touch-scroll {
+    touch-action: pan-y !important;
+    overflow-y: auto !important;
+    overflow-x: hidden !important;
+  }
+}
+
+/* ==================== MOBILE SCROLL PROGRESS INDICATOR ==================== */
+
+/* Mobile scroll progress and navigation indicators */
+@media (max-width: 950px) {
+  /* Scroll progress bar */
+  .mobile-scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: rgba(173, 153, 27, 0.1);
+    z-index: 1000;
+  }
+  
+  .mobile-scroll-progress-bar {
+    height: 100%;
+    background: linear-gradient(90deg, var(--primary-100), var(--primary-200));
+    transition: width 0.2s ease;
+    border-radius: 0 2px 2px 0;
+  }
+    /* Enhanced mobile scroll experience */
+  .mobile-smooth-scroll {
+    scroll-behavior: smooth !important;
+    scroll-snap-type: y mandatory !important;
+    scroll-padding: 0 !important;
+  }
+
+  /* Mobile scroll momentum for iOS */
+  .mobile-momentum-scroll {
+    touch-action: pan-y;
+  }
+}
+
+/* Mobile page transitions */
+@media (max-width: 950px) {
+  .mobile-page-transition {
+    transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  }
+  
+  .mobile-section-enter {
+    animation: mobileSectionEnter 0.6s ease-out forwards;
+  }
+  
+  .mobile-section-exit {
+    animation: mobileSectionExit 0.4s ease-in forwards;
+  }
+  
+  @keyframes mobileSectionEnter {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  @keyframes mobileSectionExit {
+    from {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    to {
+      opacity: 0;
+      transform: translateY(-30px);
+    }
+  }
+}
+
+/* ==================== END MOBILE SCROLL PROGRESS ==================== */
