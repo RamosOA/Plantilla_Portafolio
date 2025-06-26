@@ -19,9 +19,10 @@ import {
 
 interface MobileMenuProps {
   currentSection?: string;
+  onSectionChange?: (section: string) => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio' }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio', onSectionChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
 
@@ -49,6 +50,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio' }) =>
   };
 
   const scrollToSection = (sectionId: string) => {
+    // Immediately update the section state
+    if (onSectionChange) {
+      onSectionChange(sectionId);
+    }
+    
     const section = document.getElementById(sectionId);
     if (section) {
       const isMobile = window.innerWidth <= 950;
@@ -58,24 +64,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio' }) =>
           behavior: 'smooth',
           block: 'start'
         });
-        // Force detection multiple times during and after scroll animation
-        const forceDetection = () => {
-          window.dispatchEvent(new Event('scroll'));
-        };
-        
-        setTimeout(forceDetection, 200);
-        setTimeout(forceDetection, 500);
-        setTimeout(forceDetection, 800);
-        setTimeout(forceDetection, 1100);
       } else {
         window.scrollTo({
           left: section.offsetLeft,
           behavior: 'smooth'
         });
-        // Force detection for desktop
-        setTimeout(() => {
-          window.dispatchEvent(new Event('scroll'));
-        }, 800);
       }
     }
     setIsOpen(false);
@@ -241,8 +234,11 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio' }) =>
                     Sección actual
                   </span>
                   <span 
-                    className="text-xs font-bold"
-                    style={{ color: 'var(--primary-100)' }}
+                    className="text-xs font-bold px-2 py-1 rounded"
+                    style={{ 
+                      color: 'var(--primary-100)',
+                      background: 'rgba(173, 153, 27, 0.2)'
+                    }}
                   >
                     {menuItems.find(item => item.id === currentSection)?.label || 'Inicio'}
                   </span>

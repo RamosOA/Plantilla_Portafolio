@@ -6,7 +6,7 @@ const useActiveSection = () => {
   const [activeSection, setActiveSection] = useState('inicio');
 
   useEffect(() => {
-    const handleScroll = () => {
+    const detectActiveSection = () => {
       const sections = document.querySelectorAll('section[id]');
       const isMobile = window.innerWidth <= 950;
       
@@ -16,124 +16,96 @@ const useActiveSection = () => {
       }
       
       if (isMobile) {
-        // Mobile: Improved vertical scroll detection
+        // Mobile: Detect based on scroll position
         const scrollY = window.scrollY;
-        const viewportHeight = window.innerHeight;
-        const viewportMiddle = scrollY + viewportHeight / 2;
+        const windowHeight = window.innerHeight;
         
-        let bestSection = 'inicio';
-        let maxVisibility = 0;
-        let closestToCenter = Infinity;
-
+        // Calculate which section we're currently in
+        let currentSection = 'inicio';
+        let bestMatch = 0;
+        
         sections.forEach((section) => {
           const element = section as HTMLElement;
-          const sectionTop = element.offsetTop;
-          const sectionBottom = sectionTop + element.offsetHeight;
-          const sectionCenter = sectionTop + (element.offsetHeight / 2);
+          const rect = element.getBoundingClientRect();
+          const elementTop = scrollY + rect.top;
+          const elementBottom = elementTop + rect.height;
           
-          // Calculate what portion of the section is visible
-          const visibleStart = Math.max(scrollY, sectionTop);
-          const visibleEnd = Math.min(scrollY + viewportHeight, sectionBottom);
-          const visibleHeight = Math.max(0, visibleEnd - visibleStart);
-          const visibilityRatio = visibleHeight / viewportHeight;
+          // Check if this section is visible in the viewport
+          const viewportTop = scrollY;
+          const viewportBottom = scrollY + windowHeight;
           
-          // Distance from viewport center to section center
-          const distanceToCenter = Math.abs(viewportMiddle - sectionCenter);
+          // Calculate how much of this section is visible
+          const visibleTop = Math.max(viewportTop, elementTop);
+          const visibleBottom = Math.min(viewportBottom, elementBottom);
+          const visibleHeight = Math.max(0, visibleBottom - visibleTop);
+          const visibilityPercent = visibleHeight / windowHeight;
           
-          // Priority: Section with highest visibility ratio, or closest to center if tied
-          if (visibilityRatio > maxVisibility || 
-              (visibilityRatio === maxVisibility && distanceToCenter < closestToCenter)) {
-            maxVisibility = visibilityRatio;
-            closestToCenter = distanceToCenter;
-            bestSection = element.id;
+          // If this section has more visibility than the current best, select it
+          if (visibilityPercent > bestMatch) {
+            bestMatch = visibilityPercent;
+            currentSection = element.id;
           }
         });
-
-        setActiveSection(bestSection);
+        
+        setActiveSection(currentSection);
       } else {
         // Desktop: horizontal scroll detection
         const scrollX = window.scrollX;
-        const viewportWidth = window.innerWidth;
-        const viewportMiddle = scrollX + viewportWidth / 2;
+        const windowWidth = window.innerWidth;
         
-        let bestSection = 'inicio';
-        let maxVisibility = 0;
-        let closestToCenter = Infinity;
-
+        let currentSection = 'inicio';
+        let bestMatch = 0;
+        
         sections.forEach((section) => {
           const element = section as HTMLElement;
-          const sectionLeft = element.offsetLeft;
-          const sectionRight = sectionLeft + element.offsetWidth;
-          const sectionCenter = sectionLeft + (element.offsetWidth / 2);
+          const rect = element.getBoundingClientRect();
+          const elementLeft = scrollX + rect.left;
+          const elementRight = elementLeft + rect.width;
           
-          // Calculate what portion of the section is visible
-          const visibleStart = Math.max(scrollX, sectionLeft);
-          const visibleEnd = Math.min(scrollX + viewportWidth, sectionRight);
-          const visibleWidth = Math.max(0, visibleEnd - visibleStart);
-          const visibilityRatio = visibleWidth / viewportWidth;
+          const viewportLeft = scrollX;
+          const viewportRight = scrollX + windowWidth;
           
-          // Distance from viewport center to section center
-          const distanceToCenter = Math.abs(viewportMiddle - sectionCenter);
+          const visibleLeft = Math.max(viewportLeft, elementLeft);
+          const visibleRight = Math.min(viewportRight, elementRight);
+          const visibleWidth = Math.max(0, visibleRight - visibleLeft);
+          const visibilityPercent = visibleWidth / windowWidth;
           
-          // Priority: Section with highest visibility ratio, or closest to center if tied
-          if (visibilityRatio > maxVisibility || 
-              (visibilityRatio === maxVisibility && distanceToCenter < closestToCenter)) {
-            maxVisibility = visibilityRatio;
-            closestToCenter = distanceToCenter;
-            bestSection = element.id;
+          if (visibilityPercent > bestMatch) {
+            bestMatch = visibilityPercent;
+            currentSection = element.id;
           }
         });
-
-        setActiveSection(bestSection);
+        
+        setActiveSection(currentSection);
       }
     };
 
-    // Initial detection
-    const initialDetection = () => {
-      setTimeout(handleScroll, 100);
-    };
-
-    // Throttled scroll handler
-    let scrollTimeout: NodeJS.Timeout;
-    const throttledScroll = () => {
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
+    // Event handlers
+    let ticking = false;
+    const handleScroll = () => {
+      if (!ticking) {
+        requestAnimationFrame(() => {
+          detectActiveSection();
+          ticking = false;
+        });
+        ticking = true;
       }
-      scrollTimeout = setTimeout(handleScroll, 16);
     };
 
-    // Resize handler
-    let resizeTimeout: NodeJS.Timeout;
     const handleResize = () => {
-      if (resizeTimeout) {
-        clearTimeout(resizeTimeout);
-      }
-      resizeTimeout = setTimeout(handleScroll, 100);
+      setTimeout(detectActiveSection, 100);
     };
 
-    // Event listeners
-    window.addEventListener('scroll', throttledScroll, { passive: true });
+    // Add event listeners
+    window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize);
     
-    // Listen for hash changes (URL navigation)
-    const handleHashChange = () => {
-      setTimeout(handleScroll, 300);
-    };
-    window.addEventListener('hashchange', handleHashChange);
-    
     // Initial detection
-    initialDetection();
+    setTimeout(detectActiveSection, 100);
 
     return () => {
-      window.removeEventListener('scroll', throttledScroll);
+      window.removeEventListener('scroll', handleScroll);
       window.removeEventListener('resize', handleResize);
-      window.removeEventListener('hashchange', handleHashChange);
-      if (scrollTimeout) {
-        clearTimeout(scrollTimeout);
-      }
-      if (resizeTimeout) {
-        clearTimeout(resizeTimeout);
-      }
     };
   }, []);
 

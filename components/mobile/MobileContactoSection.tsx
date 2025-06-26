@@ -70,14 +70,14 @@ const MobileContactoSection = () => {
       icon: FaLinkedin,
       label: 'LinkedIn',
       value: 'linkedin.com/in/oscar-ramos',
-      url: 'https://linkedin.com/in/oscar-ramos',
+      url: 'https://www.linkedin.com/in/oscar-ramos-02102018b/',
       color: '#0077B5'
     },
     {
       icon: FaGithub,
       label: 'GitHub',
       value: 'github.com/oscar-ramos',
-      url: 'https://github.com/oscar-ramos',
+      url: 'https://github.com/RamosOA',
       color: '#333'
     },
     {
