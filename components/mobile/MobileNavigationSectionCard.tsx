@@ -25,6 +25,35 @@ interface NavigationItem {
 }
 
 const MobileNavigationSectionCard = () => {
+  const [activeSection, setActiveSection] = React.useState('inicio');
+
+  React.useEffect(() => {
+    const updateActiveSection = () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      
+      // Definir los rangos de scroll para cada sección
+      if (scrollY < windowHeight * 0.5) {
+        setActiveSection('inicio');
+      } else if (scrollY < windowHeight * 1.5) {
+        setActiveSection('sobremi');
+      } else if (scrollY < windowHeight * 2.5) {
+        setActiveSection('habilidades');
+      } else if (scrollY < windowHeight * 3.5) {
+        setActiveSection('proyectos');
+      } else {
+        setActiveSection('contacto');
+      }
+    };
+
+    // Detectar inicialmente
+    updateActiveSection();
+    
+    // Escuchar scroll
+    window.addEventListener('scroll', updateActiveSection, { passive: true });
+    
+    return () => window.removeEventListener('scroll', updateActiveSection);
+  }, []);
   const navigationItems: NavigationItem[] = [
     {
       id: 'sobremi',
@@ -95,6 +124,48 @@ const MobileNavigationSectionCard = () => {
     }
   };
 
+  // Función para obtener el estado dinámico basado en la sección activa
+  const getStatusInfo = () => {
+    switch (activeSection) {
+      case 'inicio':
+        return {
+          text: 'Explorando el portafolio',
+          color: '#06B6D4',
+          icon: '🏠'
+        };
+      case 'sobremi':
+        return {
+          text: 'Conociendo mi historia',
+          color: '#06B6D4',
+          icon: '👨‍💻'
+        };
+      case 'habilidades':
+        return {
+          text: 'Revisando habilidades',
+          color: '#10B981',
+          icon: '⚡'
+        };
+      case 'proyectos':
+        return {
+          text: 'Explorando proyectos',
+          color: '#F59E0B',
+          icon: '🚀'
+        };
+      case 'contacto':
+        return {
+          text: 'Listo para colaborar',
+          color: '#EF4444',
+          icon: '💬'
+        };
+      default:
+        return {
+          text: 'Disponible para nuevos proyectos',
+          color: '#10B981',
+          icon: '✨'
+        };
+    }
+  };
+
   return (
     <div className="space-y-6">
       {/* Main Navigation */}
@@ -112,73 +183,83 @@ const MobileNavigationSectionCard = () => {
         </h3>
         
         <div className="grid grid-cols-1 gap-3">
-          {navigationItems.map((item, index) => (
-            <motion.button
-              key={item.id}
-              onClick={() => scrollToSection(item.id)}
-              className="group relative overflow-hidden rounded-2xl p-4 border transition-all duration-300"
-              style={{
-                background: item.bgGradient,
-                borderColor: `${item.color}30`
-              }}
-              initial={{ opacity: 0, x: -50 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
-              whileHover={{ scale: 1.02, y: -2 }}
-              whileTap={{ scale: 0.98 }}
-            >
-              {/* Background animation */}
-              <motion.div
-                className="absolute inset-0 opacity-0 group-hover:opacity-20"
-                style={{ background: item.color }}
-                transition={{ duration: 0.3 }}
-              />
-              
-              <div className="flex items-center space-x-4 relative z-10">
-                <div 
-                  className="p-3 rounded-xl"
-                  style={{ 
-                    backgroundColor: `${item.color}20`,
-                    color: item.color 
-                  }}
-                >
-                  <item.icon size={24} />
-                </div>
+          {navigationItems.map((item, index) => {
+            const isActive = activeSection === item.id;
+            return (
+              <motion.button
+                key={item.id}
+                onClick={() => scrollToSection(item.id)}
+                className="group relative overflow-hidden rounded-2xl p-4 border transition-all duration-300"
+                style={{
+                  background: isActive ? `${item.color}15` : 'transparent',
+                  borderColor: isActive ? `${item.color}60` : `${item.color}30`,
+                  borderWidth: isActive ? '2px' : '1px'
+                }}
+                initial={{ opacity: 0, x: -50 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ duration: 0.5, delay: 0.4 + index * 0.1 }}
+                whileHover={{ scale: 1.02, y: -2 }}
+                whileTap={{ scale: 0.98 }}
+              >
+                {/* Active indicator */}
+                {isActive && (
+                  <motion.div
+                    className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full"
+                    style={{ backgroundColor: item.color }}
+                    initial={{ scaleY: 0 }}
+                    animate={{ scaleY: 1 }}
+                    transition={{ duration: 0.3 }}
+                  />
+                )}
                 
-                <div className="flex-1 text-left">
-                  <h4 
-                    className="font-semibold text-base mb-1"
-                    style={{ color: 'var(--text-100)' }}
+                <div className="flex items-center space-x-4 relative z-10">
+                  <div 
+                    className="p-3 rounded-xl"
+                    style={{ 
+                      backgroundColor: isActive ? `${item.color}20` : 'transparent',
+                      color: item.color 
+                    }}
                   >
-                    {item.label}
-                  </h4>
-                  <p 
-                    className="text-sm opacity-80"
-                    style={{ color: 'var(--text-200)' }}
+                    <item.icon size={24} />
+                  </div>
+                  
+                  <div className="flex-1 text-left">
+                    <h4 
+                      className="font-semibold text-base mb-1"
+                      style={{ 
+                        color: isActive ? item.color : 'var(--text-100)',
+                        opacity: isActive ? 1 : 0.9
+                      }}
+                    >
+                      {item.label}
+                    </h4>
+                    <p 
+                      className="text-sm"
+                      style={{ 
+                        color: isActive ? item.color : 'var(--text-200)',
+                        opacity: isActive ? 0.9 : 0.8
+                      }}
+                    >
+                      {item.description}
+                    </p>
+                  </div>
+                  
+                  <motion.div
+                    className="group-hover:opacity-100 group-hover:translate-x-1"
+                    style={{ 
+                      color: item.color,
+                      opacity: isActive ? 1 : 0.6
+                    }}
+                    transition={{ duration: 0.2 }}
                   >
-                    {item.description}
-                  </p>
+                    <FaArrowRight size={16} />
+                  </motion.div>
                 </div>
-                
-                <motion.div
-                  className="opacity-60 group-hover:opacity-100 group-hover:translate-x-1"
-                  style={{ color: item.color }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <FaArrowRight size={16} />
-                </motion.div>
-              </div>
 
-              {/* Ripple effect */}
-              <motion.div
-                className="absolute bottom-0 left-0 h-1 rounded-full"
-                style={{ backgroundColor: item.color }}
-                initial={{ width: 0 }}
-                whileHover={{ width: '100%' }}
-                transition={{ duration: 0.3 }}
-              />
-            </motion.button>
-          ))}
+                {/* Ripple effect removed for clean background */}
+              </motion.button>
+            );
+          })}
         </div>
       </motion.div>
 
@@ -204,7 +285,7 @@ const MobileNavigationSectionCard = () => {
               onClick={action.action}
               className="p-4 rounded-2xl border transition-all duration-300 group"
               style={{
-                background: `${action.color}10`,
+                background: 'transparent',
                 borderColor: `${action.color}30`,
                 color: action.color
               }}
@@ -215,11 +296,7 @@ const MobileNavigationSectionCard = () => {
               whileTap={{ scale: 0.95 }}
             >
               <action.icon size={20} />
-              <motion.div
-                className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-10"
-                style={{ background: action.color }}
-                transition={{ duration: 0.3 }}
-              />
+              {/* Hover effect removed for clean background */}
             </motion.button>
           ))}
         </div>
@@ -245,7 +322,7 @@ const MobileNavigationSectionCard = () => {
         <motion.button
           className="p-4 rounded-xl border transition-all duration-300 group"
           style={{
-            background: 'rgba(59, 130, 246, 0.1)',
+            background: 'transparent',
             borderColor: 'rgba(59, 130, 246, 0.3)',
             color: '#3B82F6'
           }}
@@ -265,7 +342,7 @@ const MobileNavigationSectionCard = () => {
         <motion.button
           className="p-4 rounded-xl border transition-all duration-300 group"
           style={{
-            background: 'rgba(168, 85, 247, 0.1)',
+            background: 'transparent',
             borderColor: 'rgba(168, 85, 247, 0.3)',
             color: '#A855F7'
           }}
@@ -287,21 +364,22 @@ const MobileNavigationSectionCard = () => {
         transition={{ duration: 0.6, delay: 1.3 }}
         className="flex items-center justify-center space-x-2 p-3 rounded-xl"
         style={{
-          background: 'rgba(16, 185, 129, 0.1)',
-          border: '1px solid rgba(16, 185, 129, 0.3)'
+          background: 'transparent',
+          border: `1px solid ${getStatusInfo().color}30`
         }}
       >
         <motion.div
-          className="w-3 h-3 rounded-full"
-          style={{ backgroundColor: '#10B981' }}
+          className="text-lg"
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        />
+        >
+          {getStatusInfo().icon}
+        </motion.div>
         <span 
           className="text-xs font-medium"
-          style={{ color: '#10B981' }}
+          style={{ color: getStatusInfo().color }}
         >
-          Disponible para nuevos proyectos
+          {getStatusInfo().text}
         </span>
       </motion.div>
     </div>

@@ -48,7 +48,7 @@ const MobileNavigationCard: React.FC<MobileNavigationCardProps> = ({
         onClick={onClick}
         className="w-full p-4 rounded-xl border cursor-pointer group transition-all duration-300 active:scale-95"
         style={{
-          background: 'rgba(173, 153, 27, 0.08)',
+          background: 'transparent',
           borderColor: 'rgba(173, 153, 27, 0.2)',
           backdropFilter: 'blur(20px)'
         }}
@@ -74,7 +74,7 @@ const MobileNavigationCard: React.FC<MobileNavigationCardProps> = ({
           <div className="flex-shrink-0">
             <motion.div
               className="w-8 h-8 rounded-full flex items-center justify-center"
-              style={{ background: 'rgba(173, 153, 27, 0.2)' }}
+              style={{ background: 'transparent' }}
               whileHover={{ scale: 1.1 }}
             >
               <span 

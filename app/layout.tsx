@@ -28,9 +28,6 @@ export default function RootLayout({
       <body className={`${inter.className} bg-zinc-900 text-white overflow-x-hidden safe-area-padding mobile-no-overscroll`}>
         <ThemeProvider>
           {}
-          <div className="fixed inset-0 -z-10">
-            <div className="animated-bg-continuous" />
-          </div>
           
           <EnableBodyHorizontalScroll />
           <ParticleBackground />

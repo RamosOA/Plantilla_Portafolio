@@ -73,18 +73,7 @@ const MobileHeroSection: React.FC<MobileHeroSectionProps> = ({
         </motion.div>
       )}
 
-      {/* Decorative element */}
-      <motion.div
-        initial={{ opacity: 0, scale: 0 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.8, delay: 1 }}
-        className="flex justify-center pt-4"
-      >
-        <div
-          className="w-12 h-1 rounded-full"
-          style={{ background: 'linear-gradient(90deg, var(--primary-100), transparent)' }}
-        />
-      </motion.div>
+      {/* Decorative element removed for clean background */}
     </div>
   );
 };

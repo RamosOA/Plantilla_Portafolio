@@ -8,14 +8,13 @@ const MobileMenuWrapper = () => {
 
   useEffect(() => {
     const detectActiveSection = () => {
-      // Forzar detección más agresiva
       const sections = document.querySelectorAll('section[id]');
       const isMobile = window.innerWidth <= 950;
       
       if (sections.length === 0) return;
       
       if (isMobile) {
-        // Mobile: Detección simplificada basada en scroll
+        // Mobile: Detección simple basada en scroll
         const scrollTop = window.scrollY || document.documentElement.scrollTop;
         const viewportHeight = window.innerHeight;
         
@@ -36,26 +35,27 @@ const MobileMenuWrapper = () => {
             minDistance = distance;
             closestSection = element.id;
           }
-        });          console.log('Active section detected:', closestSection);
-          setActiveSection(closestSection);
+        });
+        
+        setActiveSection(closestSection);
       }
     };
 
     // Detectar inmediatamente
     detectActiveSection();
     
-    // Crear un observer más agresivo
+    // Crear un observer simple
     let scrollTimer: NodeJS.Timeout;
     const handleScroll = () => {
       clearTimeout(scrollTimer);
-      scrollTimer = setTimeout(detectActiveSection, 10);
+      scrollTimer = setTimeout(detectActiveSection, 100);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', detectActiveSection);
     
-    // Detectar cada segundo como respaldo
-    const intervalId = setInterval(detectActiveSection, 1000);
+    // Detectar cada 2 segundos como respaldo
+    const intervalId = setInterval(detectActiveSection, 2000);
 
     return () => {
       window.removeEventListener('scroll', handleScroll);

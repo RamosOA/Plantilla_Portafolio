@@ -441,16 +441,15 @@ section {
 
 @media (max-width: 950px) {
   .animated-bg-continuous {
-    background-size: 250% 250%; 
-    animation-duration: 30s; 
+    display: none !important;
   }
   
   .animated-bg-continuous::before {
-    animation-duration: 40s;
+    display: none !important;
   }
   
   .animated-bg-continuous::after {
-    animation-duration: 50s;
+    display: none !important;
   }
 }
 
@@ -722,17 +721,15 @@ section {
   
   /* Mobile background adjustments with better performance */
   .animated-bg-continuous {
-    background-size: 200% 200% !important;
-    animation-duration: 40s !important;
-    will-change: transform !important;
+    display: none !important;
   }
   
   .animated-bg-continuous::before {
-    animation-duration: 50s !important;
+    display: none !important;
   }
   
   .animated-bg-continuous::after {
-    animation-duration: 60s !important;
+    display: none !important;
   }
   
   /* Enhanced mobile button and interactive elements */

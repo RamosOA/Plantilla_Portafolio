@@ -101,7 +101,7 @@ const MobileInicioSection = () => {
             onClick={openWhatsApp}
             className="w-full p-4 rounded-xl border cursor-pointer transition-all duration-300 active:scale-95"
             style={{
-              background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.1), rgba(37, 211, 102, 0.05))',
+              background: 'transparent',
               borderColor: 'rgba(37, 211, 102, 0.3)',
               backdropFilter: 'blur(20px)'
             }}
