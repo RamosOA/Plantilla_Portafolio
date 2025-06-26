@@ -22,9 +22,11 @@ interface MobileMenuProps {
   onSectionChange?: (section: string) => void;
 }
 
-const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio', onSectionChange }) => {
+const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection = 'inicio', onSectionChange }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isDark, setIsDark] = useState(true);
+  const [currentSection, setCurrentSection] = useState(initialSection);
+  const userClickedRef = React.useRef(false);
 
   useEffect(() => {
     const checkTheme = () => {
@@ -43,6 +45,79 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio', onSe
     return () => observer.disconnect();
   }, []);
 
+  // Detección automática de sección activa basada en scroll
+  useEffect(() => {
+    const sections = ['inicio', 'sobremi', 'habilidades', 'proyectos', 'contacto'];
+    
+    const detectActiveSection = () => {
+      if (userClickedRef.current) return;
+
+      const viewportHeight = window.innerHeight;
+      const scrollY = window.scrollY;
+      const midPoint = scrollY + (viewportHeight / 2);
+      
+      let activeSection = 'inicio';
+      let minDistance = Infinity;
+
+      for (const sectionId of sections) {
+        const element = document.getElementById(sectionId);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          const elementTop = scrollY + rect.top;
+          const elementCenter = elementTop + (rect.height / 2);
+          
+          const distance = Math.abs(midPoint - elementCenter);
+          
+          if (distance < minDistance) {
+            minDistance = distance;
+            activeSection = sectionId;
+          }
+        }
+      }
+
+      if (activeSection !== currentSection) {
+        setCurrentSection(activeSection);
+        if (onSectionChange) {
+          onSectionChange(activeSection);
+        }
+      }
+    };
+
+    // Escuchar eventos de scroll programático desde otros componentes
+    const handleSectionScrollStart = (event: CustomEvent) => {
+      const { targetSection, duration } = event.detail;
+      setCurrentSection(targetSection); // Inmediatamente establecer la sección objetivo
+      userClickedRef.current = true;
+      
+      setTimeout(() => {
+        userClickedRef.current = false;
+      }, duration || 3000);
+    };
+
+    // Detectar inmediatamente
+    detectActiveSection();
+
+    // Agregar listener de scroll con throttling
+    let scrollTimeout: NodeJS.Timeout;
+    const handleScroll = () => {
+      if (userClickedRef.current) return;
+      
+      clearTimeout(scrollTimeout);
+      scrollTimeout = setTimeout(detectActiveSection, 50); // Más responsive
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    window.addEventListener('resize', detectActiveSection);
+    window.addEventListener('sectionScrollStart', handleSectionScrollStart as EventListener);
+
+    return () => {
+      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener('resize', detectActiveSection);
+      window.removeEventListener('sectionScrollStart', handleSectionScrollStart as EventListener);
+      clearTimeout(scrollTimeout);
+    };
+  }, [currentSection, onSectionChange]); // Agregado currentSection como dependencia
+
   const toggleTheme = () => {
     const newTheme = isDark ? 'light' : 'dark';
     document.documentElement.setAttribute('data-theme', newTheme);
@@ -51,6 +126,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio', onSe
 
   const scrollToSection = (sectionId: string) => {
     // Immediately update the section state
+    setCurrentSection(sectionId);
+    userClickedRef.current = true;
+    
     if (onSectionChange) {
       onSectionChange(sectionId);
     }
@@ -72,6 +150,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio', onSe
       }
     }
     setIsOpen(false);
+
+    // Esperar más tiempo para scrolls largos (especialmente cuando se va de inicio a secciones lejanas)
+    const isLongScroll = sectionId === 'habilidades' || sectionId === 'proyectos' || sectionId === 'contacto';
+    const pauseTime = isLongScroll ? 3000 : 1500; // 3 segundos para scrolls largos
+    
+    setTimeout(() => {
+      userClickedRef.current = false;
+    }, pauseTime);
   };
 
   const menuItems = [

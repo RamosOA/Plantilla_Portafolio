@@ -25,35 +25,9 @@ interface NavigationItem {
 }
 
 const MobileNavigationSectionCard = () => {
-  const [activeSection, setActiveSection] = React.useState('inicio');
+  // Este componente no necesita detectar la sección activa automáticamente
+  // ya que es solo para navegación dentro de la sección "Inicio"
 
-  React.useEffect(() => {
-    const updateActiveSection = () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      
-      // Definir los rangos de scroll para cada sección
-      if (scrollY < windowHeight * 0.5) {
-        setActiveSection('inicio');
-      } else if (scrollY < windowHeight * 1.5) {
-        setActiveSection('sobremi');
-      } else if (scrollY < windowHeight * 2.5) {
-        setActiveSection('habilidades');
-      } else if (scrollY < windowHeight * 3.5) {
-        setActiveSection('proyectos');
-      } else {
-        setActiveSection('contacto');
-      }
-    };
-
-    // Detectar inicialmente
-    updateActiveSection();
-    
-    // Escuchar scroll
-    window.addEventListener('scroll', updateActiveSection, { passive: true });
-    
-    return () => window.removeEventListener('scroll', updateActiveSection);
-  }, []);
   const navigationItems: NavigationItem[] = [
     {
       id: 'sobremi',
@@ -115,54 +89,22 @@ const MobileNavigationSectionCard = () => {
   ];
 
   const scrollToSection = (sectionId: string) => {
+    // Hacer scroll a la sección
     const section = document.getElementById(sectionId);
     if (section) {
       section.scrollIntoView({
         behavior: 'smooth',
         block: 'start'
       });
-    }
-  };
-
-  // Función para obtener el estado dinámico basado en la sección activa
-  const getStatusInfo = () => {
-    switch (activeSection) {
-      case 'inicio':
-        return {
-          text: 'Explorando el portafolio',
-          color: '#06B6D4',
-          icon: '🏠'
-        };
-      case 'sobremi':
-        return {
-          text: 'Conociendo mi historia',
-          color: '#06B6D4',
-          icon: '👨‍💻'
-        };
-      case 'habilidades':
-        return {
-          text: 'Revisando habilidades',
-          color: '#10B981',
-          icon: '⚡'
-        };
-      case 'proyectos':
-        return {
-          text: 'Explorando proyectos',
-          color: '#F59E0B',
-          icon: '🚀'
-        };
-      case 'contacto':
-        return {
-          text: 'Listo para colaborar',
-          color: '#EF4444',
-          icon: '💬'
-        };
-      default:
-        return {
-          text: 'Disponible para nuevos proyectos',
-          color: '#10B981',
-          icon: '✨'
-        };
+      
+      // Notificar a otros componentes que se está haciendo scroll programáticamente
+      // Esto evitará conflictos con el detector del burger menú
+      window.dispatchEvent(new CustomEvent('sectionScrollStart', { 
+        detail: { 
+          targetSection: sectionId,
+          duration: 3000 // Duración estimada del scroll
+        } 
+      }));
     }
   };
 
@@ -184,16 +126,15 @@ const MobileNavigationSectionCard = () => {
         
         <div className="grid grid-cols-1 gap-3">
           {navigationItems.map((item, index) => {
-            const isActive = activeSection === item.id;
             return (
               <motion.button
                 key={item.id}
                 onClick={() => scrollToSection(item.id)}
                 className="group relative overflow-hidden rounded-2xl p-4 border transition-all duration-300"
                 style={{
-                  background: isActive ? `${item.color}15` : 'transparent',
-                  borderColor: isActive ? `${item.color}60` : `${item.color}30`,
-                  borderWidth: isActive ? '2px' : '1px'
+                  background: 'transparent',
+                  borderColor: 'rgba(255, 255, 255, 0.1)',
+                  borderWidth: '1px'
                 }}
                 initial={{ opacity: 0, x: -50 }}
                 animate={{ opacity: 1, x: 0 }}
@@ -201,22 +142,11 @@ const MobileNavigationSectionCard = () => {
                 whileHover={{ scale: 1.02, y: -2 }}
                 whileTap={{ scale: 0.98 }}
               >
-                {/* Active indicator */}
-                {isActive && (
-                  <motion.div
-                    className="absolute left-0 top-0 bottom-0 w-1 rounded-r-full"
-                    style={{ backgroundColor: item.color }}
-                    initial={{ scaleY: 0 }}
-                    animate={{ scaleY: 1 }}
-                    transition={{ duration: 0.3 }}
-                  />
-                )}
-                
                 <div className="flex items-center space-x-4 relative z-10">
                   <div 
                     className="p-3 rounded-xl"
                     style={{ 
-                      backgroundColor: isActive ? `${item.color}20` : 'transparent',
+                      backgroundColor: 'transparent',
                       color: item.color 
                     }}
                   >
@@ -227,17 +157,15 @@ const MobileNavigationSectionCard = () => {
                     <h4 
                       className="font-semibold text-base mb-1"
                       style={{ 
-                        color: isActive ? item.color : 'var(--text-100)',
-                        opacity: isActive ? 1 : 0.9
+                        color: 'var(--text-100)'
                       }}
                     >
                       {item.label}
                     </h4>
                     <p 
-                      className="text-sm"
+                      className="text-sm opacity-80"
                       style={{ 
-                        color: isActive ? item.color : 'var(--text-200)',
-                        opacity: isActive ? 0.9 : 0.8
+                        color: 'var(--text-200)'
                       }}
                     >
                       {item.description}
@@ -245,18 +173,16 @@ const MobileNavigationSectionCard = () => {
                   </div>
                   
                   <motion.div
-                    className="group-hover:opacity-100 group-hover:translate-x-1"
+                    className="opacity-60 group-hover:opacity-100 group-hover:translate-x-1"
                     style={{ 
                       color: item.color,
-                      opacity: isActive ? 1 : 0.6
+                      opacity: 0.6
                     }}
                     transition={{ duration: 0.2 }}
                   >
                     <FaArrowRight size={16} />
                   </motion.div>
                 </div>
-
-                {/* Ripple effect removed for clean background */}
               </motion.button>
             );
           })}
@@ -269,7 +195,7 @@ const MobileNavigationSectionCard = () => {
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.8 }}
         className="pt-6 border-t"
-        style={{ borderColor: 'rgba(173, 153, 27, 0.2)' }}
+        style={{ borderColor: 'rgba(255, 255, 255, 0.1)' }}
       >
         <h4 
           className="text-sm font-semibold mb-4 text-center"
@@ -286,7 +212,7 @@ const MobileNavigationSectionCard = () => {
               className="p-4 rounded-2xl border transition-all duration-300 group"
               style={{
                 background: 'transparent',
-                borderColor: `${action.color}30`,
+                borderColor: 'rgba(255, 255, 255, 0.1)',
                 color: action.color
               }}
               initial={{ opacity: 0, scale: 0 }}
@@ -323,7 +249,7 @@ const MobileNavigationSectionCard = () => {
           className="p-4 rounded-xl border transition-all duration-300 group"
           style={{
             background: 'transparent',
-            borderColor: 'rgba(59, 130, 246, 0.3)',
+            borderColor: 'rgba(255, 255, 255, 0.1)',
             color: '#3B82F6'
           }}
           whileHover={{ scale: 1.02 }}
@@ -343,7 +269,7 @@ const MobileNavigationSectionCard = () => {
           className="p-4 rounded-xl border transition-all duration-300 group"
           style={{
             background: 'transparent',
-            borderColor: 'rgba(168, 85, 247, 0.3)',
+            borderColor: 'rgba(255, 255, 255, 0.1)',
             color: '#A855F7'
           }}
           whileHover={{ scale: 1.02 }}
@@ -365,21 +291,20 @@ const MobileNavigationSectionCard = () => {
         className="flex items-center justify-center space-x-2 p-3 rounded-xl"
         style={{
           background: 'transparent',
-          border: `1px solid ${getStatusInfo().color}30`
+          border: '1px solid rgba(255, 255, 255, 0.1)'
         }}
       >
         <motion.div
-          className="text-lg"
+          className="w-3 h-3 rounded-full"
+          style={{ backgroundColor: '#10B981' }}
           animate={{ scale: [1, 1.2, 1] }}
           transition={{ duration: 2, repeat: Infinity }}
-        >
-          {getStatusInfo().icon}
-        </motion.div>
+        />
         <span 
           className="text-xs font-medium"
-          style={{ color: getStatusInfo().color }}
+          style={{ color: '#10B981' }}
         >
-          {getStatusInfo().text}
+          Disponible para nuevos proyectos
         </span>
       </motion.div>
     </div>
