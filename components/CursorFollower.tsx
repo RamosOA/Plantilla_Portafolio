@@ -10,14 +10,12 @@ const CursorFollower = () => {
     const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
-        // Check if device supports touch
         const checkTouchDevice = () => {
             setIsTouchDevice('ontouchstart' in window || navigator.maxTouchPoints > 0);
         };
         
         checkTouchDevice();
         
-        // Don't initialize cursor follower on touch devices
         if (isTouchDevice) return;
         
         const initPosition = (e: MouseEvent) => {
@@ -64,7 +62,6 @@ const CursorFollower = () => {
         };
     }, [position, isTouchDevice]);
 
-    // Don't render on touch devices
     if (isTouchDevice) {
         return null;
     }
@@ -84,7 +81,7 @@ const CursorFollower = () => {
                 <div
                     className="w-4 h-4 rounded-full flex items-center justify-center transition-all duration-300"
                     style={{
-                        background: '#AD991B',
+                        background: '#00F0FF', // Azul eléctrico
                         boxShadow: '0 0 20px rgba(173, 153, 27, 0.6)'
                     }}
                 >
@@ -92,7 +89,7 @@ const CursorFollower = () => {
                         <div
                             className="text-xs opacity-100 transition-opacity duration-300"
                             style={{
-                                color: '#132A14',
+                                color: '#1F2833', // Gris grafito suave
                                 pointerEvents: 'none',
                                 transform: 'rotate(315deg)'
                             }}

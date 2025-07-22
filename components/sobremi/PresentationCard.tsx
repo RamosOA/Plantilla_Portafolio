@@ -29,7 +29,7 @@ const PresentationCard: React.FC<PresentationCardProps> = ({ className, delay, h
             <div className="flex items-center mb-6">
                 <FaUser className="text-4xl mr-4" style={{ color: 'var(--primary-200)' }} />
                 <h3 className="text-2xl font-bold" style={{ color: 'var(--primary-100)' }}>
-                    ¡Hola! Soy Oscar
+                    ¡Hola! Soy [Tu Nombre]
                 </h3>
             </div>
             

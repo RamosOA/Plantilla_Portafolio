@@ -30,7 +30,6 @@ const SectionDetectionTest: React.FC = () => {
         const elementCenter = elementTop + rect.height / 2;
         const distance = Math.abs(viewportCenter - elementCenter);
 
-        // Calcular visibilidad
         const topVisible = Math.max(0, Math.min(viewportHeight, elementBottom - scrollY));
         const bottomVisible = Math.max(0, Math.min(viewportHeight, viewportHeight - Math.max(0, elementTop - scrollY)));
         const visibleHeight = Math.min(topVisible, bottomVisible, rect.height);
@@ -56,7 +55,6 @@ const SectionDetectionTest: React.FC = () => {
         };
       });
 
-      // Encontrar la sección más visible y centrada
       const visibleSections = sectionData.filter(s => s.isVisible);
       let bestSection = 'inicio';
       

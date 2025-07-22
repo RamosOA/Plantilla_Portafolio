@@ -5,30 +5,30 @@ export const contactData = {
         { 
             name: 'Email',
             icon: FaEnvelope,
-            href: 'mailto:oscara22a.r@gmail.com',
-            color: '#AD991B',
-            info: 'oscara22a.r@gmail.com'
+            href: 'mailto:tu.email@ejemplo.com',
+            color: '#00F0FF', // Azul eléctrico
+            info: 'tu.email@ejemplo.com'
         },
         { 
             name: 'LinkedIn',
             icon: FaLinkedin,
-            href: 'https://linkedin.com/in/oscar-ramos-02102018b',
-            color: '#AD991B',
-            info: 'oscar-ramos-02102018b'
+            href: 'https://linkedin.com/in/tu-perfil-linkedin',
+            color: '#00CDDB', // Azul eléctrico hover
+            info: 'tu-perfil-linkedin'
         },
         { 
             name: 'GitHub',
             icon: FaGithub,
-            href: 'https://github.com/RamosOA',
-            color: '#AD991B',
-            info: 'RamosOA'
+            href: 'https://github.com/tu-usuario-github',
+            color: '#00F0FF', // Azul eléctrico
+            info: 'tu-usuario-github'
         },
         { 
             name: 'WhatsApp',
             icon: FaWhatsapp,
-            href: 'https://wa.me/573028488116',
-            color: '#AD991B',
-            info: '+57 302 8488116'
+            href: 'https://wa.me/1234567890',
+            color: '#00CDDB', // Azul eléctrico hover
+            info: '+1 234 567 890'
         }
     ]
 };

@@ -1,36 +1,96 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎨 Plantilla de Portafolio para Desarrolladores
 
-## Getting Started
+Una plantilla moderna y elegante de portafolio para desarrolladores con diseño neumórfico, tema claro/oscuro y animaciones fluidas.
 
-First, run the development server:
+## ✨ Características
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- 🎨 **Diseño Neumórfico**: Interfaz moderna con efectos de profundidad
+- 🌙 **Tema Claro/Oscuro**: Cambio dinámico entre temas
+- 📱 **Completamente Responsive**: Optimizado para todos los dispositivos
+- ⚡ **Animaciones Fluidas**: Transiciones suaves con Framer Motion
+- 🔄 **Scroll Horizontal**: Navegación única en desktop
+- 💼 **Secciones Completas**: Inicio, Sobre Mí, Habilidades, Proyectos, Contacto
+- 📧 **Formulario de Contacto**: Sistema de contacto funcional
+- 📱 **Menú Móvil**: Navegación optimizada para móviles
+
+## 🚀 Inicio Rápido
+
+1. **Clona o descarga** este repositorio
+2. **Instala las dependencias**:
+   ```bash
+   npm install
+   ```
+3. **Personaliza tu información** siguiendo la [Guía de Personalización](PERSONALIZACION.md)
+4. **Ejecuta el proyecto**:
+   ```bash
+   npm run dev
+   ```
+5. **Abre** [http://localhost:3000](http://localhost:3000) en tu navegador
+
+## 📝 Personalización
+
+Lee la [**Guía de Personalización Completa**](PERSONALIZACION.md) para aprender cómo:
+
+- Cambiar tu información personal
+- Actualizar proyectos y habilidades
+- Modificar enlaces de contacto y redes sociales
+- Personalizar colores y estilos
+- Configurar funcionalidades de contacto
+
+## 🛠️ Tecnologías Utilizadas
+
+- **Framework**: Next.js 14
+- **Styling**: Tailwind CSS
+- **Animaciones**: Framer Motion
+- **Iconos**: React Icons
+- **TypeScript**: Tipado estático
+- **Responsive**: Mobile-first design
+
+## 📁 Estructura del Proyecto
+
+```
+├── app/                    # App Router de Next.js
+├── components/            # Componentes React
+│   ├── sections/         # Secciones principales
+│   ├── mobile/          # Componentes móviles
+│   ├── inicio/          # Componentes de inicio
+│   ├── contacto/        # Componentes de contacto
+│   ├── habilidades/     # Componentes de habilidades
+│   └── proyectos/       # Componentes de proyectos
+├── data/                 # Datos del portafolio
+├── styles/              # Estilos globales
+└── public/              # Archivos estáticos
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Capturas de Pantalla
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Tema Oscuro
+![Tema Oscuro](screenshot-dark.png)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Tema Claro
+![Tema Claro](screenshot-light.png)
 
-## Learn More
+### Vista Móvil
+![Vista Móvil](screenshot-mobile.png)
 
-To learn more about Next.js, take a look at the following resources:
+## 🤝 Contribuciones
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Las contribuciones son bienvenidas. Si quieres mejorar esta plantilla:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+1. Haz fork del proyecto
+2. Crea una rama para tu feature (`git checkout -b feature/AmazingFeature`)
+3. Commit tus cambios (`git commit -m 'Add some AmazingFeature'`)
+4. Push a la rama (`git push origin feature/AmazingFeature`)
+5. Abre un Pull Request
 
-## Deploy on Vercel
+## 📄 Licencia
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Este proyecto está bajo la Licencia MIT - mira el archivo [LICENSE](LICENSE) para más detalles.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## ⭐ Si te gusta este proyecto
+
+Si esta plantilla te resulta útil, ¡no olvides darle una estrella! ⭐
+
+---
+
+**Creado con ❤️ para la comunidad de desarrolladores**

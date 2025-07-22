@@ -1,13 +1,13 @@
 import { FaMapMarkerAlt, FaCalendarAlt, FaGraduationCap, FaCode } from 'react-icons/fa';
 
 export const personalInfo = [
-    { icon: FaMapMarkerAlt, label: 'Ubicación', value: 'Colombia' },
-    { icon: FaCalendarAlt, label: 'Edad', value: '24 años' },
+    { icon: FaMapMarkerAlt, label: 'Ubicación', value: 'Tu Ciudad, País' },
+    { icon: FaCalendarAlt, label: 'Edad', value: 'XX años' },
     { 
         icon: FaGraduationCap, 
         label: 'Educación', 
-        value: '• Desarrollador Autodidacta',
-        additional: '• Programación de aplicaciones para dispositivos móviles (En curso)'
+        value: '• Tu Formación Académica',
+        additional: '• Cursos y Certificaciones Relevantes'
     },
     { icon: FaCode, label: 'Especialidad', value: 'Frontend & Backend' }
 ];

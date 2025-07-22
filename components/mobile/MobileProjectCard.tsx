@@ -43,7 +43,7 @@ const MobileProjectCard: React.FC<MobileProjectCardProps> = ({
       'Vercel': '#000000',
       'Git': '#F05032'
     };
-    return colors[tech] || '#AD991B';
+    return colors[tech] || '#00F0FF'; // Azul eléctrico como color por defecto
   };
 
   const openProject = () => {

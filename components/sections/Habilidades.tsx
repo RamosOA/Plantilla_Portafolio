@@ -23,12 +23,10 @@ const Habilidades = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Render mobile version
     if (isMobile) {
         return <MobileHabilidadesSection />;
     }
 
-    // Render desktop version
     return (
         <motion.div
             className="w-full h-[75vh] flex items-center justify-center px-6 relative"

@@ -34,19 +34,19 @@ const MobileContactoSection = () => {
     {
       icon: FaWhatsapp,
       label: 'WhatsApp',
-      value: '+57 302 848 8116',
+      value: '+1 234 567 890',
       action: () => {
-        const phoneNumber = '573028488116';
-        const message = encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios de desarrollo web.');
+        const phoneNumber = '1234567890';
+        const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios de desarrollo web.');
         window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
       },
-      color: '#25D366'
+      color: '#00CDDB' // Azul eléctrico hover
     },
     {
       icon: FaEnvelope,
       label: 'Email',
-      value: 'oscar.ramos@example.com',
-      action: () => window.open('mailto:oscar.ramos@example.com', '_blank'),
+      value: 'tu.email@ejemplo.com',
+      action: () => window.open('mailto:tu.email@ejemplo.com', '_blank'),
       color: '#EA4335'
     },
     {
@@ -69,23 +69,23 @@ const MobileContactoSection = () => {
     {
       icon: FaLinkedin,
       label: 'LinkedIn',
-      value: 'linkedin.com/in/oscar-ramos',
-      url: 'https://www.linkedin.com/in/oscar-ramos-02102018b/',
+      value: 'linkedin.com/in/tu-perfil',
+      url: 'https://www.linkedin.com/in/tu-perfil-linkedin/',
       color: '#0077B5'
     },
     {
       icon: FaGithub,
       label: 'GitHub',
-      value: 'github.com/oscar-ramos',
-      url: 'https://github.com/RamosOA',
+      value: 'github.com/tu-usuario',
+      url: 'https://github.com/tu-usuario-github',
       color: '#333'
     },
     {
       icon: FaWhatsapp,
       label: 'WhatsApp Business',
       value: 'Contacto directo',
-      url: `https://wa.me/573028488116?text=${encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios.')}`,
-      color: '#25D366'
+      url: `https://wa.me/1234567890?text=${encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios.')}`,
+      color: '#00CDDB' // Azul eléctrico hover
     }
   ];
 
@@ -276,15 +276,15 @@ const MobileContactoSection = () => {
               className="w-full p-4 rounded-lg font-semibold transition-all duration-300 border"
               style={{
                 background: submitStatus === 'success' 
-                  ? '#10B981' 
+                  ? '#00CDDB' // Azul eléctrico hover - éxito
                   : submitStatus === 'error'
-                  ? '#EF4444'
-                  : 'rgba(173, 153, 27, 0.15)',
+                  ? '#FF6B6B' // Rojo suave - error
+                  : 'rgba(0, 240, 255, 0.15)', // Azul eléctrico
                 borderColor: submitStatus === 'success' 
-                  ? '#10B981' 
+                  ? '#00CDDB' // Azul eléctrico hover - éxito
                   : submitStatus === 'error'
-                  ? '#EF4444'
-                  : 'rgba(173, 153, 27, 0.3)',
+                  ? '#FF6B6B' // Rojo suave - error
+                  : 'rgba(0, 240, 255, 0.3)', // Azul eléctrico
                 color: submitStatus !== 'idle' ? 'white' : 'var(--primary-100)'
               }}
               initial={{ opacity: 0, y: 20 }}
@@ -468,8 +468,8 @@ const MobileContactoSection = () => {
       {/* Quick WhatsApp Action */}
       <motion.button
         onClick={() => {
-          const phoneNumber = '573028488116';
-          const message = encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios de desarrollo web.');
+          const phoneNumber = '1234567890';
+          const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios de desarrollo web.');
           window.open(`https://wa.me/${phoneNumber}?text=${message}`, '_blank');
         }}
         className="w-full p-4 rounded-lg font-semibold transition-all duration-300 border"

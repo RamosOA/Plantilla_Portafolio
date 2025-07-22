@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect, useRef } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
-import { FaChevronLeft, FaChevronRight } from 'react-icons/fa';
+import { motion } from 'framer-motion';
 import SlideContent from './SlideContent';
 import SlideControls from './SlideControls';
 import SlideIndicators from './SlideIndicators';
@@ -28,7 +27,7 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
 
     const slides: SlideData[] = [
         {
-            name: "Oscar Ramos",
+            name: "[Tu Nombre]",
             title: "Desarrollador Full Stack"
         },
         {
@@ -74,30 +73,59 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
         setIsSlideHovered(false);
     };
 
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    useEffect(() => {
+        const checkDarkMode = () => {
+            const theme = (document.documentElement.getAttribute('data-theme') || '').toLowerCase();
+            setIsDarkMode(theme === 'dark');
+        };
+
+        checkDarkMode();
+        
+        const observer = new MutationObserver(checkDarkMode);
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <motion.div
-            className={`${className} border rounded-xl p-6 flex flex-col overflow-hidden cursor-default relative group`}
+            className={`${className} rounded-xl p-6 flex flex-col overflow-hidden cursor-default relative group`}
             style={{
-                background: 'color-mix(in srgb, var(--primary-100) 8%, transparent)',
-                borderColor: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
-                backdropFilter: 'blur(20px)'
+                background: isDarkMode 
+                    ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%)'
+                    : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 50%, #cbd5e1 100%)',
+                border: isDarkMode 
+                    ? '2px solid #ffd700'
+                    : '2px solid #94a3b8',
+                boxShadow: isDarkMode 
+                    ? 'inset 8px 8px 16px #0a0a1a, inset -8px -8px 16px #2a2a3e, 0 0 30px rgba(255, 215, 0, 0.3)'
+                    : 'inset 8px 8px 16px #d1d5db, inset -8px -8px 16px #ffffff, 0 4px 20px rgba(0, 0, 0, 0.1)',
+                backdropFilter: 'blur(20px)',
+                transition: 'all 0.3s ease'
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay }}
             onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'color-mix(in srgb, var(--primary-100) 12%, transparent)';
-                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--primary-100) 40%, transparent)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = isDarkMode 
+                    ? 'inset 12px 12px 24px #0a0a1a, inset -12px -12px 24px #2a2a3e, 0 0 50px rgba(255, 215, 0, 0.5), 0 8px 32px rgba(255, 215, 0, 0.2)'
+                    : 'inset 12px 12px 24px #d1d5db, inset -12px -12px 24px #ffffff, 0 8px 32px rgba(0, 0, 0, 0.15)';
+                e.currentTarget.style.transform = 'translateY(-4px)';
             }}
             onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'color-mix(in srgb, var(--primary-100) 8%, transparent)';
-                e.currentTarget.style.borderColor = 'color-mix(in srgb, var(--primary-100) 20%, transparent)';
+                e.currentTarget.style.boxShadow = isDarkMode 
+                    ? 'inset 8px 8px 16px #0a0a1a, inset -8px -8px 16px #2a2a3e, 0 0 30px rgba(255, 215, 0, 0.3)'
+                    : 'inset 8px 8px 16px #d1d5db, inset -8px -8px 16px #ffffff, 0 4px 20px rgba(0, 0, 0, 0.1)';
                 e.currentTarget.style.transform = 'translateY(0)';
             }}
         >
             
-            <SlideControls onSlideChange={handleSlideChange} />
+            <SlideControls onSlideChange={handleSlideChange} isDarkMode={isDarkMode} />
 
             
             <SlideContent
@@ -109,6 +137,7 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
                 onMouseEnter={handleSlideMouseEnter}
                 onMouseLeave={handleSlideMouseLeave}
                 presentacionScrollRef={presentacionScrollRef}
+                isDarkMode={isDarkMode}
             />
 
             
@@ -117,6 +146,7 @@ const SlidePresentation: React.FC<SlidePresentationProps> = ({ className, delay 
                     slides={slides}
                     currentSlide={currentSlide}
                     onSlideChange={handleSlideChange}
+                    isDarkMode={isDarkMode}
                 />
             </div>
         </motion.div>

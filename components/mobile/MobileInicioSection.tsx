@@ -37,8 +37,8 @@ const MobileInicioSection = () => {
   };
 
   const openWhatsApp = () => {
-    const phoneNumber = '573028488116';
-    const message = encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios de desarrollo web.');
+    const phoneNumber = '1234567890';
+    const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios de desarrollo web.');
     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
     window.open(whatsappUrl, '_blank');
   };
@@ -50,7 +50,7 @@ const MobileInicioSection = () => {
       <div className="mobile-content-area mobile-safe-top mobile-safe-horizontal mobile-distribute-space">
         {/* Hero Section */}
       <MobileHeroSection
-        name="Oscar Ramos"
+        name="[Tu Nombre]"
         title="Desarrollador Full Stack"
         subtitle="Creador de Experiencias Digitales"
         description="Con experiencia en desarrollo frontend y backend, construyo aplicaciones web modernas que combinan diseño atractivo con funcionalidad robusta."

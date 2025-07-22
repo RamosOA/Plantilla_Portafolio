@@ -45,7 +45,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
     return () => observer.disconnect();
   }, []);
 
-  // Detección automática de sección activa basada en scroll
   useEffect(() => {
     const sections = ['inicio', 'sobremi', 'habilidades', 'proyectos', 'contacto'];
     
@@ -83,10 +82,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
       }
     };
 
-    // Escuchar eventos de scroll programático desde otros componentes
     const handleSectionScrollStart = (event: CustomEvent) => {
       const { targetSection, duration } = event.detail;
-      setCurrentSection(targetSection); // Inmediatamente establecer la sección objetivo
+      setCurrentSection(targetSection);
       userClickedRef.current = true;
       
       setTimeout(() => {
@@ -94,16 +92,14 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
       }, duration || 3000);
     };
 
-    // Detectar inmediatamente
     detectActiveSection();
 
-    // Agregar listener de scroll con throttling
     let scrollTimeout: NodeJS.Timeout;
     const handleScroll = () => {
       if (userClickedRef.current) return;
       
       clearTimeout(scrollTimeout);
-      scrollTimeout = setTimeout(detectActiveSection, 50); // Más responsive
+      scrollTimeout = setTimeout(detectActiveSection, 50);
     };
 
     window.addEventListener('scroll', handleScroll, { passive: true });
@@ -116,7 +112,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
       window.removeEventListener('sectionScrollStart', handleSectionScrollStart as EventListener);
       clearTimeout(scrollTimeout);
     };
-  }, [currentSection, onSectionChange]); // Agregado currentSection como dependencia
+  }, [currentSection, onSectionChange]);
 
   const toggleTheme = () => {
     const newTheme = isDark ? 'light' : 'dark';
@@ -125,7 +121,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
   };
 
   const scrollToSection = (sectionId: string) => {
-    // Immediately update the section state
     setCurrentSection(sectionId);
     userClickedRef.current = true;
     
@@ -151,9 +146,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
     }
     setIsOpen(false);
 
-    // Esperar más tiempo para scrolls largos (especialmente cuando se va de inicio a secciones lejanas)
     const isLongScroll = sectionId === 'habilidades' || sectionId === 'proyectos' || sectionId === 'contacto';
-    const pauseTime = isLongScroll ? 3000 : 1500; // 3 segundos para scrolls largos
+    const pauseTime = isLongScroll ? 3000 : 1500;
     
     setTimeout(() => {
       userClickedRef.current = false;
@@ -161,31 +155,30 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
   };
 
   const menuItems = [
-    { id: 'inicio', label: 'Inicio', icon: FaHome, color: '#4F46E5' },
-    { id: 'sobremi', label: 'Sobre Mí', icon: FaUser, color: '#06B6D4' },
-    { id: 'habilidades', label: 'Habilidades', icon: FaCode, color: '#10B981' },
-    { id: 'proyectos', label: 'Proyectos', icon: FaProjectDiagram, color: '#F59E0B' },
-    { id: 'contacto', label: 'Contacto', icon: FaEnvelope, color: '#EF4444' },
+    { id: 'inicio', label: 'Inicio', icon: FaHome, color: '#00F0FF' }, // Azul eléctrico
+    { id: 'sobremi', label: 'Sobre Mí', icon: FaUser, color: '#00CDDB' }, // Azul eléctrico hover
+    { id: 'habilidades', label: 'Habilidades', icon: FaCode, color: '#00F0FF' }, // Azul eléctrico
+    { id: 'proyectos', label: 'Proyectos', icon: FaProjectDiagram, color: '#00CDDB' }, // Azul eléctrico hover
+    { id: 'contacto', label: 'Contacto', icon: FaEnvelope, color: '#00F0FF' }, // Azul eléctrico
   ];
 
   const socialLinks = [
     {
       icon: FaGithub,
       label: 'GitHub',
-      url: 'https://github.com/oscar-ramos',
+      url: 'https://github.com/tu-usuario-github',
       color: '#333'
     },
     {
       icon: FaLinkedin,
       label: 'LinkedIn',
-      url: 'https://linkedin.com/in/oscar-ramos',
-      color: '#0077B5'
+      url: 'https://linkedin.com/in/tu-perfil-linkedin',
+      color: '#00CDDB' // Azul eléctrico hover
     }
   ];
 
   return (
     <>
-      {/* Mobile Menu Button - Only visible on mobile */}
       <div className="fixed top-4 right-4 z-50 show-on-mobile-950-flex">
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
@@ -229,7 +222,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
         </motion.button>
       </div>
 
-      {/* Mobile Menu Overlay */}
       <AnimatePresence>
         {isOpen && (
           <motion.div
@@ -246,7 +238,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
             }}
             onClick={() => setIsOpen(false)}
           >
-            {/* Menu Content */}
             <motion.div
               initial={{ x: '100%' }}
               animate={{ x: 0 }}
@@ -266,7 +257,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
               }}
               onClick={(e) => e.stopPropagation()}
             >
-              {/* Menu Header */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -301,7 +291,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
                 </div>
               </motion.div>
 
-              {/* Progress Indicator */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -345,7 +334,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
                 </div>
               </motion.div>
 
-              {/* Menu Items */}
               <div className="space-y-3 mb-8">
                 {menuItems.map((item, index) => {
                   const isActive = currentSection === item.id;
@@ -377,7 +365,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
                       }}
                       whileTap={{ scale: 0.98 }}
                     >
-                      {/* Active section background glow */}
                       {isActive && (
                         <motion.div
                           className="absolute inset-0 rounded-xl"
@@ -391,7 +378,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
                         />
                       )}
                       
-                      {/* Hover background effect */}
                       <motion.div
                         className="absolute inset-0 opacity-0 group-hover:opacity-10 rounded-xl"
                         style={{ background: item.color, zIndex: 2 }}
@@ -490,7 +476,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
                 })}
               </div>
 
-              {/* Social Links */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -528,7 +513,6 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
                 </div>
               </motion.div>
 
-              {/* Quick Actions */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -538,8 +522,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
               >
                 <motion.button
                   onClick={() => {
-                    const phoneNumber = '573028488116';
-                    const message = encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios de desarrollo web.');
+                    const phoneNumber = '1234567890';
+                    const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios de desarrollo web.');
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                     window.open(whatsappUrl, '_blank');
                     setIsOpen(false);
@@ -548,7 +532,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
                   style={{
                     background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(37, 211, 102, 0.05) 100%)',
                     borderColor: 'rgba(37, 211, 102, 0.3)',
-                    color: '#25D366'
+                    color: '#00CDDB' // Azul eléctrico hover
                   }}
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}

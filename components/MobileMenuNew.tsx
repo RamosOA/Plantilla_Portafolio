@@ -69,24 +69,24 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio' }) =>
   };
 
   const menuItems = [
-    { id: 'inicio', label: 'Inicio', icon: FaHome, color: '#4F46E5' },
-    { id: 'sobremi', label: 'Sobre Mí', icon: FaUser, color: '#06B6D4' },
-    { id: 'habilidades', label: 'Habilidades', icon: FaCode, color: '#10B981' },
-    { id: 'proyectos', label: 'Proyectos', icon: FaProjectDiagram, color: '#F59E0B' },
-    { id: 'contacto', label: 'Contacto', icon: FaEnvelope, color: '#EF4444' },
+    { id: 'inicio', label: 'Inicio', icon: FaHome, color: '#00F0FF' }, // Azul eléctrico
+    { id: 'sobremi', label: 'Sobre Mí', icon: FaUser, color: '#00CDDB' }, // Azul eléctrico hover
+    { id: 'habilidades', label: 'Habilidades', icon: FaCode, color: '#00F0FF' }, // Azul eléctrico
+    { id: 'proyectos', label: 'Proyectos', icon: FaProjectDiagram, color: '#00CDDB' }, // Azul eléctrico hover
+    { id: 'contacto', label: 'Contacto', icon: FaEnvelope, color: '#00F0FF' }, // Azul eléctrico
   ];
 
   const socialLinks = [
     {
       icon: FaGithub,
       label: 'GitHub',
-      url: 'https://github.com/oscar-ramos',
+      url: 'https://github.com/tu-usuario-github',
       color: '#333'
     },
     {
       icon: FaLinkedin,
       label: 'LinkedIn',
-      url: 'https://linkedin.com/in/oscar-ramos',
+      url: 'https://linkedin.com/in/tu-perfil-linkedin',
       color: '#0077B5'
     }
   ];
@@ -372,8 +372,8 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio' }) =>
               >
                 <motion.button
                   onClick={() => {
-                    const phoneNumber = '573028488116';
-                    const message = encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios de desarrollo web.');
+                    const phoneNumber = '1234567890';
+                    const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios de desarrollo web.');
                     const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
                     window.open(whatsappUrl, '_blank');
                     setIsOpen(false);
@@ -382,7 +382,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection = 'inicio' }) =>
                   style={{
                     background: 'linear-gradient(135deg, rgba(37, 211, 102, 0.1) 0%, rgba(37, 211, 102, 0.05) 100%)',
                     borderColor: 'rgba(37, 211, 102, 0.3)',
-                    color: '#25D366'
+                    color: '#00CDDB' // Azul eléctrico hover
                   }}
                   whileHover={{ scale: 1.02, y: -2 }}
                   whileTap={{ scale: 0.98 }}

@@ -16,11 +16,9 @@ const useActiveSection = () => {
       }
       
       if (isMobile) {
-        // Mobile: Detect based on scroll position
         const scrollY = window.scrollY;
         const windowHeight = window.innerHeight;
         
-        // Calculate which section we're currently in
         let currentSection = 'inicio';
         let bestMatch = 0;
         
@@ -30,17 +28,14 @@ const useActiveSection = () => {
           const elementTop = scrollY + rect.top;
           const elementBottom = elementTop + rect.height;
           
-          // Check if this section is visible in the viewport
           const viewportTop = scrollY;
           const viewportBottom = scrollY + windowHeight;
           
-          // Calculate how much of this section is visible
           const visibleTop = Math.max(viewportTop, elementTop);
           const visibleBottom = Math.min(viewportBottom, elementBottom);
           const visibleHeight = Math.max(0, visibleBottom - visibleTop);
           const visibilityPercent = visibleHeight / windowHeight;
           
-          // If this section has more visibility than the current best, select it
           if (visibilityPercent > bestMatch) {
             bestMatch = visibilityPercent;
             currentSection = element.id;
@@ -49,7 +44,6 @@ const useActiveSection = () => {
         
         setActiveSection(currentSection);
       } else {
-        // Desktop: horizontal scroll detection
         const scrollX = window.scrollX;
         const windowWidth = window.innerWidth;
         
@@ -80,7 +74,6 @@ const useActiveSection = () => {
       }
     };
 
-    // Event handlers
     let ticking = false;
     const handleScroll = () => {
       if (!ticking) {
@@ -96,11 +89,9 @@ const useActiveSection = () => {
       setTimeout(detectActiveSection, 100);
     };
 
-    // Add event listeners
     window.addEventListener('scroll', handleScroll, { passive: true });
     window.addEventListener('resize', handleResize);
     
-    // Initial detection
     setTimeout(detectActiveSection, 100);
 
     return () => {

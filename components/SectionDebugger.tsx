@@ -74,7 +74,6 @@ const SectionDebugger: React.FC = () => {
     };
   }, []);
 
-  // Solo mostrar en desarrollo o cuando hay problemas
   if (process.env.NODE_ENV === 'production') {
     return null;
   }

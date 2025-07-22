@@ -23,7 +23,6 @@ const SobreMi = () => {
         return () => window.removeEventListener('resize', checkMobile);
     }, []);
 
-    // Render mobile version
     if (isMobile) {
         return <MobileSobreMiSection />;
     }

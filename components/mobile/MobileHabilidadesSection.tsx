@@ -28,7 +28,7 @@ const MobileHabilidadesSection = () => {
       title: 'Frontend',
       skills: frontendSkills,
       emoji: '🎨',
-      color: '#AD991B'
+      color: '#00F0FF' // Azul eléctrico
     },
     {
       title: 'Backend',

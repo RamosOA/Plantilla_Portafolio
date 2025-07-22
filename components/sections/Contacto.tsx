@@ -49,7 +49,6 @@ const Contacto = () => {
         }
     };
 
-    // Mobile version
     if (isMobile) {
         return (
             <div className="w-screen h-screen flex-none">
@@ -58,7 +57,6 @@ const Contacto = () => {
         );
     }
 
-    // Desktop version
     return (
         <motion.div
             className="w-full h-[75vh] flex items-center justify-center px-6 relative"

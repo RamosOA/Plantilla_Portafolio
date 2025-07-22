@@ -25,17 +25,14 @@ const Inicio = () => {
     const scrollToSection = (sectionId: string) => {
         const section = document.getElementById(sectionId);
         if (section) {
-            // Check if we're on mobile (viewport width <= 768px)
             const isMobile = window.innerWidth <= 768;
             
             if (isMobile) {
-                // Mobile: scroll vertically
                 section.scrollIntoView({
                     behavior: 'smooth',
                     block: 'start'
                 });
             } else {
-                // Desktop: scroll horizontally
                 window.scrollTo({
                     left: section.offsetLeft,
                     behavior: 'smooth'
@@ -45,18 +42,16 @@ const Inicio = () => {
     };
 
     const openWhatsApp = () => {
-        const phoneNumber = '573028488116';
-        const message = encodeURIComponent('¡Hola Oscar! Me interesa conocer más sobre tus servicios de desarrollo web.');
+        const phoneNumber = '1234567890';
+        const message = encodeURIComponent('¡Hola! Me interesa conocer más sobre tus servicios de desarrollo web.');
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
         window.open(whatsappUrl, '_blank');
     };
 
-    // Render mobile version
     if (isMobile) {
         return <MobileInicioSectionImproved />;
     }
 
-    // Render desktop version
     return (
         <motion.div
             className="w-full h-[75vh] flex items-center justify-center px-6 relative"

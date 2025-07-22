@@ -1,30 +1,30 @@
 [
     {
-        "nombre": "Comercol",
-        "descripcion": "Plataforma web para empresa de logística. Desarrollada con React.js y Node.js. Interfaces interactivas, backend funcional y despliegue en Vercel.",
-        "github": "https://github.com/srueda99/Comercol",
-        "icono": "truck",
-        "link": "https://github.com/srueda99/Comercol"
-    },
-    {
-        "nombre": "Websepudo",
-        "descripcion": "Plataforma para gestión de eventos masivos. Experiencia de usuario dinámica desarrollada con React.js. Participación en frontend y backend.",
-        "github": "https://github.com/Cristian-Usme/websepudo",
-        "icono": "calendar-check",
-        "link": "https://github.com/Cristian-Usme/websepudo"
-    },
-    {
-        "nombre": "E-commerce Bikers",
-        "descripcion": "Tienda online completa con carrito, gestión de usuarios y checkout. Proyecto académico del bootcamp Digital House.",
-        "github": "https://github.com/RamosOA/Grupo-2-Bikers",
+        "nombre": "E-commerce Moderno",
+        "descripcion": "Plataforma web de comercio electrónico. Desarrollada con React.js y Node.js. Interfaces interactivas, backend funcional y despliegue en la nube.",
+        "github": "https://github.com/tu-usuario/ecommerce-proyecto",
         "icono": "shopping-bag",
-        "link": "https://github.com/RamosOA/Grupo-2-Bikers"
+        "link": "https://github.com/tu-usuario/ecommerce-proyecto"
     },
     {
-        "nombre": "AdBlocker para Chrome",
-        "descripcion": "Extensión de navegador en JavaScript puro para bloquear anuncios. Proyecto personal funcional y educativo.",
-        "github": "https://github.com/RamosOA/AdBlocker",
-        "icono": "shield",
-        "link": "https://github.com/RamosOA/AdBlocker"
+        "nombre": "Gestor de Tareas",
+        "descripcion": "Aplicación para gestión de tareas y proyectos. Experiencia de usuario dinámica desarrollada con React.js y base de datos moderna.",
+        "github": "https://github.com/tu-usuario/gestor-tareas",
+        "icono": "calendar-check",
+        "link": "https://github.com/tu-usuario/gestor-tareas"
+    },
+    {
+        "nombre": "Dashboard Analytics",
+        "descripcion": "Panel de control con visualización de datos interactiva. Sistema completo con autenticación, gráficos y reportes en tiempo real.",
+        "github": "https://github.com/tu-usuario/dashboard-analytics",
+        "icono": "chart-bar",
+        "link": "https://github.com/tu-usuario/dashboard-analytics"
+    },
+    {
+        "nombre": "API REST Completa",
+        "descripcion": "API robusta con Node.js y Express. Incluye autenticación JWT, documentación con Swagger y tests automatizados.",
+        "github": "https://github.com/tu-usuario/api-rest-completa",
+        "icono": "server",
+        "link": "https://github.com/tu-usuario/api-rest-completa"
     }
 ]

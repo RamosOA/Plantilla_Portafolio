@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useEffect } from 'react';
+import React from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 interface SlideData {
@@ -20,6 +20,7 @@ interface SlideContentProps {
     onMouseEnter: () => void;
     onMouseLeave: () => void;
     presentacionScrollRef: React.RefObject<HTMLDivElement>;
+    isDarkMode: boolean;
 }
 
 const SlideContent: React.FC<SlideContentProps> = ({
@@ -30,35 +31,10 @@ const SlideContent: React.FC<SlideContentProps> = ({
     isSlideHovered,
     onMouseEnter,
     onMouseLeave,
-    presentacionScrollRef
+    presentacionScrollRef,
+    isDarkMode
 }) => {
-
     
-    useEffect(() => {
-        const style = document.createElement('style');
-        style.textContent = `
-            .slide-scroll-custom::-webkit-scrollbar {
-                width: 6px;
-            }
-            .slide-scroll-custom::-webkit-scrollbar-track {
-                background: color-mix(in srgb, var(--primary-100) 5%, transparent);
-                border-radius: 3px;
-            }
-            .slide-scroll-custom::-webkit-scrollbar-thumb {
-                background: color-mix(in srgb, var(--primary-100) 20%, transparent);
-                border-radius: 3px;
-            }
-            .slide-scroll-custom::-webkit-scrollbar-thumb:hover {
-                background: color-mix(in srgb, var(--primary-100) 35%, transparent);
-            }
-        `;
-        document.head.appendChild(style);
-
-        return () => {
-            document.head.removeChild(style);
-        };
-    }, []);
-
     const handleSlideWheel = (e: React.WheelEvent<HTMLDivElement>) => {
         const container = e.currentTarget;
         const { scrollTop, scrollHeight, clientHeight } = container;
@@ -101,10 +77,13 @@ const SlideContent: React.FC<SlideContentProps> = ({
                             <motion.h1
                                 className="text-4xl font-bold mb-4"
                                 style={{ 
-                                    color: 'var(--text-100)',
+                                    color: isDarkMode ? '#ffffff' : '#1f2937',
                                     fontFamily: 'Inter, system-ui, sans-serif',
                                     fontWeight: '700',
-                                    lineHeight: '1.2'
+                                    lineHeight: '1.2',
+                                    textShadow: isDarkMode 
+                                        ? '0 0 20px rgba(255, 215, 0, 0.3)'
+                                        : '0 2px 4px rgba(0, 0, 0, 0.1)'
                                 }}
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
@@ -119,9 +98,12 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                         key={`title-${currentTitleIndex}`}
                                         className="text-2xl font-semibold"
                                         style={{ 
-                                            color: 'var(--primary-100)',
+                                            color: isDarkMode ? '#ffd700' : '#374151',
                                             fontFamily: 'Inter, system-ui, sans-serif',
-                                            fontWeight: '600'
+                                            fontWeight: '600',
+                                            textShadow: isDarkMode 
+                                                ? '0 0 15px rgba(255, 215, 0, 0.5)'
+                                                : '0 2px 4px rgba(0, 0, 0, 0.1)'
                                         }}
                                         initial={{ opacity: 0, y: -30 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -144,9 +126,14 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                 <motion.div 
                                     className="absolute top-2 right-2 z-20 px-2 py-1 rounded-full text-xs font-medium"
                                     style={{
-                                        background: 'color-mix(in srgb, var(--primary-100) 20%, transparent)',
-                                        color: 'var(--primary-100)',
-                                        border: '1px solid color-mix(in srgb, var(--primary-100) 30%, transparent)'
+                                        background: isDarkMode 
+                                            ? 'linear-gradient(135deg, #1a1a2e 0%, #16213e 100%)'
+                                            : 'linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%)',
+                                        color: isDarkMode ? '#ffd700' : '#374151',
+                                        border: isDarkMode ? '1px solid #ffd700' : '1px solid #94a3b8',
+                                        boxShadow: isDarkMode 
+                                            ? '0 0 10px rgba(255, 215, 0, 0.3), inset 2px 2px 4px #0a0a1a, inset -2px -2px 4px #2a2a3e'
+                                            : '0 2px 8px rgba(0, 0, 0, 0.1), inset 2px 2px 4px #d1d5db, inset -2px -2px 4px #ffffff'
                                     }}
                                     initial={{ opacity: 0, scale: 0.8 }}
                                     animate={{ opacity: 1, scale: 1 }}
@@ -165,9 +152,12 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     <motion.h1
                                         className="text-3xl font-bold mb-4"
                                         style={{ 
-                                            color: 'var(--text-100)',
+                                            color: isDarkMode ? '#ffffff' : '#1f2937',
                                             fontFamily: 'Inter, system-ui, sans-serif',
-                                            fontWeight: '700'
+                                            fontWeight: '700',
+                                            textShadow: isDarkMode 
+                                                ? '0 0 20px rgba(255, 215, 0, 0.3)'
+                                                : '0 2px 4px rgba(0, 0, 0, 0.1)'
                                         }}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -179,9 +169,12 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     <motion.h2
                                         className="text-xl font-semibold mb-6"
                                         style={{ 
-                                            color: 'var(--primary-100)',
+                                            color: isDarkMode ? '#ffd700' : '#374151',
                                             fontFamily: 'Inter, system-ui, sans-serif',
-                                            fontWeight: '600'
+                                            fontWeight: '600',
+                                            textShadow: isDarkMode 
+                                                ? '0 0 15px rgba(255, 215, 0, 0.5)'
+                                                : '0 2px 4px rgba(0, 0, 0, 0.1)'
                                         }}
                                         initial={{ opacity: 0, y: 20 }}
                                         animate={{ opacity: 1, y: 0 }}
@@ -193,7 +186,7 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     <motion.p
                                         className="text-base leading-relaxed mb-6"
                                         style={{ 
-                                            color: 'var(--text-200)',
+                                            color: isDarkMode ? '#d1d5db' : '#4b5563',
                                             fontFamily: 'Inter, system-ui, sans-serif',
                                             fontWeight: '400',
                                             lineHeight: '1.6',
@@ -214,14 +207,21 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     >
                                         <div 
                                             className="w-8 h-px mr-3"
-                                            style={{ backgroundColor: 'var(--primary-100)' }}
+                                            style={{ 
+                                                background: isDarkMode 
+                                                    ? 'linear-gradient(90deg, #ffd700 0%, #ffed4e 100%)'
+                                                    : 'linear-gradient(90deg, #374151 0%, #1f2937 100%)'
+                                            }}
                                         />
                                         <span 
                                             className="text-sm font-medium"
                                             style={{ 
-                                                color: 'var(--primary-100)',
+                                                color: isDarkMode ? '#ffd700' : '#374151',
                                                 fontFamily: 'Inter, system-ui, sans-serif',
-                                                fontWeight: '500'
+                                                fontWeight: '500',
+                                                textShadow: isDarkMode 
+                                                    ? '0 0 10px rgba(255, 215, 0, 0.3)'
+                                                    : '0 1px 2px rgba(0, 0, 0, 0.1)'
                                             }}
                                         >
                                             {slides[currentSlide].highlight}
@@ -237,14 +237,23 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                     >
                                         <div 
                                             className="pt-4"
-                                            style={{ borderTop: '1px solid color-mix(in srgb, var(--primary-100) 20%, transparent)' }}
+                                            style={{ 
+                                                borderTop: isDarkMode 
+                                                    ? '1px solid rgba(255, 215, 0, 0.3)'
+                                                    : '1px solid rgba(55, 65, 81, 0.3)'
+                                            }}
                                         >
-                                            <h4 className="text-lg font-semibold mb-3" style={{ color: 'var(--primary-100)' }}>
+                                            <h4 className="text-lg font-semibold mb-3" style={{ 
+                                                color: isDarkMode ? '#ffd700' : '#374151',
+                                                textShadow: isDarkMode 
+                                                    ? '0 0 10px rgba(255, 215, 0, 0.3)'
+                                                    : '0 1px 2px rgba(0, 0, 0, 0.1)'
+                                            }}>
                                                 Tecnologías Principales
                                             </h4>
                                             <p className="text-sm leading-relaxed mb-4" 
                                                style={{ 
-                                                   color: 'var(--text-300)',
+                                                   color: isDarkMode ? '#9ca3af' : '#6b7280',
                                                    fontFamily: 'Inter, system-ui, sans-serif',
                                                    lineHeight: '1.5'
                                                }}>
@@ -254,12 +263,17 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                         </div>
 
                                         <div>
-                                            <h4 className="text-lg font-semibold mb-3" style={{ color: 'var(--primary-100)' }}>
+                                            <h4 className="text-lg font-semibold mb-3" style={{ 
+                                                color: isDarkMode ? '#ffd700' : '#374151',
+                                                textShadow: isDarkMode 
+                                                    ? '0 0 10px rgba(255, 215, 0, 0.3)'
+                                                    : '0 1px 2px rgba(0, 0, 0, 0.1)'
+                                            }}>
                                                 Metodología de Trabajo
                                             </h4>
                                             <p className="text-sm leading-relaxed mb-4" 
                                                style={{ 
-                                                   color: 'var(--text-300)',
+                                                   color: isDarkMode ? '#9ca3af' : '#6b7280',
                                                    fontFamily: 'Inter, system-ui, sans-serif',
                                                    lineHeight: '1.5'
                                                }}>
@@ -269,12 +283,17 @@ const SlideContent: React.FC<SlideContentProps> = ({
                                         </div>
 
                                         <div>
-                                            <h4 className="text-lg font-semibold mb-3" style={{ color: 'var(--primary-100)' }}>
+                                            <h4 className="text-lg font-semibold mb-3" style={{ 
+                                                color: isDarkMode ? '#ffd700' : '#374151',
+                                                textShadow: isDarkMode 
+                                                    ? '0 0 10px rgba(255, 215, 0, 0.3)'
+                                                    : '0 1px 2px rgba(0, 0, 0, 0.1)'
+                                            }}>
                                                 Objetivos
                                             </h4>
                                             <p className="text-sm leading-relaxed" 
                                                style={{ 
-                                                   color: 'var(--text-300)',
+                                                   color: isDarkMode ? '#9ca3af' : '#6b7280',
                                                    fontFamily: 'Inter, system-ui, sans-serif',
                                                    lineHeight: '1.5'
                                                }}>

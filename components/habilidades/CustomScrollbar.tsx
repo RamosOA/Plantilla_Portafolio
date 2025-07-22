@@ -9,33 +9,40 @@ const CustomScrollbar: React.FC = () => {
             .custom-scrollbar {
                 
                 scrollbar-width: thin;
-                scrollbar-color: color-mix(in srgb, var(--primary-100) 25%, transparent) color-mix(in srgb, var(--primary-100) 8%, transparent);
+                scrollbar-color: color-mix(in srgb, var(--primary-100) 40%, transparent) color-mix(in srgb, var(--primary-100) 10%, transparent);
+                padding-right: 4px;
             }
             
             
             .custom-scrollbar::-webkit-scrollbar {
-                width: 6px;
+                width: 10px;
             }
             
             .custom-scrollbar::-webkit-scrollbar-track {
-                background: color-mix(in srgb, var(--primary-100) 5%, transparent);
-                border-radius: 3px;
+                background: color-mix(in srgb, var(--primary-100) 12%, transparent);
+                border-radius: 5px;
+                border: 1px solid color-mix(in srgb, var(--primary-100) 15%, transparent);
+                margin: 2px;
             }
             
             .custom-scrollbar::-webkit-scrollbar-thumb {
-                background: color-mix(in srgb, var(--primary-100) 20%, transparent);
-                border-radius: 3px;
-                border: 1px solid color-mix(in srgb, var(--primary-100) 10%, transparent);
+                background: linear-gradient(180deg, var(--accent-100), var(--accent-200));
+                border-radius: 5px;
+                border: 1px solid color-mix(in srgb, var(--primary-100) 20%, transparent);
+                box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+                transition: all 0.3s ease;
             }
             
             .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                background: color-mix(in srgb, var(--primary-100) 35%, transparent);
-                border-color: color-mix(in srgb, var(--primary-100) 20%, transparent);
+                background: linear-gradient(180deg, var(--accent-200), var(--accent-100));
+                border-color: color-mix(in srgb, var(--primary-100) 35%, transparent);
+                box-shadow: 0 4px 12px rgba(0,0,0,0.3);
+                transform: scale(1.1);
             }
 
             
             :root[data-theme="light"] .custom-scrollbar {
-                scrollbar-color: color-mix(in srgb, var(--primary-200) 40%, transparent) color-mix(in srgb, var(--primary-100) 15%, transparent);
+                scrollbar-color: color-mix(in srgb, var(--primary-200) 50%, transparent) color-mix(in srgb, var(--primary-100) 20%, transparent);
             }
 
             :root[data-theme="light"] .custom-scrollbar::-webkit-scrollbar-track {

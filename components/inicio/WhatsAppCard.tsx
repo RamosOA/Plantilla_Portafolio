@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
 import { FaWhatsapp } from 'react-icons/fa';
 
@@ -11,36 +11,72 @@ interface WhatsAppCardProps {
 }
 
 const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay = 0 }) => {
+    const [isDark, setIsDark] = useState(true);
+
+    useEffect(() => {
+        const checkTheme = () => {
+            const theme = document.documentElement.getAttribute('data-theme');
+            setIsDark(theme !== 'light');
+        };
+
+        checkTheme();
+
+        const observer = new MutationObserver(checkTheme);
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['data-theme']
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
     return (
         <motion.div
-            className={`${className} border rounded-xl p-4 cursor-pointer group relative overflow-hidden`}
+            className={`${className} cursor-pointer group relative overflow-hidden`}
             style={{
-                background: 'rgba(37, 211, 102, 0.08)',
-                borderColor: 'rgba(37, 211, 102, 0.2)',
-                backdropFilter: 'blur(20px)'
+                background: isDark 
+                    ? 'linear-gradient(145deg, #2A2A2F 0%, #1F1F23 50%, #121214 100%)'
+                    : 'linear-gradient(145deg, #F8F9FA 0%, #FFFFFF 50%, #F0F0F0 100%)',
+                borderRadius: '20px',
+                boxShadow: isDark 
+                    ? '16px 16px 32px rgba(0, 0, 0, 0.9), -16px -16px 32px rgba(100, 100, 105, 0.4)'
+                    : '12px 12px 24px rgba(163, 177, 198, 0.6), -12px -12px 24px rgba(255, 255, 255, 0.9)',
+                border: isDark ? '2px solid rgba(120, 120, 125, 0.4)' : '2px solid rgba(198, 167, 0, 0.3)',
+                transition: 'all 0.3s cubic-bezier(0.4, 0, 0.2, 1)',
+                padding: '20px'
             }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ delay }}
             onClick={onClick}
+            whileHover={{ 
+                scale: 1.02,
+                y: -5,
+                transition: { duration: 0.2 }
+            }}
+            whileTap={{ scale: 0.98 }}
             onMouseEnter={(e) => {
-                e.currentTarget.style.background = 'rgba(37, 211, 102, 0.15)';
-                e.currentTarget.style.borderColor = 'rgba(37, 211, 102, 0.5)';
-                e.currentTarget.style.transform = 'translateY(-2px)';
+                e.currentTarget.style.boxShadow = isDark 
+                    ? '0 0 40px rgba(37, 211, 102, 0.6), 20px 20px 40px rgba(0, 0, 0, 0.95), -20px -20px 40px rgba(140, 140, 145, 0.6)'
+                    : '0 0 30px rgba(37, 211, 102, 0.4), 16px 16px 32px rgba(163, 177, 198, 0.8), -16px -16px 32px rgba(255, 255, 255, 1)';
+                e.currentTarget.style.borderColor = 'rgba(37, 211, 102, 0.8)';
+                e.currentTarget.style.background = 'linear-gradient(135deg, #25D366, #128C7E)';
             }}
             onMouseLeave={(e) => {
-                e.currentTarget.style.background = 'rgba(37, 211, 102, 0.08)';
-                e.currentTarget.style.borderColor = 'rgba(37, 211, 102, 0.2)';
-                e.currentTarget.style.transform = 'translateY(0)';
+                e.currentTarget.style.boxShadow = isDark 
+                    ? '16px 16px 32px rgba(0, 0, 0, 0.9), -16px -16px 32px rgba(100, 100, 105, 0.4)'
+                    : '12px 12px 24px rgba(163, 177, 198, 0.6), -12px -12px 24px rgba(255, 255, 255, 0.9)';
+                e.currentTarget.style.borderColor = isDark ? 'rgba(120, 120, 125, 0.4)' : 'rgba(198, 167, 0, 0.3)';
+                e.currentTarget.style.background = isDark 
+                    ? 'linear-gradient(145deg, #2A2A2F 0%, #1F1F23 50%, #121214 100%)'
+                    : 'linear-gradient(145deg, #F8F9FA 0%, #FFFFFF 50%, #F0F0F0 100%)';
             }}
-            whileHover={{ scale: 1.02 }}
-            whileTap={{ scale: 0.98 }}
         >
             
             <div className="absolute inset-0 overflow-hidden rounded-xl">
                 <motion.div
                     className="absolute -top-2 -left-2 w-12 h-12 rounded-full opacity-15"
-                    style={{ backgroundColor: '#25D366' }}
+                    style={{ backgroundColor: 'var(--accent-200)' }}
                     animate={{
                         scale: [1, 1.2, 1],
                         opacity: [0.15, 0.05, 0.15]
@@ -53,7 +89,7 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
                 />
                 <motion.div
                     className="absolute -bottom-2 -right-2 w-8 h-8 rounded-full opacity-10"
-                    style={{ backgroundColor: '#25D366' }}
+                    style={{ backgroundColor: 'var(--accent-100)' }}
                     animate={{
                         scale: [1, 1.3, 1],
                         opacity: [0.1, 0.03, 0.1]
@@ -79,7 +115,7 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
                 >
                     <motion.div
                         className="absolute inset-0 rounded-full border opacity-20"
-                        style={{ borderColor: '#25D366' }}
+                        style={{ borderColor: 'var(--accent-200)' }}
                         animate={{
                             scale: [1, 1.2, 1],
                             opacity: [0.2, 0, 0.2]
@@ -92,18 +128,18 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
                     />
                     
                     <div 
-                        className="w-16 h-16 flex items-center justify-center rounded-full relative z-10"
-                        style={{ backgroundColor: 'rgba(37, 211, 102, 0.2)' }}
+                        className="neumo-icon w-16 h-16 text-3xl neumo-glow group-hover:neumo-pulse"
+                        style={{ color: 'var(--accent-200)' }}
                     >
-                        <FaWhatsapp className="text-3xl" style={{ color: '#25D366' }} />
+                        <FaWhatsapp />
                     </div>
                 </motion.div>
 
                 
                 <motion.h3 
-                    className="text-xl font-bold mb-4" 
+                    className="text-xl font-bold mb-4 neumo-glow" 
                     style={{ 
-                        color: '#25D366',
+                        color: 'var(--accent-200)',
                         fontFamily: 'Inter, system-ui, sans-serif',
                         fontWeight: '700'
                     }}
@@ -116,23 +152,23 @@ const WhatsAppCard: React.FC<WhatsAppCardProps> = ({ className, onClick, delay =
 
                 
                 <motion.div 
-                    className="flex items-center px-3 py-2 rounded-full" 
+                    className="neumo-surface flex items-center px-3 py-2 rounded-full" 
                     style={{ 
-                        backgroundColor: 'rgba(37, 211, 102, 0.15)',
-                        border: '1px solid rgba(37, 211, 102, 0.3)'
+                        background: 'var(--bg-100)',
+                        boxShadow: 'var(--shadow-neumorphic-inset)'
                     }}
                     initial={{ opacity: 0, scale: 0.9 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ delay: delay + 0.2 }}
                 >
                     <div 
-                        className="w-2 h-2 rounded-full mr-2"
-                        style={{ backgroundColor: '#25D366' }}
+                        className="w-2 h-2 rounded-full mr-2 neumo-pulse"
+                        style={{ backgroundColor: 'var(--accent-200)' }}
                     />
                     <span 
                         className="text-sm font-semibold" 
                         style={{ 
-                            color: '#25D366',
+                            color: 'var(--accent-200)',
                             fontFamily: 'Inter, system-ui, sans-serif',
                             fontWeight: '600'
                         }}

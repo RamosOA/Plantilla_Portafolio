@@ -2,62 +2,350 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  --primary-100: #AD991B;
-  --primary-200: #8e7d00;
-  --primary-300: #4c4100;
-  --accent-100: #132A14;
-  --accent-200: #024600;
-  --text-100: #FFFFFF;
-  --text-200: #e0e0e0;
-  --text-300: #CCCCCC;
-  --text-accent: #FFFFFF;
-  --bg-100: #2A2A2A;
-  --bg-200: #1E1E1E;
-  --bg-300: #3A3A3A; 
-  
-  --success: #10B981;
-  --warning: #F59E0B;
-  --error: #EF4444;
-  --info: #3B82F6;
+  /* Esta sección será sobrescrita por los temas específicos - mantener solo como fallback */
 }
 
 :root[data-theme="light"] {
-  --primary-100: #C4A834;
-  --primary-200: #A08F2A;
-  --primary-300: #7D6F1F;
+  /* Tema Claro - Paleta "Arceus Celestial" */
+  --primary-100: #C6A700;          /* Dorado intenso - acento principal */
+  --primary-200: #A68F00;          /* Dorado oscuro - hover */
+  --primary-300: #8B7700;          /* Dorado más oscuro */
   
-  --accent-100: #F0F8F0;
-  --accent-200: #2D5A3D;
+  --accent-100: #C6A700;           /* Dorado intenso */
+  --accent-200: #50C878;           /* Verde esmeralda - acento secundario */
   
-  --text-100: #0F0F10;
-  --text-200: #2C2C2E;
-  --text-300: #48484A;
-  --text-400: #6D6D70;
-  --text-500: #8E8E93;
+  --text-100: #333333;             /* Gris oscuro elegante */
+  --text-200: #666666;             /* Gris medio */
+  --text-300: #999999;             /* Gris claro */
+  --text-400: #BBBBBB;             /* Gris muy claro */
+  --text-500: #CCCCCC;             /* Gris casi blanco */
   
-  --text-accent: #1D4929;
-  --text-muted: #9F9F9F;
-  --text-contrast: #000000;
+  --text-accent: #C6A700;          /* Dorado intenso */
+  --text-muted: #999999;           /* Gris claro muted */
+  --text-contrast: #333333;        /* Gris oscuro contraste */
   
-  --bg-100: #FEFFFE;
-  --bg-200: #F9F9F7;
-  --bg-300: #F2F2EF;
-  --bg-400: #EBEBEB;
-  --bg-500: #E0E0E0;
+  --bg-100: #F8F9FA;               /* Blanco celestial con toque gris azulado */
+  --bg-200: #FFFFFF;               /* Blanco limpio - superficies */
+  --bg-300: #DDDDDD;               /* Gris claro - bordes */
+  --bg-400: #F0F0F0;               /* Gris muy claro */
+  --bg-500: #E8E8E8;               /* Gris claro intermedio */
   
-  --interactive-primary: #B8962F;
-  --interactive-secondary: #8B7B22;
-  --link-default: #2D5A3D;
-  --link-hover: #1D4929;
-  --link-visited: #4A6B4F;
+  --interactive-primary: #C6A700;     /* Dorado intenso */
+  --interactive-secondary: #50C878;   /* Verde esmeralda */
+  --link-default: #C6A700;            /* Dorado intenso */
+  --link-hover: #A68F00;              /* Dorado oscuro */
+  --link-visited: #8B7700;            /* Dorado más oscuro */
   
+  --color-button-text: #FFFFFF;       /* Texto sobre botones dorados */
+  --color-particle: #C6A700;          /* Brillo divino */
+  --color-particle-trail: #FFF8DC;    /* Dorado crema suave */
   
+  /* Sombras Neumórficas Auténticas - Tema Claro */
+  --shadow-neumorphic: 
+    12px 12px 24px rgba(163, 177, 198, 0.6),
+    -12px -12px 24px rgba(255, 255, 255, 0.9);
   
-  --success: #2D7D32;         
-  --warning: #E65100;         
-  --error: #C62828;           
-  --info: #1976D2;            
+  --shadow-neumorphic-hover: 
+    16px 16px 32px rgba(163, 177, 198, 0.7),
+    -16px -16px 32px rgba(255, 255, 255, 1);
+  
+  --shadow-neumorphic-pressed: 
+    inset 6px 6px 12px rgba(163, 177, 198, 0.7),
+    inset -6px -6px 12px rgba(255, 255, 255, 0.5);
+  
+  --shadow-neumorphic-inset: 
+    inset 8px 8px 16px rgba(163, 177, 198, 0.5),
+    inset -8px -8px 16px rgba(255, 255, 255, 0.8);
+  
+  --shadow-neumorphic-subtle: 
+    6px 6px 12px rgba(163, 177, 198, 0.4),
+    -6px -6px 12px rgba(255, 255, 255, 0.7);
+  
+  --shadow-neumorphic-glow: 
+    0 0 30px rgba(198, 167, 0, 0.4),
+    12px 12px 24px rgba(163, 177, 198, 0.6),
+    -12px -12px 24px rgba(255, 255, 255, 0.9);
+  
+  --shadow-neumorphic-floating: 
+    0 20px 40px rgba(163, 177, 198, 0.8),
+    0 10px 20px rgba(163, 177, 198, 0.4),
+    12px 12px 24px rgba(163, 177, 198, 0.6),
+    -12px -12px 24px rgba(255, 255, 255, 0.9);
+  
+  --success: #50C878;              /* Verde esmeralda */
+  --warning: #FFA500;              /* Naranja */
+  --error: #FF6B6B;                /* Rojo suave */
+  --info: #C6A700;                 /* Dorado intenso */
 }
+
+:root[data-theme="dark"] {
+  /* Tema Oscuro - Paleta "Arceus Eterno" */
+  --primary-100: #C6A700;          /* Dorado intenso - acento principal */
+  --primary-200: #A68F00;          /* Dorado oscuro - hover */
+  --primary-300: #D4AF37;          /* Dorado más brillante */
+  
+  --accent-100: #C6A700;           /* Dorado intenso */
+  --accent-200: #50C878;           /* Verde esmeralda - acento secundario */
+  
+  --text-100: #E8E8E8;             /* Texto principal claro */
+  --text-200: #CCCCCC;             /* Texto secundario */
+  --text-300: #999999;             /* Texto terciario */
+  --text-400: #777777;             /* Texto muted */
+  --text-500: #555555;             /* Texto muy muted */
+  
+  --text-accent: #C6A700;          /* Dorado intenso */
+  --text-muted: #999999;           /* Gris muted */
+  --text-contrast: #E8E8E8;        /* Texto contraste */
+  
+  --bg-100: #121214;               /* Fondo principal - negro ultra profundo */
+  --bg-200: #1F1F23;               /* Superficies - contraste dramático */
+  --bg-300: #2A2A2F;               /* Bordes - gris medio con alta visibilidad */
+  --bg-400: #1A1A1E;               /* Fondo alternativo ultra contrastado */
+  --bg-500: #242428;               /* Fondo intermedio muy definido */
+  
+  --interactive-primary: #C6A700;     /* Dorado intenso */
+  --interactive-secondary: #50C878;   /* Verde esmeralda */
+  --link-default: #C6A700;            /* Dorado intenso */
+  --link-hover: #D4AF37;              /* Dorado más brillante */
+  --link-visited: #A68F00;            /* Dorado oscuro */
+  
+  --color-button-text: #1C1C1E;       /* Texto sobre botones dorados */
+  --color-particle: #C6A700;          /* Brillo divino dorado */
+  --color-particle-trail: #8B7700;    /* Estela dorada sutil */
+  
+  /* Sombras Neumórficas ULTRA Mejoradas - Máximo Contraste para Tema Oscuro */
+  --shadow-neumorphic: 
+    16px 16px 32px rgba(0, 0, 0, 0.95),
+    -16px -16px 32px rgba(120, 120, 125, 0.6),
+    inset 0 0 0 1px rgba(198, 167, 0, 0.15),
+    0 0 0 1px rgba(80, 80, 85, 0.3);
+  
+  --shadow-neumorphic-hover: 
+    20px 20px 40px rgba(0, 0, 0, 0.98),
+    -20px -20px 40px rgba(140, 140, 145, 0.8),
+    inset 0 0 0 2px rgba(198, 167, 0, 0.3),
+    0 0 30px rgba(198, 167, 0, 0.5),
+    0 0 0 1px rgba(198, 167, 0, 0.4);
+  
+  --shadow-neumorphic-pressed: 
+    inset 12px 12px 24px rgba(0, 0, 0, 0.98),
+    inset -12px -12px 24px rgba(100, 100, 105, 0.4),
+    inset 0 0 0 2px rgba(198, 167, 0, 0.25),
+    0 0 10px rgba(198, 167, 0, 0.3);
+  
+  --shadow-neumorphic-inset: 
+    inset 16px 16px 32px rgba(0, 0, 0, 0.95),
+    inset -16px -16px 32px rgba(100, 100, 105, 0.5),
+    inset 0 0 0 2px rgba(80, 200, 120, 0.2),
+    0 0 0 1px rgba(80, 200, 120, 0.15);
+  
+  --shadow-neumorphic-subtle: 
+    12px 12px 20px rgba(0, 0, 0, 0.9),
+    -12px -12px 20px rgba(100, 100, 105, 0.4),
+    inset 0 0 0 1px rgba(198, 167, 0, 0.12),
+    0 0 0 1px rgba(80, 80, 85, 0.2);
+  
+  --shadow-neumorphic-glow: 
+    0 0 40px rgba(198, 167, 0, 0.8),
+    16px 16px 32px rgba(0, 0, 0, 0.95),
+    -16px -16px 32px rgba(120, 120, 125, 0.6),
+    inset 0 0 0 2px rgba(198, 167, 0, 0.4),
+    0 0 60px rgba(198, 167, 0, 0.6);
+  
+  --shadow-neumorphic-floating: 
+    0 25px 50px rgba(0, 0, 0, 0.98),
+    0 15px 30px rgba(0, 0, 0, 0.9),
+    16px 16px 32px rgba(0, 0, 0, 0.95),
+    -16px -16px 32px rgba(120, 120, 125, 0.6),
+    inset 0 0 0 2px rgba(198, 167, 0, 0.3),
+    0 0 50px rgba(198, 167, 0, 0.6),
+    0 0 0 1px rgba(198, 167, 0, 0.3);
+  
+  --success: #50C878;              /* Verde esmeralda */
+  --warning: #FFA500;              /* Naranja */
+  --error: #FF6B6B;                /* Rojo suave */
+  --info: #C6A700;                 /* Dorado intenso */
+}
+
+
+/* ==================== ADDITIONAL ULTRA DARK MODE EFFECTS ==================== */
+
+/* Gradientes de profundidad extrema para modo oscuro */
+:root[data-theme="dark"] {
+  --ultra-deep-gradient: linear-gradient(145deg, 
+    #0F0F11 0%, 
+    #1F1F23 25%, 
+    #121214 50%, 
+    #2A2A2F 75%, 
+    #1A1A1E 100%
+  );
+  
+  --ultra-raised-gradient: linear-gradient(145deg, 
+    #2A2A2F 0%, 
+    #242428 25%, 
+    #1F1F23 50%, 
+    #1A1A1E 75%, 
+    #121214 100%
+  );
+  
+  --ultra-glow-shadow: 
+    0 0 20px rgba(198, 167, 0, 0.4),
+    0 0 40px rgba(198, 167, 0, 0.2),
+    0 0 60px rgba(198, 167, 0, 0.1);
+}
+
+/* Efectos de profundidad extrema */
+.ultra-neumo-deep {
+  background: var(--ultra-deep-gradient);
+  box-shadow: 
+    inset 15px 15px 30px rgba(0, 0, 0, 0.8),
+    inset -15px -15px 30px rgba(60, 60, 65, 0.3),
+    inset 0 0 0 2px rgba(198, 167, 0, 0.1);
+  border: 2px solid rgba(80, 80, 85, 0.4);
+  position: relative;
+}
+
+.ultra-neumo-raised {
+  background: var(--ultra-raised-gradient);
+  box-shadow: 
+    20px 20px 40px rgba(0, 0, 0, 0.9),
+    -20px -20px 40px rgba(80, 80, 85, 0.3),
+    0 0 0 2px rgba(120, 120, 125, 0.2);
+  border: 2px solid rgba(120, 120, 125, 0.4);
+  position: relative;
+}
+
+.ultra-neumo-floating {
+  background: var(--ultra-raised-gradient);
+  box-shadow: 
+    0 25px 50px rgba(0, 0, 0, 0.8),
+    0 15px 30px rgba(0, 0, 0, 0.6),
+    20px 20px 40px rgba(0, 0, 0, 0.4),
+    -20px -20px 40px rgba(80, 80, 85, 0.2),
+    0 0 0 2px rgba(198, 167, 0, 0.3),
+    var(--ultra-glow-shadow);
+  border: 2px solid rgba(198, 167, 0, 0.5);
+  transform: translateY(-5px);
+}
+
+/* Efectos de hover ultra dramáticos */
+:root[data-theme="dark"] .ultra-neumo-deep:hover {
+  box-shadow: 
+    inset 20px 20px 40px rgba(0, 0, 0, 0.9),
+    inset -20px -20px 40px rgba(80, 80, 85, 0.4),
+    inset 0 0 0 3px rgba(198, 167, 0, 0.2),
+    0 0 30px rgba(198, 167, 0, 0.3);
+  border-color: rgba(198, 167, 0, 0.6);
+}
+
+:root[data-theme="dark"] .ultra-neumo-raised:hover {
+  box-shadow: 
+    25px 25px 50px rgba(0, 0, 0, 0.95),
+    -25px -25px 50px rgba(100, 100, 105, 0.4),
+    0 0 0 3px rgba(198, 167, 0, 0.3),
+    var(--ultra-glow-shadow);
+  border-color: rgba(198, 167, 0, 0.7);
+  transform: translateY(-3px) scale(1.02);
+}
+
+:root[data-theme="dark"] .ultra-neumo-floating:hover {
+  box-shadow: 
+    0 35px 70px rgba(0, 0, 0, 0.9),
+    0 20px 40px rgba(0, 0, 0, 0.7),
+    25px 25px 50px rgba(0, 0, 0, 0.5),
+    -25px -25px 50px rgba(100, 100, 105, 0.3),
+    0 0 0 3px rgba(198, 167, 0, 0.4),
+    0 0 80px rgba(198, 167, 0, 0.6);
+  border-color: rgba(198, 167, 0, 0.8);
+  transform: translateY(-8px) scale(1.03);
+}
+
+/* Texto con efectos de profundidad */
+:root[data-theme="dark"] .ultra-text-raised {
+  text-shadow: 
+    2px 2px 4px rgba(0, 0, 0, 0.8),
+    -1px -1px 2px rgba(80, 80, 85, 0.3),
+    0 0 10px rgba(198, 167, 0, 0.2);
+  color: var(--text-100);
+}
+
+:root[data-theme="dark"] .ultra-text-glow {
+  text-shadow: 
+    0 0 10px rgba(198, 167, 0, 0.6),
+    0 0 20px rgba(198, 167, 0, 0.4),
+    0 0 30px rgba(198, 167, 0, 0.2),
+    2px 2px 4px rgba(0, 0, 0, 0.8);
+  color: rgba(198, 167, 0, 0.9);
+}
+
+/* Bordes internos ultra definidos */
+:root[data-theme="dark"] .ultra-inner-border::before {
+  content: '';
+  position: absolute;
+  top: 3px;
+  left: 3px;
+  right: 3px;
+  bottom: 3px;
+  border-radius: inherit;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background: linear-gradient(145deg, 
+    rgba(120, 120, 125, 0.02) 0%, 
+    rgba(40, 40, 45, 0.05) 100%
+  );
+  pointer-events: none;
+}
+
+:root[data-theme="dark"] .ultra-inner-border:hover::before {
+  border-color: rgba(198, 167, 0, 0.15);
+  background: linear-gradient(145deg, 
+    rgba(198, 167, 0, 0.03) 0%, 
+    rgba(120, 120, 125, 0.06) 100%
+  );
+  box-shadow: inset 0 0 15px rgba(198, 167, 0, 0.1);
+}
+
+/* Efectos de partículas mejorados */
+:root[data-theme="dark"] .ultra-particle-container {
+  position: relative;
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] .ultra-particle-container::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: 
+    radial-gradient(1px 1px at 20% 30%, rgba(198, 167, 0, 0.3), transparent),
+    radial-gradient(1px 1px at 40% 70%, rgba(198, 167, 0, 0.2), transparent),
+    radial-gradient(1px 1px at 80% 10%, rgba(80, 200, 120, 0.2), transparent),
+    radial-gradient(1px 1px at 60% 90%, rgba(198, 167, 0, 0.15), transparent);
+  animation: ultra-particle-dance 4s ease-in-out infinite;
+  pointer-events: none;
+}
+
+@keyframes ultra-particle-dance {
+  0%, 100% {
+    opacity: 0.6;
+    transform: translateX(0px) translateY(0px);
+  }
+  25% {
+    opacity: 1;
+    transform: translateX(2px) translateY(-1px);
+  }
+  50% {
+    opacity: 0.8;
+    transform: translateX(-1px) translateY(2px);
+  }
+  75% {
+    opacity: 0.9;
+    transform: translateX(1px) translateY(-2px);
+  }
+}
+
+/* ==================== END ADDITIONAL ULTRA DARK MODE EFFECTS ==================== */
 
 
 * {
@@ -73,8 +361,8 @@ html {
 }
 
 body {
-  
-  background: linear-gradient(135deg, var(--accent-100) 0%, #0a1a0b 50%, #000000 100%);
+  /* Neumórfico - Dark Mode Background */
+  background: var(--bg-100); /* Off-black para tema oscuro */
   color: var(--text-100);
   width: 100vw;
   height: 100vh;
@@ -83,15 +371,98 @@ body {
   transition: background 0.5s ease;
 }
 
-
+/* Light Mode Background */
 :root[data-theme="light"] body {
-  background: linear-gradient(135deg, 
-    color-mix(in srgb, var(--bg-100) 95%, var(--accent-200) 5%) 0%, 
-    color-mix(in srgb, var(--bg-200) 75%, var(--accent-100) 25%) 20%, 
-    color-mix(in srgb, var(--accent-100) 80%, var(--bg-300) 20%) 45%, 
-    color-mix(in srgb, var(--bg-200) 70%, var(--accent-200) 30%) 65%, 
-    color-mix(in srgb, var(--bg-200) 80%, var(--accent-100) 20%) 85%, 
-    color-mix(in srgb, var(--bg-100) 90%, var(--accent-200) 10%) 100%);
+  background: var(--bg-100); /* Off-white para tema claro */
+}
+
+/* Clases de utilidad neumórficas */
+.neumorphic {
+  background: var(--bg-200);
+  box-shadow: var(--shadow-neumorphic);
+  border: none;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.neumorphic:hover {
+  box-shadow: var(--shadow-neumorphic-hover);
+  transform: translateY(-2px);
+}
+
+.neumorphic:active,
+.neumorphic-pressed {
+  box-shadow: var(--shadow-neumorphic-pressed);
+  transform: translateY(1px);
+}
+
+.neumorphic-inset {
+  background: var(--bg-200);
+  box-shadow: var(--shadow-neumorphic-inset);
+  border: none;
+}
+
+.neumorphic-button {
+  background: var(--bg-200);
+  box-shadow: var(--shadow-neumorphic);
+  border: none;
+  border-radius: 1.5rem;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.neumorphic-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+  transition: left 0.6s ease;
+}
+
+.neumorphic-button:hover::before {
+  left: 100%;
+}
+
+.neumorphic-button:hover {
+  box-shadow: var(--shadow-neumorphic-hover);
+  transform: translateY(-3px) scale(1.02);
+}
+
+.neumorphic-button:active {
+  box-shadow: var(--shadow-neumorphic-pressed);
+  transform: translateY(1px) scale(0.98);
+}
+
+.neumorphic-surface {
+  background: var(--bg-100);
+  position: relative;
+  overflow: hidden;
+}
+
+.neumorphic-glow {
+  position: relative;
+}
+
+.neumorphic-glow::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  background: linear-gradient(45deg, var(--primary-100), var(--primary-200), var(--primary-100));
+  border-radius: inherit;
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.neumorphic-glow:hover::after {
+  opacity: 0.1;
 }
 
 
@@ -140,7 +511,7 @@ body {
   height: 100%;
   
   background: radial-gradient(
-    circle at 20% 80%,
+    circle at 20% 30%,
     rgba(173, 153, 27, 0.08) 0%,
     transparent 50%
   ),
@@ -530,22 +901,7 @@ section {
     justify-content: flex-start !important;
     padding: 0 !important;
     overflow-y: auto !important;
-  }
-  
-  /* Hide desktop header and theme toggle bar on mobile */
-  header {
-    display: none !important;
-  }
-  
-  .fixed-bars {
-    display: none !important;
-  }
-  
-  /* Hide theme toggle bar on mobile */
-  .theme-toggle-bar {
-    display: none !important;
-  }
-  
+  }  
   /* Mobile grid layouts with improved responsiveness */
   .grid.grid-cols-5 {
     grid-template-columns: 1fr !important;
@@ -1040,7 +1396,7 @@ section {
 
 /* Hide on mobile */
 .hide-mobile {
-  @media (max-width: 950px) {
+  @media (max-width: 768px) {
     display: none !important;
   }
 }
@@ -1292,8 +1648,8 @@ section {
   border-radius: 50%;
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  border: 1px solid rgba(173, 153, 27, 0.3);
-  background: rgba(60, 60, 60, 0.95);
+  border: 1px solid rgba(102, 252, 241, 0.3); /* Cian neón */
+  background: rgba(31, 40, 51, 0.95); /* Gris grafito suave */
   color: var(--primary-100);
   transition: all 0.3s ease;
   box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
@@ -1313,8 +1669,8 @@ section {
 }
 
 :root[data-theme="light"] .mobile-theme-toggle {
-  background: rgba(254, 255, 254, 0.95);
-  border-color: rgba(196, 168, 52, 0.4);
+  background: rgba(240, 240, 240, 0.95); /* Gris muy claro */
+  border-color: rgba(31, 40, 51, 0.4); /* Gris grafito suave */
   color: var(--primary-100);
 }
 
@@ -1367,6 +1723,22 @@ section {
   :root[data-theme="light"] .mobile-menu-trigger {
     background: rgba(254, 255, 254, 0.95);
     border-color: rgba(196, 168, 52, 0.4);
+  }
+}
+
+/* Mobile-specific header hiding - only for real mobile devices */
+@media (max-width: 768px) {
+  header {
+    display: none !important;
+  }
+  
+  .fixed-bars {
+    display: none !important;
+  }
+  
+  /* Hide theme toggle bar on mobile */
+  .theme-toggle-bar {
+    display: none !important;
   }
 }
 
@@ -1535,3 +1907,577 @@ section {
 }
 
 /* ==================== END MOBILE SCROLL PROGRESS ==================== */
+
+/* ==================== NEUMORPHIC UTILITIES ==================== */
+
+/* Superficies Neumórficas Base */
+.neumo-surface {
+  background: var(--bg-200);
+  border-radius: 16px;
+  box-shadow: var(--shadow-neumorphic);
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.neumo-surface:hover {
+  box-shadow: var(--shadow-neumorphic-hover);
+  transform: translateY(-2px);
+}
+
+.neumo-surface:active {
+  box-shadow: var(--shadow-neumorphic-pressed);
+  transform: translateY(0);
+}
+
+/* Botones Neumórficos */
+.neumo-btn {
+  background: var(--bg-200);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow-neumorphic-subtle);
+  color: var(--text-100);
+  cursor: pointer;
+  padding: 12px 24px;
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  overflow: hidden;
+}
+
+.neumo-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, var(--accent-100), var(--accent-200));
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  border-radius: 12px;
+}
+
+.neumo-btn:hover {
+  box-shadow: var(--shadow-neumorphic-hover);
+  transform: translateY(-3px);
+}
+
+.neumo-btn:hover::before {
+  opacity: 0.1;
+}
+
+.neumo-btn:active {
+  box-shadow: var(--shadow-neumorphic-pressed);
+  transform: translateY(1px);
+}
+
+.neumo-btn:active::before {
+  opacity: 0.2;
+}
+
+/* Botón Primario Neumórfico */
+.neumo-btn-primary {
+  background: linear-gradient(135deg, var(--accent-100), var(--accent-200));
+  color: var(--color-button-text);
+  box-shadow: var(--shadow-neumorphic-glow);
+}
+
+.neumo-btn-primary:hover {
+  box-shadow: var(--shadow-neumorphic-floating);
+  transform: translateY(-4px) scale(1.02);
+}
+
+/* Tarjetas Neumórficas */
+.neumo-card {
+  background: var(--bg-200);
+  border-radius: 20px;
+  box-shadow: var(--shadow-neumorphic);
+  padding: 24px;
+  transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  position: relative;
+  overflow: hidden;
+}
+
+.neumo-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(135deg, transparent, rgba(198, 167, 0, 0.05));
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.neumo-card:hover {
+  box-shadow: var(--shadow-neumorphic-floating);
+  transform: translateY(-8px) rotateX(2deg);
+}
+
+.neumo-card:hover::before {
+  opacity: 1;
+}
+
+/* Inputs Neumórficos */
+.neumo-input {
+  background: var(--bg-200);
+  border: none;
+  border-radius: 12px;
+  box-shadow: var(--shadow-neumorphic-inset);
+  color: var(--text-100);
+  padding: 12px 16px;
+  transition: all 0.3s ease;
+  width: 100%;
+}
+
+.neumo-input:focus {
+  outline: none;
+  box-shadow: var(--shadow-neumorphic-glow);
+}
+
+.neumo-input::placeholder {
+  color: var(--text-300);
+}
+
+/* Iconos Neumórficos */
+.neumo-icon {
+  background: var(--bg-200);
+  border-radius: 50%;
+  box-shadow: var(--shadow-neumorphic-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.neumo-icon:hover {
+  box-shadow: var(--shadow-neumorphic-glow);
+  transform: translateY(-2px) rotate(5deg);
+}
+
+/* Separadores Neumórficos */
+.neumo-divider {
+  height: 2px;
+  background: var(--bg-200);
+  border-radius: 1px;
+  box-shadow: var(--shadow-neumorphic-inset);
+  margin: 20px 0;
+}
+
+/* Contenedores Hundidos */
+.neumo-inset {
+  background: var(--bg-100);
+  border-radius: 16px;
+  box-shadow: var(--shadow-neumorphic-inset);
+  padding: 20px;
+}
+
+/* Estados Interactivos Globales */
+.neumo-interactive {
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.neumo-interactive:hover {
+  transform: translateY(-1px);
+}
+
+.neumo-interactive:active {
+  transform: translateY(1px);
+}
+
+/* Efectos de Brillo */
+.neumo-glow {
+  position: relative;
+}
+
+.neumo-glow::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: radial-gradient(circle at center, rgba(198, 167, 0, 0.3), transparent);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+  border-radius: inherit;
+}
+
+.neumo-glow:hover::after {
+  opacity: 1;
+}
+
+/* Animaciones Neumórficas */
+@keyframes neumoFloat {
+  0%, 100% {
+    transform: translateY(0px);
+    box-shadow: var(--shadow-neumorphic);
+  }
+  50% {
+    transform: translateY(-10px);
+    box-shadow: var(--shadow-neumorphic-floating);
+  }
+}
+
+.neumo-float {
+  animation: neumoFloat 3s ease-in-out infinite;
+}
+
+@keyframes neumoPulse {
+  0%, 100% {
+    box-shadow: var(--shadow-neumorphic);
+  }
+  50% {
+    box-shadow: var(--shadow-neumorphic-glow);
+  }
+}
+
+.neumo-pulse {
+  animation: neumoPulse 2s ease-in-out infinite;
+}
+
+/* Variantes de Profundidad */
+.neumo-shallow {
+  box-shadow: var(--shadow-neumorphic-subtle);
+}
+
+.neumo-deep {
+  box-shadow: var(--shadow-neumorphic-floating);
+}
+
+/* Responsive Neumórfico */
+@media (max-width: 768px) {
+
+
+
+  .neumo-surface {
+    border-radius: 12px;
+  }
+  
+  .neumo-card {
+    border-radius: 16px;
+    padding: 16px;
+  }
+  
+  .neumo-btn {
+    padding: 10px 20px;
+  }
+}
+
+/* ==================== END NEUMORPHIC UTILITIES ==================== */
+
+/* ==================== NEUMORPHIC DARK MODE ULTRA ENHANCEMENTS ==================== */
+
+/* Mejoras ultra dramáticas para modo oscuro - Máximo contraste y visibilidad */
+:root[data-theme="dark"] .neumo-surface {
+  border: 2px solid rgba(120, 120, 125, 0.5);
+  background: linear-gradient(145deg, 
+    #1F1F23 0%, 
+    #121214 50%, 
+    #2A2A2F 100%
+  );
+  position: relative;
+}
+
+:root[data-theme="dark"] .neumo-surface::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, 
+    rgba(80, 80, 85, 0.1) 0%, 
+    rgba(40, 40, 45, 0.3) 50%, 
+    rgba(120, 120, 125, 0.08) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  pointer-events: none;
+}
+
+:root[data-theme="dark"] .neumo-surface:hover {
+  border: 2px solid rgba(198, 167, 0, 0.7);
+  background: linear-gradient(145deg, 
+    #2A2A2F 0%, 
+    #1F1F23 50%, 
+    #121214 100%
+  );
+  box-shadow: 
+    0 0 30px rgba(198, 167, 0, 0.4),
+    inset 0 0 20px rgba(198, 167, 0, 0.1);
+}
+
+:root[data-theme="dark"] .neumo-surface:hover::before {
+  background: linear-gradient(145deg, 
+    rgba(198, 167, 0, 0.08) 0%, 
+    rgba(80, 80, 85, 0.15) 50%, 
+    rgba(198, 167, 0, 0.05) 100%
+  );
+  border: 1px solid rgba(198, 167, 0, 0.2);
+}
+
+:root[data-theme="dark"] .neumo-card {
+  border: 2px solid rgba(120, 120, 125, 0.4);
+  background: linear-gradient(145deg, 
+    #1F1F23 0%, 
+    #121214 30%, 
+    #1A1A1E 70%, 
+    #2A2A2F 100%
+  );
+  position: relative;
+}
+
+:root[data-theme="dark"] .neumo-card::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: inherit;
+  background: linear-gradient(135deg, 
+    rgba(120, 120, 125, 0.05) 0%, 
+    rgba(40, 40, 45, 0.2) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.02);
+  pointer-events: none;
+}
+
+:root[data-theme="dark"] .neumo-card:hover {
+  border: 2px solid rgba(198, 167, 0, 0.6);
+  background: linear-gradient(145deg, 
+    #2A2A2F 0%, 
+    #1F1F23 30%, 
+    #242428 70%, 
+    #121214 100%
+  );
+  transform: translateY(-2px);
+}
+
+:root[data-theme="dark"] .neumo-card:hover::before {
+  background: linear-gradient(135deg, 
+    rgba(198, 167, 0, 0.06) 0%, 
+    rgba(120, 120, 125, 0.1) 100%
+  );
+  border: 1px solid rgba(198, 167, 0, 0.15);
+}
+
+:root[data-theme="dark"] .neumo-btn {
+  border: 2px solid rgba(120, 120, 125, 0.6);
+  background: linear-gradient(145deg, 
+    #2A2A2F 0%, 
+    #1F1F23 50%, 
+    #121214 100%
+  );
+  position: relative;
+  overflow: hidden;
+}
+
+:root[data-theme="dark"] .neumo-btn::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, 
+    rgba(120, 120, 125, 0.08) 0%, 
+    rgba(40, 40, 45, 0.15) 100%
+  );
+  border: 1px solid rgba(255, 255, 255, 0.04);
+  pointer-events: none;
+}
+
+:root[data-theme="dark"] .neumo-btn:hover {
+  border: 2px solid rgba(198, 167, 0, 0.8);
+  background: linear-gradient(145deg, 
+    #242428 0%, 
+    #2A2A2F 50%, 
+    #1F1F23 100%
+  );
+  transform: translateY(-3px) scale(1.02);
+}
+
+:root[data-theme="dark"] .neumo-btn:hover::before {
+  background: linear-gradient(145deg, 
+    rgba(198, 167, 0, 0.1) 0%, 
+    rgba(120, 120, 125, 0.12) 100%
+  );
+  border: 1px solid rgba(198, 167, 0, 0.25);
+  box-shadow: inset 0 0 15px rgba(198, 167, 0, 0.1);
+}
+
+:root[data-theme="dark"] .neumo-btn:active {
+  transform: translateY(1px) scale(0.98);
+  border: 2px solid rgba(198, 167, 0, 0.9);
+}
+
+:root[data-theme="dark"] .neumo-icon {
+  border: 2px solid rgba(120, 120, 125, 0.5);
+  background: linear-gradient(145deg, 
+    #1F1F23 0%, 
+    #121214 100%
+  );
+  position: relative;
+}
+
+:root[data-theme="dark"] .neumo-icon::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, 
+    rgba(80, 80, 85, 0.06) 0%, 
+    rgba(40, 40, 45, 0.12) 100%
+  );
+  pointer-events: none;
+}
+
+:root[data-theme="dark"] .neumo-icon:hover {
+  border: 2px solid rgba(198, 167, 0, 0.7);
+  background: linear-gradient(145deg, 
+    #2A2A2F 0%, 
+    #1F1F23 100%
+  );
+  transform: scale(1.05);
+}
+
+:root[data-theme="dark"] .neumo-icon:hover::before {
+  background: linear-gradient(145deg, 
+    rgba(198, 167, 0, 0.08) 0%, 
+    rgba(120, 120, 125, 0.1) 100%
+  );
+  box-shadow: inset 0 0 10px rgba(198, 167, 0, 0.15);
+}
+
+:root[data-theme="dark"] .neumo-inset {
+  border: 2px solid rgba(120, 120, 125, 0.3);
+  background: linear-gradient(145deg, 
+    #121214 0%, 
+    #1A1A1E 50%, 
+    #242428 100%
+  );
+  position: relative;
+}
+
+:root[data-theme="dark"] .neumo-inset::before {
+  content: '';
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  right: 2px;
+  bottom: 2px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, 
+    rgba(20, 20, 25, 0.8) 0%, 
+    rgba(40, 40, 45, 0.4) 100%
+  );
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  pointer-events: none;
+}
+
+/* Efectos de brillo ultra mejorados para tema oscuro */
+:root[data-theme="dark"] .neumo-glow {
+  position: relative;
+}
+
+:root[data-theme="dark"] .neumo-glow::after {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: radial-gradient(circle at center, 
+    rgba(198, 167, 0, 0.6) 0%, 
+    rgba(198, 167, 0, 0.3) 30%,
+    transparent 70%
+  );
+  border-radius: inherit;
+  box-shadow: 
+    0 0 30px rgba(198, 167, 0, 0.5),
+    0 0 60px rgba(198, 167, 0, 0.3);
+  z-index: -1;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+:root[data-theme="dark"] .neumo-glow:hover::after {
+  opacity: 1;
+}
+
+/* Mejoras ultra para elementos interactivos */
+:root[data-theme="dark"] .neumo-interactive {
+  border: 2px solid rgba(120, 120, 125, 0.4);
+  background: linear-gradient(145deg, 
+    #1F1F23 0%, 
+    #121214 100%
+  );
+  position: relative;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+:root[data-theme="dark"] .neumo-interactive::before {
+  content: '';
+  position: absolute;
+  top: 1px;
+  left: 1px;
+  right: 1px;
+  bottom: 1px;
+  border-radius: inherit;
+  background: linear-gradient(145deg, 
+    rgba(80, 80, 85, 0.05) 0%, 
+    rgba(40, 40, 45, 0.1) 100%
+  );
+  pointer-events: none;
+  transition: all 0.3s ease;
+}
+
+:root[data-theme="dark"] .neumo-interactive:hover {
+  border-color: rgba(198, 167, 0, 0.7);
+  background: linear-gradient(145deg, 
+    #242428 0%, 
+    #1F1F23 100%
+  );
+  transform: translateY(-2px);
+  box-shadow: 
+    0 10px 20px rgba(0, 0, 0, 0.5),
+    0 0 20px rgba(198, 167, 0, 0.3);
+}
+
+:root[data-theme="dark"] .neumo-interactive:hover::before {
+  background: linear-gradient(145deg, 
+    rgba(198, 167, 0, 0.06) 0%, 
+    rgba(120, 120, 125, 0.08) 100%
+  );
+  box-shadow: inset 0 0 15px rgba(198, 167, 0, 0.1);
+}
+
+:root[data-theme="dark"] .neumo-interactive:active {
+  border-color: rgba(198, 167, 0, 0.9);
+  transform: translateY(0px) scale(0.98);
+}
+
+/* ==================== END NEUMORPHIC DARK MODE ULTRA ENHANCEMENTS ==================== */
+
+/* ==================== ANIMACIONES ADICIONALES ==================== */
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+/* ==================== END ANIMACIONES ADICIONALES ==================== */

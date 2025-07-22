@@ -5,7 +5,6 @@ import { useEffect } from 'react';
 export default function EnableBodyHorizontalScroll() {
     useEffect(() => {
         const handleWheel = (e: WheelEvent) => {
-            // Only enable horizontal scrolling on desktop (non-touch devices)
             const isMobile = window.innerWidth <= 768 || 'ontouchstart' in window;
             
             if (!isMobile) {

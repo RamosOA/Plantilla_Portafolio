@@ -31,7 +31,7 @@ const MobileInicioSectionImproved = () => {
         transition={{ duration: 0.6 }}
       >
         <MobileHeroSection 
-          name="Oscar Ramos"
+          name="[Tu Nombre]"
           title="Desarrollador Full Stack"
           subtitle="Creador de Experiencias Digitales"
           description="Desarrollo aplicaciones web modernas que combinan diseño atractivo con funcionalidad robusta y experiencia de usuario excepcional."
