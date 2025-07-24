@@ -1636,6 +1636,30 @@ section {
 
 /* ==================== END CUSTOM BREAKPOINT UTILITIES ==================== */
 
+/* ==================== DESKTOP THEME TOGGLE BAR ==================== */
+
+.desktop-theme-bar {
+  width: 100% !important;
+  position: relative;
+  display: block;
+  min-height: 80px;
+}
+
+.desktop-theme-bar-container {
+  width: 100%;
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  max-width: none !important;
+}
+
+@media (max-width: 950px) {
+  .desktop-theme-bar {
+    display: none !important;
+  }
+}
+
 /* ==================== MOBILE THEME TOGGLE ==================== */
 
 /* Mobile Theme Toggle Button */

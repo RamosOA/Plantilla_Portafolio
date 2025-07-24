@@ -53,7 +53,7 @@ const ThemeToggleBar = () => {
 
     return (
         <motion.div 
-            className="w-full"
+            className="desktop-theme-bar"
             style={{
                 background: isDark 
                     ? 'linear-gradient(145deg, #2A2A2F 0%, #1F1F23 50%, #121214 100%)'
@@ -81,7 +81,7 @@ const ThemeToggleBar = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
         >
-            <div className="max-w-[90%] mx-auto py-4 px-6 flex justify-between items-center">
+            <div className="desktop-theme-bar-container">
                 
                 <motion.button
                     onClick={toggleToLight}
