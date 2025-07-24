@@ -204,7 +204,7 @@ Valoro la colaboración y el trabajo en equipo, porque las mejores soluciones na
                 {tabs.map((tab) => (
                     <button
                         key={tab.id}
-                        onClick={() => setActiveTab(tab.id as any)}
+                        onClick={() => setActiveTab(tab.id as 'info' | 'interests' | 'philosophy')}
                         className={`flex-1 py-3 px-2 rounded-lg transition-all duration-300 ${activeTab === tab.id ? 'transform scale-105' : ''
                             }`}
                         style={{
@@ -222,7 +222,7 @@ Valoro la colaboración y el trabajo en equipo, porque las mejores soluciones na
                         </div>
                     </button>
                 ))}
-        </div>
+            </motion.div>
 
       {/* Content */ }
     <div className="flex-1 overflow-hidden">
@@ -292,7 +292,7 @@ Valoro la colaboración y el trabajo en equipo, porque las mejores soluciones na
             </div>
         </div>
     </motion.div>
-    </div >
+    </div>
   );
 };
 
