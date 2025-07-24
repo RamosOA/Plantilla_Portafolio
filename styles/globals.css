@@ -1634,6 +1634,21 @@ section {
   }
 }
 
+/* Force hide mobile menu components on desktop */
+@media (min-width: 951px) {
+  .mobile-menu,
+  .mobile-menu-wrapper,
+  .mobile-menu-button,
+  .mobile-menu-overlay,
+  .show-on-mobile-950,
+  .show-on-mobile-950-flex {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    pointer-events: none !important;
+  }
+}
+
 /* ==================== END CUSTOM BREAKPOINT UTILITIES ==================== */
 
 /* ==================== DESKTOP THEME TOGGLE BAR ==================== */

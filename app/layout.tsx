@@ -38,7 +38,9 @@ export default function RootLayout({
           <MobileScrollProgress />
           <main>{children}</main>
           <Header />
-          <MobileMenuWrapper />
+          <div className="show-on-mobile-950">
+            <MobileMenuWrapper />
+          </div>
           <CursorFollower />
         </ThemeProvider>
       </body>

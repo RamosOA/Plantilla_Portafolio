@@ -178,8 +178,9 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
   ];
 
   return (
+    <div className="mobile-menu">
     <>
-      <div className="fixed top-4 right-4 z-50 show-on-mobile-950-flex">
+      <div className="fixed top-4 right-4 z-50 show-on-mobile-950-flex mobile-menu-button">
         <motion.button
           onClick={() => setIsOpen(!isOpen)}
           className="p-3 rounded-full backdrop-blur-lg border transition-all duration-300 shadow-lg"
@@ -229,7 +230,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.3 }}
-            className="fixed inset-0 z-40 show-on-mobile-950"
+            className="fixed inset-0 z-40 show-on-mobile-950 mobile-menu-overlay"
             style={{
               background: isDark 
                 ? 'rgba(0, 0, 0, 0.9)' 
@@ -564,6 +565,7 @@ const MobileMenu: React.FC<MobileMenuProps> = ({ currentSection: initialSection 
         )}
       </AnimatePresence>
     </>
+    </div>
   );
 };
 
