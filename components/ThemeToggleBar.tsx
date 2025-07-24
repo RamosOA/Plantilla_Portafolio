@@ -6,9 +6,13 @@ import { motion } from 'framer-motion';
 
 const ThemeToggleBar = () => {
     const [isDark, setIsDark] = useState(true);
+    const [mounted, setMounted] = useState(false);
 
-    
+    // Prevent hydration mismatch
     useEffect(() => {
+        setMounted(true);
+        
+        // Only run on client side after component is mounted
         const savedTheme = localStorage.getItem('theme');
         const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
         
@@ -19,8 +23,9 @@ const ThemeToggleBar = () => {
         }
     }, []);
 
-    
     useEffect(() => {
+        if (!mounted) return;
+        
         const htmlElement = document.documentElement;
         const theme = isDark ? 'dark' : 'light';
         
@@ -31,7 +36,12 @@ const ThemeToggleBar = () => {
         }
         
         localStorage.setItem('theme', theme);
-    }, [isDark]);
+    }, [isDark, mounted]);
+
+    // Don't render until mounted to prevent hydration mismatch
+    if (!mounted) {
+        return null;
+    }
 
     const toggleToLight = () => {
         setIsDark(false);

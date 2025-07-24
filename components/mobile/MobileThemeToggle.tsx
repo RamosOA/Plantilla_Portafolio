@@ -6,11 +6,19 @@ import { FaMoon, FaSun } from 'react-icons/fa';
 
 const MobileThemeToggle = () => {
   const [isDark, setIsDark] = useState(true);
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+    
     const checkTheme = () => {
-      const theme = document.documentElement.getAttribute('data-theme');
-      setIsDark(theme !== 'light');
+      try {
+        const theme = document.documentElement.getAttribute('data-theme');
+        setIsDark(theme !== 'light');
+      } catch (error) {
+        console.warn('Error checking theme:', error);
+        setIsDark(true);
+      }
     };
 
     checkTheme();
@@ -25,10 +33,28 @@ const MobileThemeToggle = () => {
   }, []);
 
   const toggleTheme = () => {
-    const newTheme = isDark ? 'light' : 'dark';
-    document.documentElement.setAttribute('data-theme', newTheme);
-    localStorage.setItem('theme', newTheme);
+    if (!mounted) return;
+    
+    try {
+      const newTheme = isDark ? 'light' : 'dark';
+      
+      if (newTheme === 'light') {
+        document.documentElement.setAttribute('data-theme', 'light');
+      } else {
+        document.documentElement.removeAttribute('data-theme');
+      }
+      
+      localStorage.setItem('theme', newTheme);
+      setIsDark(newTheme === 'dark');
+    } catch (error) {
+      console.warn('Error toggling theme:', error);
+    }
   };
+
+  // Don't render until mounted
+  if (!mounted) {
+    return null;
+  }
 
   return (
     <motion.button

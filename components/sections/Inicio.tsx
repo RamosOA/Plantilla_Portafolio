@@ -1,28 +1,20 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { motion } from 'framer-motion';
 import TituloSeccion from '../inicio/TituloSeccion';
 import SlidePresentation from '../inicio/SlidePresentation';
 import NavigationCard from '../inicio/NavigationCard';
 import WhatsAppCard from '../inicio/WhatsAppCard';
 import MobileInicioSectionImproved from '../mobile/MobileInicioSectionImproved';
+import { useMobileDetection } from '../../hooks/useClientSide';
 
 const Inicio = () => {
-    const [isMobile, setIsMobile] = useState(false);
-
-    useEffect(() => {
-        const checkMobile = () => {
-            setIsMobile(window.innerWidth <= 768);
-        };
-        
-        checkMobile();
-        window.addEventListener('resize', checkMobile);
-        
-        return () => window.removeEventListener('resize', checkMobile);
-    }, []);
+    const { isMobile, mounted } = useMobileDetection();
 
     const scrollToSection = (sectionId: string) => {
+        if (typeof window === 'undefined') return;
+        
         const section = document.getElementById(sectionId);
         if (section) {
             const isMobile = window.innerWidth <= 768;
@@ -47,6 +39,25 @@ const Inicio = () => {
         const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
         window.open(whatsappUrl, '_blank');
     };
+
+    if (!mounted) {
+        // Return a loading state or placeholder during SSR
+        return (
+            <motion.div
+                className="w-full h-[75vh] flex items-center justify-center px-6 relative"
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.6 }}
+            >
+                <div className="w-full h-full flex items-center justify-center">
+                    <div className="text-center">
+                        <div className="w-8 h-8 border-2 border-yellow-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+                        <p style={{ color: 'var(--text-200)' }}>Cargando...</p>
+                    </div>
+                </div>
+            </motion.div>
+        );
+    }
 
     if (isMobile) {
         return <MobileInicioSectionImproved />;
