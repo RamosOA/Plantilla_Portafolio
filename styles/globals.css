@@ -1394,14 +1394,14 @@ section {
 
 /* ==================== MOBILE UTILITY CLASSES ==================== */
 
-/* Hide on mobile */
+/* Hide on mobile and tablets (show only on desktop 951px+) */
 .hide-mobile {
-  @media (max-width: 768px) {
+  @media (max-width: 950px) {
     display: none !important;
   }
 }
 
-/* Show only on mobile */
+/* Show only on mobile and tablets (hide on desktop 951px+) */
 .show-mobile {
   display: none !important;
   
@@ -1727,7 +1727,7 @@ section {
 }
 
 /* Mobile-specific header hiding - only for real mobile devices */
-@media (max-width: 768px) {
+@media (max-width: 950px) {
   header {
     display: none !important;
   }

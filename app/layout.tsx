@@ -31,7 +31,7 @@ export default function RootLayout({
           <EnableBodyHorizontalScroll />
           <DesktopFluidBackground />
           <ParticleBackground />
-          <div className="fixed top-0 left-0 w-screen z-50 show-on-desktop-950">
+          <div className="show-on-desktop-950 fixed top-0 left-0 w-full z-50">
             <ThemeToggleBar />
           </div>
           <MobileThemeToggle />

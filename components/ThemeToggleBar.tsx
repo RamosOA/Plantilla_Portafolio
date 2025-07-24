@@ -53,7 +53,7 @@ const ThemeToggleBar = () => {
 
     return (
         <motion.div 
-            className="fixed-bars top-0 left-0 right-0 z-50 hide-mobile"
+            className="w-full"
             style={{
                 background: isDark 
                     ? 'linear-gradient(145deg, #2A2A2F 0%, #1F1F23 50%, #121214 100%)'
